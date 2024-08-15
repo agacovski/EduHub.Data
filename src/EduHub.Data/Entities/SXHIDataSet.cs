@@ -175,6 +175,12 @@ namespace EduHub.Data.Entities
                     case "GENDER_DESC":
                         mapper[i] = (e, v) => e.GENDER_DESC = v;
                         break;
+                    case "EXEMPT_REASON":
+                        mapper[i] = (e, v) => e.EXEMPT_REASON = v;
+                        break;
+                    case "EXEMPT_APPROVED":
+                        mapper[i] = (e, v) => e.EXEMPT_APPROVED = v;
+                        break;
                     default:
                         mapper[i] = MapperNoOp;
                         break;
@@ -392,6 +398,8 @@ BEGIN
         [MEDICAL_ALERT] varchar(1) NULL,
         [FIRST_REG_NO] varchar(15) NULL,
         [GENDER_DESC] varchar(100) NULL,
+        [EXEMPT_REASON] varchar(1) NULL,
+        [EXEMPT_APPROVED] varchar(1) NULL,
         CONSTRAINT [SXHI_Index_TID] PRIMARY KEY CLUSTERED (
             [TID] ASC
         )
@@ -502,7 +510,7 @@ END");
             {
             }
 
-            public override int FieldCount { get { return 45; } }
+            public override int FieldCount { get { return 47; } }
 
             public override object GetValue(int i)
             {
@@ -598,6 +606,10 @@ END");
                         return Current.FIRST_REG_NO;
                     case 44: // GENDER_DESC
                         return Current.GENDER_DESC;
+                    case 45: // EXEMPT_REASON
+                        return Current.EXEMPT_REASON;
+                    case 46: // EXEMPT_APPROVED
+                        return Current.EXEMPT_APPROVED;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
                 }
@@ -695,6 +707,10 @@ END");
                         return Current.FIRST_REG_NO == null;
                     case 44: // GENDER_DESC
                         return Current.GENDER_DESC == null;
+                    case 45: // EXEMPT_REASON
+                        return Current.EXEMPT_REASON == null;
+                    case 46: // EXEMPT_APPROVED
+                        return Current.EXEMPT_APPROVED == null;
                     default:
                         return false;
                 }
@@ -794,6 +810,10 @@ END");
                         return "FIRST_REG_NO";
                     case 44: // GENDER_DESC
                         return "GENDER_DESC";
+                    case 45: // EXEMPT_REASON
+                        return "EXEMPT_REASON";
+                    case 46: // EXEMPT_APPROVED
+                        return "EXEMPT_APPROVED";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
                 }
@@ -893,6 +913,10 @@ END");
                         return 43;
                     case "GENDER_DESC":
                         return 44;
+                    case "EXEMPT_REASON":
+                        return 45;
+                    case "EXEMPT_APPROVED":
+                        return 46;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

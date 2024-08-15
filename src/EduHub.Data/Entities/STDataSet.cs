@@ -52,6 +52,8 @@ namespace EduHub.Data.Entities
             Index_SCHOOL_YEAR = new Lazy<NullDictionary<string, IReadOnlyList<ST>>>(() => this.ToGroupedNullDictionary(i => i.SCHOOL_YEAR));
             Index_STKEY = new Lazy<Dictionary<string, ST>>(() => this.ToDictionary(i => i.STKEY));
             Index_TAG = new Lazy<NullDictionary<string, IReadOnlyList<ST>>>(() => this.ToGroupedNullDictionary(i => i.TAG));
+            Index_VISA_APPLIED = new Lazy<NullDictionary<string, IReadOnlyList<ST>>>(() => this.ToGroupedNullDictionary(i => i.VISA_APPLIED));
+            Index_VISA_PREV = new Lazy<NullDictionary<string, IReadOnlyList<ST>>>(() => this.ToGroupedNullDictionary(i => i.VISA_PREV));
             Index_VISA_SUBCLASS = new Lazy<NullDictionary<string, IReadOnlyList<ST>>>(() => this.ToGroupedNullDictionary(i => i.VISA_SUBCLASS));
         }
 
@@ -690,6 +692,30 @@ namespace EduHub.Data.Entities
                     case "FLO":
                         mapper[i] = (e, v) => e.FLO = v;
                         break;
+                    case "COG_LEARN":
+                        mapper[i] = (e, v) => e.COG_LEARN = v;
+                        break;
+                    case "SOC_EMOT":
+                        mapper[i] = (e, v) => e.SOC_EMOT = v;
+                        break;
+                    case "VISA_APPLIED":
+                        mapper[i] = (e, v) => e.VISA_APPLIED = v;
+                        break;
+                    case "VISA_PREV":
+                        mapper[i] = (e, v) => e.VISA_PREV = v;
+                        break;
+                    case "EXEMPT_REASON":
+                        mapper[i] = (e, v) => e.EXEMPT_REASON = v;
+                        break;
+                    case "EXEMPT_APPROVED":
+                        mapper[i] = (e, v) => e.EXEMPT_APPROVED = v;
+                        break;
+                    case "DISABILITY_INFO":
+                        mapper[i] = (e, v) => e.DISABILITY_INFO = v;
+                        break;
+                    case "DISABILITY_DESC":
+                        mapper[i] = (e, v) => e.DISABILITY_DESC = v;
+                        break;
                     case "LW_DATE":
                         mapper[i] = (e, v) => e.LW_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                         break;
@@ -795,6 +821,8 @@ namespace EduHub.Data.Entities
         private Lazy<NullDictionary<string, IReadOnlyList<ST>>> Index_SCHOOL_YEAR;
         private Lazy<Dictionary<string, ST>> Index_STKEY;
         private Lazy<NullDictionary<string, IReadOnlyList<ST>>> Index_TAG;
+        private Lazy<NullDictionary<string, IReadOnlyList<ST>>> Index_VISA_APPLIED;
+        private Lazy<NullDictionary<string, IReadOnlyList<ST>>> Index_VISA_PREV;
         private Lazy<NullDictionary<string, IReadOnlyList<ST>>> Index_VISA_SUBCLASS;
 
         #endregion
@@ -1978,6 +2006,90 @@ namespace EduHub.Data.Entities
         }
 
         /// <summary>
+        /// Find ST by VISA_APPLIED field
+        /// </summary>
+        /// <param name="VISA_APPLIED">VISA_APPLIED value used to find ST</param>
+        /// <returns>List of related ST entities</returns>
+        /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
+        public IReadOnlyList<ST> FindByVISA_APPLIED(string VISA_APPLIED)
+        {
+            return Index_VISA_APPLIED.Value[VISA_APPLIED];
+        }
+
+        /// <summary>
+        /// Attempt to find ST by VISA_APPLIED field
+        /// </summary>
+        /// <param name="VISA_APPLIED">VISA_APPLIED value used to find ST</param>
+        /// <param name="Value">List of related ST entities</param>
+        /// <returns>True if the list of related ST entities is found</returns>
+        /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
+        public bool TryFindByVISA_APPLIED(string VISA_APPLIED, out IReadOnlyList<ST> Value)
+        {
+            return Index_VISA_APPLIED.Value.TryGetValue(VISA_APPLIED, out Value);
+        }
+
+        /// <summary>
+        /// Attempt to find ST by VISA_APPLIED field
+        /// </summary>
+        /// <param name="VISA_APPLIED">VISA_APPLIED value used to find ST</param>
+        /// <returns>List of related ST entities, or null if not found</returns>
+        /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
+        public IReadOnlyList<ST> TryFindByVISA_APPLIED(string VISA_APPLIED)
+        {
+            IReadOnlyList<ST> value;
+            if (Index_VISA_APPLIED.Value.TryGetValue(VISA_APPLIED, out value))
+            {
+                return value;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Find ST by VISA_PREV field
+        /// </summary>
+        /// <param name="VISA_PREV">VISA_PREV value used to find ST</param>
+        /// <returns>List of related ST entities</returns>
+        /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
+        public IReadOnlyList<ST> FindByVISA_PREV(string VISA_PREV)
+        {
+            return Index_VISA_PREV.Value[VISA_PREV];
+        }
+
+        /// <summary>
+        /// Attempt to find ST by VISA_PREV field
+        /// </summary>
+        /// <param name="VISA_PREV">VISA_PREV value used to find ST</param>
+        /// <param name="Value">List of related ST entities</param>
+        /// <returns>True if the list of related ST entities is found</returns>
+        /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
+        public bool TryFindByVISA_PREV(string VISA_PREV, out IReadOnlyList<ST> Value)
+        {
+            return Index_VISA_PREV.Value.TryGetValue(VISA_PREV, out Value);
+        }
+
+        /// <summary>
+        /// Attempt to find ST by VISA_PREV field
+        /// </summary>
+        /// <param name="VISA_PREV">VISA_PREV value used to find ST</param>
+        /// <returns>List of related ST entities, or null if not found</returns>
+        /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
+        public IReadOnlyList<ST> TryFindByVISA_PREV(string VISA_PREV)
+        {
+            IReadOnlyList<ST> value;
+            if (Index_VISA_PREV.Value.TryGetValue(VISA_PREV, out value))
+            {
+                return value;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Find ST by VISA_SUBCLASS field
         /// </summary>
         /// <param name="VISA_SUBCLASS">VISA_SUBCLASS value used to find ST</param>
@@ -2243,6 +2355,14 @@ BEGIN
         [ENROLMENT_SI_ID] varchar(20) NULL,
         [APPLICATION_SI_ID] varchar(20) NULL,
         [FLO] varchar(1) NULL,
+        [COG_LEARN] varchar(1) NULL,
+        [SOC_EMOT] varchar(1) NULL,
+        [VISA_APPLIED] varchar(3) NULL,
+        [VISA_PREV] varchar(3) NULL,
+        [EXEMPT_REASON] varchar(1) NULL,
+        [EXEMPT_APPROVED] varchar(1) NULL,
+        [DISABILITY_INFO] varchar(1) NULL,
+        [DISABILITY_DESC] varchar(MAX) NULL,
         [LW_DATE] datetime NULL,
         [LW_TIME] smallint NULL,
         [LW_USER] varchar(128) NULL,
@@ -2358,6 +2478,14 @@ BEGIN
     (
             [TAG] ASC
     );
+    CREATE NONCLUSTERED INDEX [ST_Index_VISA_APPLIED] ON [dbo].[ST]
+    (
+            [VISA_APPLIED] ASC
+    );
+    CREATE NONCLUSTERED INDEX [ST_Index_VISA_PREV] ON [dbo].[ST]
+    (
+            [VISA_PREV] ASC
+    );
     CREATE NONCLUSTERED INDEX [ST_Index_VISA_SUBCLASS] ON [dbo].[ST]
     (
             [VISA_SUBCLASS] ASC
@@ -2431,6 +2559,10 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND 
     ALTER INDEX [ST_Index_SCHOOL_YEAR] ON [dbo].[ST] DISABLE;
 IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND name = N'ST_Index_TAG')
     ALTER INDEX [ST_Index_TAG] ON [dbo].[ST] DISABLE;
+IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND name = N'ST_Index_VISA_APPLIED')
+    ALTER INDEX [ST_Index_VISA_APPLIED] ON [dbo].[ST] DISABLE;
+IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND name = N'ST_Index_VISA_PREV')
+    ALTER INDEX [ST_Index_VISA_PREV] ON [dbo].[ST] DISABLE;
 IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND name = N'ST_Index_VISA_SUBCLASS')
     ALTER INDEX [ST_Index_VISA_SUBCLASS] ON [dbo].[ST] DISABLE;
 ");
@@ -2500,6 +2632,10 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND 
     ALTER INDEX [ST_Index_SCHOOL_YEAR] ON [dbo].[ST] REBUILD PARTITION = ALL;
 IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND name = N'ST_Index_TAG')
     ALTER INDEX [ST_Index_TAG] ON [dbo].[ST] REBUILD PARTITION = ALL;
+IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND name = N'ST_Index_VISA_APPLIED')
+    ALTER INDEX [ST_Index_VISA_APPLIED] ON [dbo].[ST] REBUILD PARTITION = ALL;
+IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND name = N'ST_Index_VISA_PREV')
+    ALTER INDEX [ST_Index_VISA_PREV] ON [dbo].[ST] REBUILD PARTITION = ALL;
 IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND name = N'ST_Index_VISA_SUBCLASS')
     ALTER INDEX [ST_Index_VISA_SUBCLASS] ON [dbo].[ST] REBUILD PARTITION = ALL;
 ");
@@ -2588,7 +2724,7 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND 
             {
             }
 
-            public override int FieldCount { get { return 211; } }
+            public override int FieldCount { get { return 219; } }
 
             public override object GetValue(int i)
             {
@@ -3010,11 +3146,27 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND 
                         return Current.APPLICATION_SI_ID;
                     case 207: // FLO
                         return Current.FLO;
-                    case 208: // LW_DATE
+                    case 208: // COG_LEARN
+                        return Current.COG_LEARN;
+                    case 209: // SOC_EMOT
+                        return Current.SOC_EMOT;
+                    case 210: // VISA_APPLIED
+                        return Current.VISA_APPLIED;
+                    case 211: // VISA_PREV
+                        return Current.VISA_PREV;
+                    case 212: // EXEMPT_REASON
+                        return Current.EXEMPT_REASON;
+                    case 213: // EXEMPT_APPROVED
+                        return Current.EXEMPT_APPROVED;
+                    case 214: // DISABILITY_INFO
+                        return Current.DISABILITY_INFO;
+                    case 215: // DISABILITY_DESC
+                        return Current.DISABILITY_DESC;
+                    case 216: // LW_DATE
                         return Current.LW_DATE;
-                    case 209: // LW_TIME
+                    case 217: // LW_TIME
                         return Current.LW_TIME;
-                    case 210: // LW_USER
+                    case 218: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -3437,11 +3589,27 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND 
                         return Current.APPLICATION_SI_ID == null;
                     case 207: // FLO
                         return Current.FLO == null;
-                    case 208: // LW_DATE
+                    case 208: // COG_LEARN
+                        return Current.COG_LEARN == null;
+                    case 209: // SOC_EMOT
+                        return Current.SOC_EMOT == null;
+                    case 210: // VISA_APPLIED
+                        return Current.VISA_APPLIED == null;
+                    case 211: // VISA_PREV
+                        return Current.VISA_PREV == null;
+                    case 212: // EXEMPT_REASON
+                        return Current.EXEMPT_REASON == null;
+                    case 213: // EXEMPT_APPROVED
+                        return Current.EXEMPT_APPROVED == null;
+                    case 214: // DISABILITY_INFO
+                        return Current.DISABILITY_INFO == null;
+                    case 215: // DISABILITY_DESC
+                        return Current.DISABILITY_DESC == null;
+                    case 216: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 209: // LW_TIME
+                    case 217: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 210: // LW_USER
+                    case 218: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -3868,11 +4036,27 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND 
                         return "APPLICATION_SI_ID";
                     case 207: // FLO
                         return "FLO";
-                    case 208: // LW_DATE
+                    case 208: // COG_LEARN
+                        return "COG_LEARN";
+                    case 209: // SOC_EMOT
+                        return "SOC_EMOT";
+                    case 210: // VISA_APPLIED
+                        return "VISA_APPLIED";
+                    case 211: // VISA_PREV
+                        return "VISA_PREV";
+                    case 212: // EXEMPT_REASON
+                        return "EXEMPT_REASON";
+                    case 213: // EXEMPT_APPROVED
+                        return "EXEMPT_APPROVED";
+                    case 214: // DISABILITY_INFO
+                        return "DISABILITY_INFO";
+                    case 215: // DISABILITY_DESC
+                        return "DISABILITY_DESC";
+                    case 216: // LW_DATE
                         return "LW_DATE";
-                    case 209: // LW_TIME
+                    case 217: // LW_TIME
                         return "LW_TIME";
-                    case 210: // LW_USER
+                    case 218: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -4299,12 +4483,28 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND 
                         return 206;
                     case "FLO":
                         return 207;
-                    case "LW_DATE":
+                    case "COG_LEARN":
                         return 208;
-                    case "LW_TIME":
+                    case "SOC_EMOT":
                         return 209;
-                    case "LW_USER":
+                    case "VISA_APPLIED":
                         return 210;
+                    case "VISA_PREV":
+                        return 211;
+                    case "EXEMPT_REASON":
+                        return 212;
+                    case "EXEMPT_APPROVED":
+                        return 213;
+                    case "DISABILITY_INFO":
+                        return 214;
+                    case "DISABILITY_DESC":
+                        return 215;
+                    case "LW_DATE":
+                        return 216;
+                    case "LW_TIME":
+                        return 217;
+                    case "LW_USER":
+                        return 218;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

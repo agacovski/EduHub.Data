@@ -150,7 +150,7 @@ namespace EduHub.Data.Entities
                         mapper[i] = (e, v) => e.BRANCH = v;
                         break;
                     case "ACCOUNT_NUMBER":
-                        mapper[i] = (e, v) => e.ACCOUNT_NUMBER = v == null ? (int?)null : int.Parse(v);
+                        mapper[i] = (e, v) => e.ACCOUNT_NUMBER = v;
                         break;
                     case "RTYPE":
                         mapper[i] = (e, v) => e.RTYPE = v;
@@ -229,6 +229,9 @@ namespace EduHub.Data.Entities
                         break;
                     case "FEE_DESCRIPTION":
                         mapper[i] = (e, v) => e.FEE_DESCRIPTION = v;
+                        break;
+                    case "PTYPE":
+                        mapper[i] = (e, v) => e.PTYPE = v;
                         break;
                     case "LW_DATE":
                         mapper[i] = (e, v) => e.LW_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
@@ -789,7 +792,7 @@ BEGIN
         [BSB] varchar(6) NULL,
         [BANK] varchar(20) NULL,
         [BRANCH] varchar(20) NULL,
-        [ACCOUNT_NUMBER] int NULL,
+        [ACCOUNT_NUMBER] varchar(15) NULL,
         [RTYPE] varchar(2) NULL,
         [SPLIT_ITEM] varchar(10) NULL,
         [FEE_CODE] varchar(10) NULL,
@@ -816,6 +819,7 @@ BEGIN
         [ST_SURNAME] varchar(30) NULL,
         [ST_FIRSTNAME] varchar(20) NULL,
         [FEE_DESCRIPTION] varchar(30) NULL,
+        [PTYPE] varchar(2) NULL,
         [LW_DATE] datetime NULL,
         [LW_TIME] smallint NULL,
         [LW_USER] varchar(128) NULL,
@@ -993,7 +997,7 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[DFF]') AND
             {
             }
 
-            public override int FieldCount { get { return 64; } }
+            public override int FieldCount { get { return 65; } }
 
             public override object GetValue(int i)
             {
@@ -1121,11 +1125,13 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[DFF]') AND
                         return Current.ST_FIRSTNAME;
                     case 60: // FEE_DESCRIPTION
                         return Current.FEE_DESCRIPTION;
-                    case 61: // LW_DATE
+                    case 61: // PTYPE
+                        return Current.PTYPE;
+                    case 62: // LW_DATE
                         return Current.LW_DATE;
-                    case 62: // LW_TIME
+                    case 63: // LW_TIME
                         return Current.LW_TIME;
-                    case 63: // LW_USER
+                    case 64: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -1254,11 +1260,13 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[DFF]') AND
                         return Current.ST_FIRSTNAME == null;
                     case 60: // FEE_DESCRIPTION
                         return Current.FEE_DESCRIPTION == null;
-                    case 61: // LW_DATE
+                    case 61: // PTYPE
+                        return Current.PTYPE == null;
+                    case 62: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 62: // LW_TIME
+                    case 63: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 63: // LW_USER
+                    case 64: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -1391,11 +1399,13 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[DFF]') AND
                         return "ST_FIRSTNAME";
                     case 60: // FEE_DESCRIPTION
                         return "FEE_DESCRIPTION";
-                    case 61: // LW_DATE
+                    case 61: // PTYPE
+                        return "PTYPE";
+                    case 62: // LW_DATE
                         return "LW_DATE";
-                    case 62: // LW_TIME
+                    case 63: // LW_TIME
                         return "LW_TIME";
-                    case 63: // LW_USER
+                    case 64: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -1528,12 +1538,14 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[DFF]') AND
                         return 59;
                     case "FEE_DESCRIPTION":
                         return 60;
-                    case "LW_DATE":
+                    case "PTYPE":
                         return 61;
-                    case "LW_TIME":
+                    case "LW_DATE":
                         return 62;
-                    case "LW_USER":
+                    case "LW_TIME":
                         return 63;
+                    case "LW_USER":
+                        return 64;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

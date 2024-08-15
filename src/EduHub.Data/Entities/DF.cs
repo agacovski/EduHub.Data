@@ -131,19 +131,19 @@ namespace EduHub.Data.Entities
         public string BIRTH_COUNTRY_A { get; internal set; }
 
         /// <summary>
-        /// Parent/guardian A at home during business hours? (Y/N)
+        /// Parent/guardian A at home during school hours? (Y/N)
         /// [Uppercase Alphanumeric (1)]
         /// </summary>
         public string BH_AT_HOME_A { get; internal set; }
 
         /// <summary>
-        /// Parent/guardian A telephone contact if not at home during business hours
+        /// Parent/guardian A telephone contact if not at home during school hours
         /// [Alphanumeric (20)]
         /// </summary>
         public string BH_CONTACT_A { get; internal set; }
 
         /// <summary>
-        /// Parent/guardian A telephone contact if not at home during business hours
+        /// Parent/guardian A telephone contact if not at home during school hours
         /// [Memo]
         /// </summary>
         public string BH_CONTACT_A_MEMO { get; internal set; }
@@ -310,19 +310,19 @@ namespace EduHub.Data.Entities
         public string BIRTH_COUNTRY_B { get; internal set; }
 
         /// <summary>
-        /// Parent/guardian B at home during business hours? (Y/N)
+        /// Parent/guardian B at home during school hours? (Y/N)
         /// [Uppercase Alphanumeric (1)]
         /// </summary>
         public string BH_AT_HOME_B { get; internal set; }
 
         /// <summary>
-        /// Parent/guardian B telephone contact if not at home during business hours
+        /// Parent/guardian B telephone contact if not at home during school hours
         /// [Alphanumeric (20)]
         /// </summary>
         public string BH_CONTACT_B { get; internal set; }
 
         /// <summary>
-        /// Parent/guardian B telephone contact if not at home during business hours
+        /// Parent/guardian B telephone contact if not at home during school hours
         /// [Memo]
         /// </summary>
         public string BH_CONTACT_B_MEMO { get; internal set; }

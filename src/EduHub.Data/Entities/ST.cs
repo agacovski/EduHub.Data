@@ -38,6 +38,8 @@ namespace EduHub.Data.Entities
         private KGD Cache_EXIT_DEST02_KGD;
         private KCT Cache_INAC_ABS_CODE_KCT;
         private KGL Cache_LOTE_HOME_CODE_KGL;
+        private KCV Cache_VISA_APPLIED_KCV;
+        private KCV Cache_VISA_PREV_KCV;
 
         #endregion
 
@@ -59,6 +61,7 @@ namespace EduHub.Data.Entities
 #if !EduHubScoped
         private IReadOnlyList<STBT> Cache_STKEY_STBT_STBTKEY;
         private IReadOnlyList<STFLO> Cache_STKEY_STFLO_SKEY;
+        private IReadOnlyList<STLITNUM> Cache_STKEY_STLITNUM_SKEY;
 #endif
         private IReadOnlyList<STMA> Cache_STKEY_STMA_SKEY;
 #if !EduHubScoped
@@ -1257,25 +1260,25 @@ namespace EduHub.Data.Entities
         public string GENDER_DESC { get; internal set; }
 
         /// <summary>
-        /// Student is using the Literacy services of a tutor as part of the Tutor Learning Initiative (Y/N)
+        /// **CP-3151 Fields no longer in use.
         /// [Uppercase Alphanumeric (1)]
         /// </summary>
         public string DET_TUTOR { get; internal set; }
 
         /// <summary>
-        /// Student is using the Numeracy services of a tutor as part of the Tutor Learning Initiative (Y/N)
+        /// **CP-3151 Fields no longer in use.
         /// [Uppercase Alphanumeric (1)]
         /// </summary>
         public string DET_TUTORNUM { get; internal set; }
 
         /// <summary>
-        /// MYLNS Literacy (Y/N)
+        /// **CP-3151 Fields no longer in use.
         /// [Uppercase Alphanumeric (1)]
         /// </summary>
         public string MYLNS_LITERACY { get; internal set; }
 
         /// <summary>
-        /// MYLNS Numeracy (Y/N)
+        /// **CP-3151 Fields no longer in use.
         /// [Uppercase Alphanumeric (1)]
         /// </summary>
         public string MYLNS_NUMERACY { get; internal set; }
@@ -1315,6 +1318,54 @@ namespace EduHub.Data.Entities
         /// [Uppercase Alphanumeric (1)]
         /// </summary>
         public string FLO { get; internal set; }
+
+        /// <summary>
+        /// Cognitive/Learning Impairment
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string COG_LEARN { get; internal set; }
+
+        /// <summary>
+        /// Social/Emotional Impairment
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string SOC_EMOT { get; internal set; }
+
+        /// <summary>
+        /// Visa currently applying for
+        /// [Uppercase Alphanumeric (3)]
+        /// </summary>
+        public string VISA_APPLIED { get; internal set; }
+
+        /// <summary>
+        /// Previous Visa held
+        /// [Uppercase Alphanumeric (3)]
+        /// </summary>
+        public string VISA_PREV { get; internal set; }
+
+        /// <summary>
+        /// Exempt Reason
+        /// [Alphanumeric (1)]
+        /// </summary>
+        public string EXEMPT_REASON { get; internal set; }
+
+        /// <summary>
+        /// Exempt Approved
+        /// [Alphanumeric (1)]
+        /// </summary>
+        public string EXEMPT_APPROVED { get; internal set; }
+
+        /// <summary>
+        /// &lt;No documentation available&gt;
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string DISABILITY_INFO { get; internal set; }
+
+        /// <summary>
+        /// &lt;No documentation available&gt;
+        /// [Memo]
+        /// </summary>
+        public string DISABILITY_DESC { get; internal set; }
 
         /// <summary>
         /// Last write date
@@ -1861,6 +1912,48 @@ namespace EduHub.Data.Entities
             }
         }
 
+        /// <summary>
+        /// KCV (Visa Subclasses) related entity by [ST.VISA_APPLIED]-&gt;[KCV.VISA_SUBCLASS]
+        /// Visa currently applying for
+        /// </summary>
+        public KCV VISA_APPLIED_KCV
+        {
+            get
+            {
+                if (VISA_APPLIED == null)
+                {
+                    return null;
+                }
+                if (Cache_VISA_APPLIED_KCV == null)
+                {
+                    Cache_VISA_APPLIED_KCV = Context.KCV.FindByVISA_SUBCLASS(VISA_APPLIED);
+                }
+
+                return Cache_VISA_APPLIED_KCV;
+            }
+        }
+
+        /// <summary>
+        /// KCV (Visa Subclasses) related entity by [ST.VISA_PREV]-&gt;[KCV.VISA_SUBCLASS]
+        /// Previous Visa held
+        /// </summary>
+        public KCV VISA_PREV_KCV
+        {
+            get
+            {
+                if (VISA_PREV == null)
+                {
+                    return null;
+                }
+                if (Cache_VISA_PREV_KCV == null)
+                {
+                    Cache_VISA_PREV_KCV = Context.KCV.FindByVISA_SUBCLASS(VISA_PREV);
+                }
+
+                return Cache_VISA_PREV_KCV;
+            }
+        }
+
         #endregion
 
         #region Foreign Navigation Properties
@@ -2031,6 +2124,24 @@ namespace EduHub.Data.Entities
                 }
 
                 return Cache_STKEY_STFLO_SKEY;
+            }
+        }
+
+        /// <summary>
+        /// STLITNUM (Literacy and Numeracy Programs) related entities by [ST.STKEY]-&gt;[STLITNUM.SKEY]
+        /// Student ID
+        /// </summary>
+        public IReadOnlyList<STLITNUM> STKEY_STLITNUM_SKEY
+        {
+            get
+            {
+                if (Cache_STKEY_STLITNUM_SKEY == null &&
+                    !Context.STLITNUM.TryFindBySKEY(STKEY, out Cache_STKEY_STLITNUM_SKEY))
+                {
+                    Cache_STKEY_STLITNUM_SKEY = new List<STLITNUM>().AsReadOnly();
+                }
+
+                return Cache_STKEY_STLITNUM_SKEY;
             }
         }
 

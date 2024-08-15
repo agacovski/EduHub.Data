@@ -142,8 +142,10 @@ namespace EduHub.Data
         private readonly KGTDataSet _KGT;
 #if !EduHubScoped
         private readonly KGWDataSet _KGW;
+        private readonly KINTNFDataSet _KINTNF;
         private readonly KLOGDataSet _KLOG;
         private readonly KMSGDataSet _KMSG;
+        private readonly KMYLNSDataSet _KMYLNS;
         private readonly KNDataSet _KN;
 #endif
         private readonly KNATTDataSet _KNATT;
@@ -347,6 +349,7 @@ namespace EduHub.Data
         private readonly STAR_TFRDataSet _STAR_TFR;
         private readonly STBTDataSet _STBT;
         private readonly STFLODataSet _STFLO;
+        private readonly STLITNUMDataSet _STLITNUM;
 #endif
         private readonly STMADataSet _STMA;
 #if !EduHubScoped
@@ -588,8 +591,10 @@ namespace EduHub.Data
             _KGT = new KGTDataSet(this);
 #if !EduHubScoped
             _KGW = new KGWDataSet(this);
+            _KINTNF = new KINTNFDataSet(this);
             _KLOG = new KLOGDataSet(this);
             _KMSG = new KMSGDataSet(this);
+            _KMYLNS = new KMYLNSDataSet(this);
             _KN = new KNDataSet(this);
 #endif
             _KNATT = new KNATTDataSet(this);
@@ -793,6 +798,7 @@ namespace EduHub.Data
             _STAR_TFR = new STAR_TFRDataSet(this);
             _STBT = new STBTDataSet(this);
             _STFLO = new STFLODataSet(this);
+            _STLITNUM = new STLITNUMDataSet(this);
 #endif
             _STMA = new STMADataSet(this);
 #if !EduHubScoped
@@ -1011,8 +1017,10 @@ namespace EduHub.Data
             yield return KGT;
 #if !EduHubScoped
             yield return KGW;
+            yield return KINTNF;
             yield return KLOG;
             yield return KMSG;
+            yield return KMYLNS;
             yield return KN;
 #endif
             yield return KNATT;
@@ -1216,6 +1224,7 @@ namespace EduHub.Data
             yield return STAR_TFR;
             yield return STBT;
             yield return STFLO;
+            yield return STLITNUM;
 #endif
             yield return STMA;
 #if !EduHubScoped
@@ -1795,6 +1804,11 @@ namespace EduHub.Data
         public KGWDataSet KGW { get { return _KGW; } }
 
         /// <summary>
+        /// Expelled International Students
+        /// </summary>
+        public KINTNFDataSet KINTNF { get { return _KINTNF; } }
+
+        /// <summary>
         /// Trace log for finance import and export
         /// </summary>
         public KLOGDataSet KLOG { get { return _KLOG; } }
@@ -1803,6 +1817,11 @@ namespace EduHub.Data
         /// CASES21 MESSAGES
         /// </summary>
         public KMSGDataSet KMSG { get { return _KMSG; } }
+
+        /// <summary>
+        /// MYLNS Funding
+        /// </summary>
+        public KMYLNSDataSet KMYLNS { get { return _KMYLNS; } }
 
         /// <summary>
         /// General Ledger Notes
@@ -2698,6 +2717,11 @@ namespace EduHub.Data
         /// Student Flexible Learning Options
         /// </summary>
         public STFLODataSet STFLO { get { return _STFLO; } }
+
+        /// <summary>
+        /// Literacy and Numeracy Programs
+        /// </summary>
+        public STLITNUMDataSet STLITNUM { get { return _STLITNUM; } }
 #endif
 
         /// <summary>

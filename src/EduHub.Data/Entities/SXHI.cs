@@ -286,6 +286,18 @@ namespace EduHub.Data.Entities
         /// </summary>
         public string GENDER_DESC { get; internal set; }
 
+        /// <summary>
+        /// Exempt Reason
+        /// [Alphanumeric (1)]
+        /// </summary>
+        public string EXEMPT_REASON { get; internal set; }
+
+        /// <summary>
+        /// Exempt Approved
+        /// [Alphanumeric (1)]
+        /// </summary>
+        public string EXEMPT_APPROVED { get; internal set; }
+
         #endregion
 
         #region Navigation Properties

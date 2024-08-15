@@ -1105,6 +1105,18 @@
       "Properties": {}
     },
     {
+      "Filename": "KINTNFDataSet.cs",
+      "Project": null,
+      "Path": "Entities",
+      "Properties": {}
+    },
+    {
+      "Filename": "KINTNF.cs",
+      "Project": null,
+      "Path": "Entities",
+      "Properties": {}
+    },
+    {
       "Filename": "KLOGDataSet.cs",
       "Project": null,
       "Path": "Entities",
@@ -1124,6 +1136,18 @@
     },
     {
       "Filename": "KMSG.cs",
+      "Project": null,
+      "Path": "Entities",
+      "Properties": {}
+    },
+    {
+      "Filename": "KMYLNSDataSet.cs",
+      "Project": null,
+      "Path": "Entities",
+      "Properties": {}
+    },
+    {
+      "Filename": "KMYLNS.cs",
       "Project": null,
       "Path": "Entities",
       "Properties": {}
@@ -3200,6 +3224,18 @@
     },
     {
       "Filename": "STFLO.cs",
+      "Project": null,
+      "Path": "Entities",
+      "Properties": {}
+    },
+    {
+      "Filename": "STLITNUMDataSet.cs",
+      "Project": null,
+      "Path": "Entities",
+      "Properties": {}
+    },
+    {
+      "Filename": "STLITNUM.cs",
       "Project": null,
       "Path": "Entities",
       "Properties": {}

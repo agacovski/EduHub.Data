@@ -493,6 +493,24 @@ namespace EduHub.Data.Entities
                     case "APPLICATION_SI_ID":
                         mapper[i] = (e, v) => e.APPLICATION_SI_ID = v;
                         break;
+                    case "COG_LEARN":
+                        mapper[i] = (e, v) => e.COG_LEARN = v;
+                        break;
+                    case "SOC_EMOT":
+                        mapper[i] = (e, v) => e.SOC_EMOT = v;
+                        break;
+                    case "VISA_APPLIED":
+                        mapper[i] = (e, v) => e.VISA_APPLIED = v;
+                        break;
+                    case "VISA_PREV":
+                        mapper[i] = (e, v) => e.VISA_PREV = v;
+                        break;
+                    case "DISABILITY_INFO":
+                        mapper[i] = (e, v) => e.DISABILITY_INFO = v;
+                        break;
+                    case "DISABILITY_DESC":
+                        mapper[i] = (e, v) => e.DISABILITY_DESC = v;
+                        break;
                     case "LW_DATE":
                         mapper[i] = (e, v) => e.LW_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                         break;
@@ -956,6 +974,12 @@ BEGIN
         [STUDENT_SI_ID] varchar(20) NULL,
         [ENROLMENT_SI_ID] varchar(20) NULL,
         [APPLICATION_SI_ID] varchar(20) NULL,
+        [COG_LEARN] varchar(1) NULL,
+        [SOC_EMOT] varchar(1) NULL,
+        [VISA_APPLIED] varchar(3) NULL,
+        [VISA_PREV] varchar(3) NULL,
+        [DISABILITY_INFO] varchar(1) NULL,
+        [DISABILITY_DESC] varchar(MAX) NULL,
         [LW_DATE] datetime NULL,
         [LW_TIME] smallint NULL,
         [LW_USER] varchar(128) NULL,
@@ -1109,7 +1133,7 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST_TFR]') 
             {
             }
 
-            public override int FieldCount { get { return 153; } }
+            public override int FieldCount { get { return 159; } }
 
             public override object GetValue(int i)
             {
@@ -1415,11 +1439,23 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST_TFR]') 
                         return Current.ENROLMENT_SI_ID;
                     case 149: // APPLICATION_SI_ID
                         return Current.APPLICATION_SI_ID;
-                    case 150: // LW_DATE
+                    case 150: // COG_LEARN
+                        return Current.COG_LEARN;
+                    case 151: // SOC_EMOT
+                        return Current.SOC_EMOT;
+                    case 152: // VISA_APPLIED
+                        return Current.VISA_APPLIED;
+                    case 153: // VISA_PREV
+                        return Current.VISA_PREV;
+                    case 154: // DISABILITY_INFO
+                        return Current.DISABILITY_INFO;
+                    case 155: // DISABILITY_DESC
+                        return Current.DISABILITY_DESC;
+                    case 156: // LW_DATE
                         return Current.LW_DATE;
-                    case 151: // LW_TIME
+                    case 157: // LW_TIME
                         return Current.LW_TIME;
-                    case 152: // LW_USER
+                    case 158: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -1726,11 +1762,23 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST_TFR]') 
                         return Current.ENROLMENT_SI_ID == null;
                     case 149: // APPLICATION_SI_ID
                         return Current.APPLICATION_SI_ID == null;
-                    case 150: // LW_DATE
+                    case 150: // COG_LEARN
+                        return Current.COG_LEARN == null;
+                    case 151: // SOC_EMOT
+                        return Current.SOC_EMOT == null;
+                    case 152: // VISA_APPLIED
+                        return Current.VISA_APPLIED == null;
+                    case 153: // VISA_PREV
+                        return Current.VISA_PREV == null;
+                    case 154: // DISABILITY_INFO
+                        return Current.DISABILITY_INFO == null;
+                    case 155: // DISABILITY_DESC
+                        return Current.DISABILITY_DESC == null;
+                    case 156: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 151: // LW_TIME
+                    case 157: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 152: // LW_USER
+                    case 158: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -2041,11 +2089,23 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST_TFR]') 
                         return "ENROLMENT_SI_ID";
                     case 149: // APPLICATION_SI_ID
                         return "APPLICATION_SI_ID";
-                    case 150: // LW_DATE
+                    case 150: // COG_LEARN
+                        return "COG_LEARN";
+                    case 151: // SOC_EMOT
+                        return "SOC_EMOT";
+                    case 152: // VISA_APPLIED
+                        return "VISA_APPLIED";
+                    case 153: // VISA_PREV
+                        return "VISA_PREV";
+                    case 154: // DISABILITY_INFO
+                        return "DISABILITY_INFO";
+                    case 155: // DISABILITY_DESC
+                        return "DISABILITY_DESC";
+                    case 156: // LW_DATE
                         return "LW_DATE";
-                    case 151: // LW_TIME
+                    case 157: // LW_TIME
                         return "LW_TIME";
-                    case 152: // LW_USER
+                    case 158: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -2356,12 +2416,24 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST_TFR]') 
                         return 148;
                     case "APPLICATION_SI_ID":
                         return 149;
-                    case "LW_DATE":
+                    case "COG_LEARN":
                         return 150;
-                    case "LW_TIME":
+                    case "SOC_EMOT":
                         return 151;
-                    case "LW_USER":
+                    case "VISA_APPLIED":
                         return 152;
+                    case "VISA_PREV":
+                        return 153;
+                    case "DISABILITY_INFO":
+                        return 154;
+                    case "DISABILITY_DESC":
+                        return 155;
+                    case "LW_DATE":
+                        return 156;
+                    case "LW_TIME":
+                        return 157;
+                    case "LW_USER":
+                        return 158;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

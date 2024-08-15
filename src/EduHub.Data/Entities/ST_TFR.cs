@@ -919,6 +919,42 @@ namespace EduHub.Data.Entities
         public string APPLICATION_SI_ID { get; internal set; }
 
         /// <summary>
+        /// Cognitive/Learning Impairment
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string COG_LEARN { get; internal set; }
+
+        /// <summary>
+        /// Social/Emotional Impairment
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string SOC_EMOT { get; internal set; }
+
+        /// <summary>
+        /// Visa currently applying for
+        /// [Uppercase Alphanumeric (3)]
+        /// </summary>
+        public string VISA_APPLIED { get; internal set; }
+
+        /// <summary>
+        /// Previous Visa held
+        /// [Uppercase Alphanumeric (3)]
+        /// </summary>
+        public string VISA_PREV { get; internal set; }
+
+        /// <summary>
+        /// &lt;No documentation available&gt;
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string DISABILITY_INFO { get; internal set; }
+
+        /// <summary>
+        /// &lt;No documentation available&gt;
+        /// [Memo]
+        /// </summary>
+        public string DISABILITY_DESC { get; internal set; }
+
+        /// <summary>
         /// Last write date
         /// </summary>
         public DateTime? LW_DATE { get; internal set; }

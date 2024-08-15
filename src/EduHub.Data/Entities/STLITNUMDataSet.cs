@@ -11,33 +11,32 @@ using System.Text;
 namespace EduHub.Data.Entities
 {
     /// <summary>
-    /// Student Flexible Learning Options Data Set
+    /// Literacy and Numeracy Programs Data Set
     /// </summary>
     [GeneratedCode("EduHub Data", "0.9")]
-    public sealed partial class STFLODataSet : EduHubDataSet<STFLO>
+    public sealed partial class STLITNUMDataSet : EduHubDataSet<STLITNUM>
     {
         /// <inheritdoc />
-        public override string Name { get { return "STFLO"; } }
+        public override string Name { get { return "STLITNUM"; } }
 
         /// <inheritdoc />
         public override bool SupportsEntityLastModified { get { return true; } }
 
-        internal STFLODataSet(EduHubContext Context)
+        internal STLITNUMDataSet(EduHubContext Context)
             : base(Context)
         {
-            Index_PROGRAM = new Lazy<NullDictionary<int?, IReadOnlyList<STFLO>>>(() => this.ToGroupedNullDictionary(i => i.PROGRAM));
-            Index_SKEY = new Lazy<Dictionary<string, IReadOnlyList<STFLO>>>(() => this.ToGroupedDictionary(i => i.SKEY));
-            Index_TID = new Lazy<Dictionary<int, STFLO>>(() => this.ToDictionary(i => i.TID));
+            Index_SKEY = new Lazy<Dictionary<string, IReadOnlyList<STLITNUM>>>(() => this.ToGroupedDictionary(i => i.SKEY));
+            Index_TID = new Lazy<Dictionary<int, STLITNUM>>(() => this.ToDictionary(i => i.TID));
         }
 
         /// <summary>
-        /// Matches CSV file headers to actions, used to deserialize <see cref="STFLO" />
+        /// Matches CSV file headers to actions, used to deserialize <see cref="STLITNUM" />
         /// </summary>
         /// <param name="Headers">The CSV column headers</param>
-        /// <returns>An array of actions which deserialize <see cref="STFLO" /> fields for each CSV column header</returns>
-        internal override Action<STFLO, string>[] BuildMapper(IReadOnlyList<string> Headers)
+        /// <returns>An array of actions which deserialize <see cref="STLITNUM" /> fields for each CSV column header</returns>
+        internal override Action<STLITNUM, string>[] BuildMapper(IReadOnlyList<string> Headers)
         {
-            var mapper = new Action<STFLO, string>[Headers.Count];
+            var mapper = new Action<STLITNUM, string>[Headers.Count];
 
             for (var i = 0; i < Headers.Count; i++) {
                 switch (Headers[i]) {
@@ -47,20 +46,17 @@ namespace EduHub.Data.Entities
                     case "SKEY":
                         mapper[i] = (e, v) => e.SKEY = v;
                         break;
-                    case "FROM_DATE":
-                        mapper[i] = (e, v) => e.FROM_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                    case "FOCUS":
+                        mapper[i] = (e, v) => e.FOCUS = v;
                         break;
-                    case "FLO":
-                        mapper[i] = (e, v) => e.FLO = v;
+                    case "DEL_MODEL":
+                        mapper[i] = (e, v) => e.DEL_MODEL = v;
                         break;
-                    case "EXIT_DATE":
-                        mapper[i] = (e, v) => e.EXIT_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                    case "SESSION_LENGTH":
+                        mapper[i] = (e, v) => e.SESSION_LENGTH = v;
                         break;
-                    case "PROGRAM":
-                        mapper[i] = (e, v) => e.PROGRAM = v == null ? (int?)null : int.Parse(v);
-                        break;
-                    case "SCHOOL_NAME":
-                        mapper[i] = (e, v) => e.SCHOOL_NAME = v;
+                    case "SESSION_FREQ":
+                        mapper[i] = (e, v) => e.SESSION_FREQ = v;
                         break;
                     case "LW_DATE":
                         mapper[i] = (e, v) => e.LW_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
@@ -81,12 +77,12 @@ namespace EduHub.Data.Entities
         }
 
         /// <summary>
-        /// Merges <see cref="STFLO" /> delta entities
+        /// Merges <see cref="STLITNUM" /> delta entities
         /// </summary>
-        /// <param name="Entities">Iterator for base <see cref="STFLO" /> entities</param>
-        /// <param name="DeltaEntities">List of delta <see cref="STFLO" /> entities</param>
-        /// <returns>A merged <see cref="IEnumerable{STFLO}"/> of entities</returns>
-        internal override IEnumerable<STFLO> ApplyDeltaEntities(IEnumerable<STFLO> Entities, List<STFLO> DeltaEntities)
+        /// <param name="Entities">Iterator for base <see cref="STLITNUM" /> entities</param>
+        /// <param name="DeltaEntities">List of delta <see cref="STLITNUM" /> entities</param>
+        /// <returns>A merged <see cref="IEnumerable{STLITNUM}"/> of entities</returns>
+        internal override IEnumerable<STLITNUM> ApplyDeltaEntities(IEnumerable<STLITNUM> Entities, List<STLITNUM> DeltaEntities)
         {
             HashSet<int> Index_TID = new HashSet<int>(DeltaEntities.Select(i => i.TID));
 
@@ -136,88 +132,45 @@ namespace EduHub.Data.Entities
 
         #region Index Fields
 
-        private Lazy<NullDictionary<int?, IReadOnlyList<STFLO>>> Index_PROGRAM;
-        private Lazy<Dictionary<string, IReadOnlyList<STFLO>>> Index_SKEY;
-        private Lazy<Dictionary<int, STFLO>> Index_TID;
+        private Lazy<Dictionary<string, IReadOnlyList<STLITNUM>>> Index_SKEY;
+        private Lazy<Dictionary<int, STLITNUM>> Index_TID;
 
         #endregion
 
         #region Index Methods
 
         /// <summary>
-        /// Find STFLO by PROGRAM field
+        /// Find STLITNUM by SKEY field
         /// </summary>
-        /// <param name="PROGRAM">PROGRAM value used to find STFLO</param>
-        /// <returns>List of related STFLO entities</returns>
+        /// <param name="SKEY">SKEY value used to find STLITNUM</param>
+        /// <returns>List of related STLITNUM entities</returns>
         /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
-        public IReadOnlyList<STFLO> FindByPROGRAM(int? PROGRAM)
-        {
-            return Index_PROGRAM.Value[PROGRAM];
-        }
-
-        /// <summary>
-        /// Attempt to find STFLO by PROGRAM field
-        /// </summary>
-        /// <param name="PROGRAM">PROGRAM value used to find STFLO</param>
-        /// <param name="Value">List of related STFLO entities</param>
-        /// <returns>True if the list of related STFLO entities is found</returns>
-        /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
-        public bool TryFindByPROGRAM(int? PROGRAM, out IReadOnlyList<STFLO> Value)
-        {
-            return Index_PROGRAM.Value.TryGetValue(PROGRAM, out Value);
-        }
-
-        /// <summary>
-        /// Attempt to find STFLO by PROGRAM field
-        /// </summary>
-        /// <param name="PROGRAM">PROGRAM value used to find STFLO</param>
-        /// <returns>List of related STFLO entities, or null if not found</returns>
-        /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
-        public IReadOnlyList<STFLO> TryFindByPROGRAM(int? PROGRAM)
-        {
-            IReadOnlyList<STFLO> value;
-            if (Index_PROGRAM.Value.TryGetValue(PROGRAM, out value))
-            {
-                return value;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Find STFLO by SKEY field
-        /// </summary>
-        /// <param name="SKEY">SKEY value used to find STFLO</param>
-        /// <returns>List of related STFLO entities</returns>
-        /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
-        public IReadOnlyList<STFLO> FindBySKEY(string SKEY)
+        public IReadOnlyList<STLITNUM> FindBySKEY(string SKEY)
         {
             return Index_SKEY.Value[SKEY];
         }
 
         /// <summary>
-        /// Attempt to find STFLO by SKEY field
+        /// Attempt to find STLITNUM by SKEY field
         /// </summary>
-        /// <param name="SKEY">SKEY value used to find STFLO</param>
-        /// <param name="Value">List of related STFLO entities</param>
-        /// <returns>True if the list of related STFLO entities is found</returns>
+        /// <param name="SKEY">SKEY value used to find STLITNUM</param>
+        /// <param name="Value">List of related STLITNUM entities</param>
+        /// <returns>True if the list of related STLITNUM entities is found</returns>
         /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
-        public bool TryFindBySKEY(string SKEY, out IReadOnlyList<STFLO> Value)
+        public bool TryFindBySKEY(string SKEY, out IReadOnlyList<STLITNUM> Value)
         {
             return Index_SKEY.Value.TryGetValue(SKEY, out Value);
         }
 
         /// <summary>
-        /// Attempt to find STFLO by SKEY field
+        /// Attempt to find STLITNUM by SKEY field
         /// </summary>
-        /// <param name="SKEY">SKEY value used to find STFLO</param>
-        /// <returns>List of related STFLO entities, or null if not found</returns>
+        /// <param name="SKEY">SKEY value used to find STLITNUM</param>
+        /// <returns>List of related STLITNUM entities, or null if not found</returns>
         /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
-        public IReadOnlyList<STFLO> TryFindBySKEY(string SKEY)
+        public IReadOnlyList<STLITNUM> TryFindBySKEY(string SKEY)
         {
-            IReadOnlyList<STFLO> value;
+            IReadOnlyList<STLITNUM> value;
             if (Index_SKEY.Value.TryGetValue(SKEY, out value))
             {
                 return value;
@@ -229,37 +182,37 @@ namespace EduHub.Data.Entities
         }
 
         /// <summary>
-        /// Find STFLO by TID field
+        /// Find STLITNUM by TID field
         /// </summary>
-        /// <param name="TID">TID value used to find STFLO</param>
-        /// <returns>Related STFLO entity</returns>
+        /// <param name="TID">TID value used to find STLITNUM</param>
+        /// <returns>Related STLITNUM entity</returns>
         /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
-        public STFLO FindByTID(int TID)
+        public STLITNUM FindByTID(int TID)
         {
             return Index_TID.Value[TID];
         }
 
         /// <summary>
-        /// Attempt to find STFLO by TID field
+        /// Attempt to find STLITNUM by TID field
         /// </summary>
-        /// <param name="TID">TID value used to find STFLO</param>
-        /// <param name="Value">Related STFLO entity</param>
-        /// <returns>True if the related STFLO entity is found</returns>
+        /// <param name="TID">TID value used to find STLITNUM</param>
+        /// <param name="Value">Related STLITNUM entity</param>
+        /// <returns>True if the related STLITNUM entity is found</returns>
         /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
-        public bool TryFindByTID(int TID, out STFLO Value)
+        public bool TryFindByTID(int TID, out STLITNUM Value)
         {
             return Index_TID.Value.TryGetValue(TID, out Value);
         }
 
         /// <summary>
-        /// Attempt to find STFLO by TID field
+        /// Attempt to find STLITNUM by TID field
         /// </summary>
-        /// <param name="TID">TID value used to find STFLO</param>
-        /// <returns>Related STFLO entity, or null if not found</returns>
+        /// <param name="TID">TID value used to find STLITNUM</param>
+        /// <returns>Related STLITNUM entity, or null if not found</returns>
         /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
-        public STFLO TryFindByTID(int TID)
+        public STLITNUM TryFindByTID(int TID)
         {
-            STFLO value;
+            STLITNUM value;
             if (Index_TID.Value.TryGetValue(TID, out value))
             {
                 return value;
@@ -275,7 +228,7 @@ namespace EduHub.Data.Entities
         #region SQL Integration
 
         /// <summary>
-        /// Returns a <see cref="SqlCommand"/> which checks for the existence of a STFLO table, and if not found, creates the table and associated indexes.
+        /// Returns a <see cref="SqlCommand"/> which checks for the existence of a STLITNUM table, and if not found, creates the table and associated indexes.
         /// </summary>
         /// <param name="SqlConnection">The <see cref="SqlConnection"/> to be associated with the <see cref="SqlCommand"/></param>
         public override SqlCommand GetSqlCreateTableCommand(SqlConnection SqlConnection)
@@ -283,28 +236,23 @@ namespace EduHub.Data.Entities
             return new SqlCommand(
                 connection: SqlConnection,
                 cmdText:
-@"IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[STFLO]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
+@"IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
 BEGIN
-    CREATE TABLE [dbo].[STFLO](
+    CREATE TABLE [dbo].[STLITNUM](
         [TID] int IDENTITY NOT NULL,
         [SKEY] varchar(10) NOT NULL,
-        [FROM_DATE] datetime NULL,
-        [FLO] varchar(50) NULL,
-        [EXIT_DATE] datetime NULL,
-        [PROGRAM] int NULL,
-        [SCHOOL_NAME] varchar(50) NULL,
+        [FOCUS] varchar(30) NULL,
+        [DEL_MODEL] varchar(15) NULL,
+        [SESSION_LENGTH] varchar(20) NULL,
+        [SESSION_FREQ] varchar(30) NULL,
         [LW_DATE] datetime NULL,
         [LW_TIME] smallint NULL,
         [LW_USER] varchar(128) NULL,
-        CONSTRAINT [STFLO_Index_TID] PRIMARY KEY NONCLUSTERED (
+        CONSTRAINT [STLITNUM_Index_TID] PRIMARY KEY NONCLUSTERED (
             [TID] ASC
         )
     );
-    CREATE NONCLUSTERED INDEX [STFLO_Index_PROGRAM] ON [dbo].[STFLO]
-    (
-            [PROGRAM] ASC
-    );
-    CREATE CLUSTERED INDEX [STFLO_Index_SKEY] ON [dbo].[STFLO]
+    CREATE CLUSTERED INDEX [STLITNUM_Index_SKEY] ON [dbo].[STLITNUM]
     (
             [SKEY] ASC
     );
@@ -323,10 +271,8 @@ END");
             return new SqlCommand(
                 connection: SqlConnection,
                 cmdText:
-@"IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STFLO]') AND name = N'STFLO_Index_PROGRAM')
-    ALTER INDEX [STFLO_Index_PROGRAM] ON [dbo].[STFLO] DISABLE;
-IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STFLO]') AND name = N'STFLO_Index_TID')
-    ALTER INDEX [STFLO_Index_TID] ON [dbo].[STFLO] DISABLE;
+@"IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]') AND name = N'STLITNUM_Index_TID')
+    ALTER INDEX [STLITNUM_Index_TID] ON [dbo].[STLITNUM] DISABLE;
 ");
         }
 
@@ -340,19 +286,17 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STFLO]') A
             return new SqlCommand(
                 connection: SqlConnection,
                 cmdText:
-@"IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STFLO]') AND name = N'STFLO_Index_PROGRAM')
-    ALTER INDEX [STFLO_Index_PROGRAM] ON [dbo].[STFLO] REBUILD PARTITION = ALL;
-IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STFLO]') AND name = N'STFLO_Index_TID')
-    ALTER INDEX [STFLO_Index_TID] ON [dbo].[STFLO] REBUILD PARTITION = ALL;
+@"IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]') AND name = N'STLITNUM_Index_TID')
+    ALTER INDEX [STLITNUM_Index_TID] ON [dbo].[STLITNUM] REBUILD PARTITION = ALL;
 ");
         }
 
         /// <summary>
-        /// Returns a <see cref="SqlCommand"/> which deletes the <see cref="STFLO"/> entities passed
+        /// Returns a <see cref="SqlCommand"/> which deletes the <see cref="STLITNUM"/> entities passed
         /// </summary>
         /// <param name="SqlConnection">The <see cref="SqlConnection"/> to be associated with the <see cref="SqlCommand"/></param>
-        /// <param name="Entities">The <see cref="STFLO"/> entities to be deleted</param>
-        public override SqlCommand GetSqlDeleteCommand(SqlConnection SqlConnection, IEnumerable<STFLO> Entities)
+        /// <param name="Entities">The <see cref="STLITNUM"/> entities to be deleted</param>
+        public override SqlCommand GetSqlDeleteCommand(SqlConnection SqlConnection, IEnumerable<STLITNUM> Entities)
         {
             SqlCommand command = new SqlCommand();
             int parameterIndex = 0;
@@ -365,7 +309,7 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STFLO]') A
                 Index_TID.Add(entity.TID);
             }
 
-            builder.AppendLine("DELETE [dbo].[STFLO] WHERE");
+            builder.AppendLine("DELETE [dbo].[STLITNUM] WHERE");
 
 
             // Index_TID
@@ -389,32 +333,32 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STFLO]') A
         }
 
         /// <summary>
-        /// Provides a <see cref="IDataReader"/> for the STFLO data set
+        /// Provides a <see cref="IDataReader"/> for the STLITNUM data set
         /// </summary>
-        /// <returns>A <see cref="IDataReader"/> for the STFLO data set</returns>
-        public override EduHubDataSetDataReader<STFLO> GetDataSetDataReader()
+        /// <returns>A <see cref="IDataReader"/> for the STLITNUM data set</returns>
+        public override EduHubDataSetDataReader<STLITNUM> GetDataSetDataReader()
         {
-            return new STFLODataReader(Load());
+            return new STLITNUMDataReader(Load());
         }
 
         /// <summary>
-        /// Provides a <see cref="IDataReader"/> for the STFLO data set
+        /// Provides a <see cref="IDataReader"/> for the STLITNUM data set
         /// </summary>
-        /// <returns>A <see cref="IDataReader"/> for the STFLO data set</returns>
-        public override EduHubDataSetDataReader<STFLO> GetDataSetDataReader(List<STFLO> Entities)
+        /// <returns>A <see cref="IDataReader"/> for the STLITNUM data set</returns>
+        public override EduHubDataSetDataReader<STLITNUM> GetDataSetDataReader(List<STLITNUM> Entities)
         {
-            return new STFLODataReader(new EduHubDataSetLoadedReader<STFLO>(this, Entities));
+            return new STLITNUMDataReader(new EduHubDataSetLoadedReader<STLITNUM>(this, Entities));
         }
 
         // Modest implementation to primarily support SqlBulkCopy
-        private class STFLODataReader : EduHubDataSetDataReader<STFLO>
+        private class STLITNUMDataReader : EduHubDataSetDataReader<STLITNUM>
         {
-            public STFLODataReader(IEduHubDataSetReader<STFLO> Reader)
+            public STLITNUMDataReader(IEduHubDataSetReader<STLITNUM> Reader)
                 : base (Reader)
             {
             }
 
-            public override int FieldCount { get { return 10; } }
+            public override int FieldCount { get { return 9; } }
 
             public override object GetValue(int i)
             {
@@ -424,21 +368,19 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STFLO]') A
                         return Current.TID;
                     case 1: // SKEY
                         return Current.SKEY;
-                    case 2: // FROM_DATE
-                        return Current.FROM_DATE;
-                    case 3: // FLO
-                        return Current.FLO;
-                    case 4: // EXIT_DATE
-                        return Current.EXIT_DATE;
-                    case 5: // PROGRAM
-                        return Current.PROGRAM;
-                    case 6: // SCHOOL_NAME
-                        return Current.SCHOOL_NAME;
-                    case 7: // LW_DATE
+                    case 2: // FOCUS
+                        return Current.FOCUS;
+                    case 3: // DEL_MODEL
+                        return Current.DEL_MODEL;
+                    case 4: // SESSION_LENGTH
+                        return Current.SESSION_LENGTH;
+                    case 5: // SESSION_FREQ
+                        return Current.SESSION_FREQ;
+                    case 6: // LW_DATE
                         return Current.LW_DATE;
-                    case 8: // LW_TIME
+                    case 7: // LW_TIME
                         return Current.LW_TIME;
-                    case 9: // LW_USER
+                    case 8: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -449,21 +391,19 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STFLO]') A
             {
                 switch (i)
                 {
-                    case 2: // FROM_DATE
-                        return Current.FROM_DATE == null;
-                    case 3: // FLO
-                        return Current.FLO == null;
-                    case 4: // EXIT_DATE
-                        return Current.EXIT_DATE == null;
-                    case 5: // PROGRAM
-                        return Current.PROGRAM == null;
-                    case 6: // SCHOOL_NAME
-                        return Current.SCHOOL_NAME == null;
-                    case 7: // LW_DATE
+                    case 2: // FOCUS
+                        return Current.FOCUS == null;
+                    case 3: // DEL_MODEL
+                        return Current.DEL_MODEL == null;
+                    case 4: // SESSION_LENGTH
+                        return Current.SESSION_LENGTH == null;
+                    case 5: // SESSION_FREQ
+                        return Current.SESSION_FREQ == null;
+                    case 6: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 8: // LW_TIME
+                    case 7: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 9: // LW_USER
+                    case 8: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -478,21 +418,19 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STFLO]') A
                         return "TID";
                     case 1: // SKEY
                         return "SKEY";
-                    case 2: // FROM_DATE
-                        return "FROM_DATE";
-                    case 3: // FLO
-                        return "FLO";
-                    case 4: // EXIT_DATE
-                        return "EXIT_DATE";
-                    case 5: // PROGRAM
-                        return "PROGRAM";
-                    case 6: // SCHOOL_NAME
-                        return "SCHOOL_NAME";
-                    case 7: // LW_DATE
+                    case 2: // FOCUS
+                        return "FOCUS";
+                    case 3: // DEL_MODEL
+                        return "DEL_MODEL";
+                    case 4: // SESSION_LENGTH
+                        return "SESSION_LENGTH";
+                    case 5: // SESSION_FREQ
+                        return "SESSION_FREQ";
+                    case 6: // LW_DATE
                         return "LW_DATE";
-                    case 8: // LW_TIME
+                    case 7: // LW_TIME
                         return "LW_TIME";
-                    case 9: // LW_USER
+                    case 8: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -507,22 +445,20 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STFLO]') A
                         return 0;
                     case "SKEY":
                         return 1;
-                    case "FROM_DATE":
+                    case "FOCUS":
                         return 2;
-                    case "FLO":
+                    case "DEL_MODEL":
                         return 3;
-                    case "EXIT_DATE":
+                    case "SESSION_LENGTH":
                         return 4;
-                    case "PROGRAM":
+                    case "SESSION_FREQ":
                         return 5;
-                    case "SCHOOL_NAME":
-                        return 6;
                     case "LW_DATE":
-                        return 7;
+                        return 6;
                     case "LW_TIME":
-                        return 8;
+                        return 7;
                     case "LW_USER":
-                        return 9;
+                        return 8;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

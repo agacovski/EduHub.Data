@@ -46,11 +46,11 @@ namespace EduHub.Data
         /// <summary>
         /// eduHub Data Set Directory
         /// </summary>
-        public string EduHubDirectory { get; private set; }
+        public string EduHubDirectory { get; }
         /// <summary>
         /// Data Set CSV Suffix
         /// </summary>
-        public string EduHubSiteIdentifier { get; private set; }
+        public string EduHubSiteIdentifier { get; }
 
         /// <summary>
         /// Creates an EduHubContext with a dynamically determined site identifier

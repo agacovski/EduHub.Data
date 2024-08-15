@@ -51,6 +51,9 @@ namespace EduHub.Data.Entities
                     case "RESTRICTION":
                         mapper[i] = (e, v) => e.RESTRICTION = v;
                         break;
+                    case "EXPIRY_DATE":
+                        mapper[i] = (e, v) => e.EXPIRY_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                        break;
                     case "LW_DATE":
                         mapper[i] = (e, v) => e.LW_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                         break;
@@ -236,6 +239,7 @@ BEGIN
         [SKEY] varchar(10) NOT NULL,
         [ACCESS_TYPE] varchar(30) NULL,
         [RESTRICTION] varchar(MAX) NULL,
+        [EXPIRY_DATE] datetime NULL,
         [LW_DATE] datetime NULL,
         [LW_TIME] smallint NULL,
         [LW_USER] varchar(128) NULL,
@@ -349,7 +353,7 @@ END");
             {
             }
 
-            public override int FieldCount { get { return 7; } }
+            public override int FieldCount { get { return 8; } }
 
             public override object GetValue(int i)
             {
@@ -363,11 +367,13 @@ END");
                         return Current.ACCESS_TYPE;
                     case 3: // RESTRICTION
                         return Current.RESTRICTION;
-                    case 4: // LW_DATE
+                    case 4: // EXPIRY_DATE
+                        return Current.EXPIRY_DATE;
+                    case 5: // LW_DATE
                         return Current.LW_DATE;
-                    case 5: // LW_TIME
+                    case 6: // LW_TIME
                         return Current.LW_TIME;
-                    case 6: // LW_USER
+                    case 7: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -382,11 +388,13 @@ END");
                         return Current.ACCESS_TYPE == null;
                     case 3: // RESTRICTION
                         return Current.RESTRICTION == null;
-                    case 4: // LW_DATE
+                    case 4: // EXPIRY_DATE
+                        return Current.EXPIRY_DATE == null;
+                    case 5: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 5: // LW_TIME
+                    case 6: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 6: // LW_USER
+                    case 7: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -405,11 +413,13 @@ END");
                         return "ACCESS_TYPE";
                     case 3: // RESTRICTION
                         return "RESTRICTION";
-                    case 4: // LW_DATE
+                    case 4: // EXPIRY_DATE
+                        return "EXPIRY_DATE";
+                    case 5: // LW_DATE
                         return "LW_DATE";
-                    case 5: // LW_TIME
+                    case 6: // LW_TIME
                         return "LW_TIME";
-                    case 6: // LW_USER
+                    case 7: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -428,12 +438,14 @@ END");
                         return 2;
                     case "RESTRICTION":
                         return 3;
-                    case "LW_DATE":
+                    case "EXPIRY_DATE":
                         return 4;
-                    case "LW_TIME":
+                    case "LW_DATE":
                         return 5;
-                    case "LW_USER":
+                    case "LW_TIME":
                         return 6;
+                    case "LW_USER":
+                        return 7;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

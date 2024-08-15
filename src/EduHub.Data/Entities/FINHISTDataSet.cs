@@ -69,6 +69,12 @@ namespace EduHub.Data.Entities
                     case "CREATION_DATE":
                         mapper[i] = (e, v) => e.CREATION_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                         break;
+                    case "ACTION_TAKEN":
+                        mapper[i] = (e, v) => e.ACTION_TAKEN = v;
+                        break;
+                    case "STATUS":
+                        mapper[i] = (e, v) => e.STATUS = v;
+                        break;
                     case "LW_TIME":
                         mapper[i] = (e, v) => e.LW_TIME = v == null ? (short?)null : short.Parse(v);
                         break;
@@ -217,6 +223,8 @@ BEGIN
         [BILLER_CODE] varchar(10) NULL,
         [BPAY_REFERENCE] varchar(20) NULL,
         [CREATION_DATE] datetime NULL,
+        [ACTION_TAKEN] varchar(30) NULL,
+        [STATUS] varchar(30) NULL,
         [LW_TIME] smallint NULL,
         [LW_DATE] datetime NULL,
         [LW_USER] varchar(128) NULL,
@@ -314,7 +322,7 @@ END");
             {
             }
 
-            public override int FieldCount { get { return 13; } }
+            public override int FieldCount { get { return 15; } }
 
             public override object GetValue(int i)
             {
@@ -340,11 +348,15 @@ END");
                         return Current.BPAY_REFERENCE;
                     case 9: // CREATION_DATE
                         return Current.CREATION_DATE;
-                    case 10: // LW_TIME
+                    case 10: // ACTION_TAKEN
+                        return Current.ACTION_TAKEN;
+                    case 11: // STATUS
+                        return Current.STATUS;
+                    case 12: // LW_TIME
                         return Current.LW_TIME;
-                    case 11: // LW_DATE
+                    case 13: // LW_DATE
                         return Current.LW_DATE;
-                    case 12: // LW_USER
+                    case 14: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -373,11 +385,15 @@ END");
                         return Current.BPAY_REFERENCE == null;
                     case 9: // CREATION_DATE
                         return Current.CREATION_DATE == null;
-                    case 10: // LW_TIME
+                    case 10: // ACTION_TAKEN
+                        return Current.ACTION_TAKEN == null;
+                    case 11: // STATUS
+                        return Current.STATUS == null;
+                    case 12: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 11: // LW_DATE
+                    case 13: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 12: // LW_USER
+                    case 14: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -408,11 +424,15 @@ END");
                         return "BPAY_REFERENCE";
                     case 9: // CREATION_DATE
                         return "CREATION_DATE";
-                    case 10: // LW_TIME
+                    case 10: // ACTION_TAKEN
+                        return "ACTION_TAKEN";
+                    case 11: // STATUS
+                        return "STATUS";
+                    case 12: // LW_TIME
                         return "LW_TIME";
-                    case 11: // LW_DATE
+                    case 13: // LW_DATE
                         return "LW_DATE";
-                    case 12: // LW_USER
+                    case 14: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -443,12 +463,16 @@ END");
                         return 8;
                     case "CREATION_DATE":
                         return 9;
-                    case "LW_TIME":
+                    case "ACTION_TAKEN":
                         return 10;
-                    case "LW_DATE":
+                    case "STATUS":
                         return 11;
-                    case "LW_USER":
+                    case "LW_TIME":
                         return 12;
+                    case "LW_DATE":
+                        return 13;
+                    case "LW_USER":
+                        return 14;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

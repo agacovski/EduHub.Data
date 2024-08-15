@@ -71,6 +71,11 @@ namespace EduHub.Data.Entities
         public string RESTRICTION { get; internal set; }
 
         /// <summary>
+        /// Jira CP-2144 Expiry date
+        /// </summary>
+        public DateTime? EXPIRY_DATE { get; internal set; }
+
+        /// <summary>
         /// Unique ST Transfer ID
         /// [Uppercase Alphanumeric (30)]
         /// </summary>

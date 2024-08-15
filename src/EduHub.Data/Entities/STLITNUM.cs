@@ -6,18 +6,15 @@ using System.Collections.Generic;
 namespace EduHub.Data.Entities
 {
     /// <summary>
-    /// Student Flexible Learning Options
+    /// Literacy and Numeracy Programs
     /// </summary>
     [GeneratedCode("EduHub Data", "0.9")]
-    public sealed partial class STFLO : EduHubEntity
+    public sealed partial class STLITNUM : EduHubEntity
     {
 
         #region Navigation Property Cache
 
         private ST Cache_SKEY_ST;
-#if !EduHubScoped
-        private KFLO Cache_PROGRAM_KFLO;
-#endif
 
         #endregion
 
@@ -38,37 +35,34 @@ namespace EduHub.Data.Entities
         public int TID { get; internal set; }
 
         /// <summary>
-        /// Student key
+        /// Student ID
         /// [Uppercase Alphanumeric (10)]
         /// </summary>
         public string SKEY { get; internal set; }
 
         /// <summary>
-        /// From date
+        /// Focus Type
+        /// [Alphanumeric (30)]
         /// </summary>
-        public DateTime? FROM_DATE { get; internal set; }
+        public string FOCUS { get; internal set; }
 
         /// <summary>
-        /// Flo Placement
-        /// [Alphanumeric (50)]
+        /// Practice model
+        /// [Alphanumeric (15)]
         /// </summary>
-        public string FLO { get; internal set; }
+        public string DEL_MODEL { get; internal set; }
 
         /// <summary>
-        /// Exit date
+        /// Session Length
+        /// [Alphanumeric (20)]
         /// </summary>
-        public DateTime? EXIT_DATE { get; internal set; }
+        public string SESSION_LENGTH { get; internal set; }
 
         /// <summary>
-        /// Program from what school
+        /// Session Frequency
+        /// [Alphanumeric (30)]
         /// </summary>
-        public int? PROGRAM { get; internal set; }
-
-        /// <summary>
-        /// **CP-2110/2109                                       *
-        /// [Alphanumeric (50)]
-        /// </summary>
-        public string SCHOOL_NAME { get; internal set; }
+        public string SESSION_FREQ { get; internal set; }
 
         /// <summary>
         /// Last write date
@@ -81,7 +75,7 @@ namespace EduHub.Data.Entities
         public short? LW_TIME { get; internal set; }
 
         /// <summary>
-        /// Last operator
+        /// Last write operator
         /// [Uppercase Alphanumeric (128)]
         /// </summary>
         public string LW_USER { get; internal set; }
@@ -91,8 +85,8 @@ namespace EduHub.Data.Entities
         #region Navigation Properties
 
         /// <summary>
-        /// ST (Students) related entity by [STFLO.SKEY]-&gt;[ST.STKEY]
-        /// Student key
+        /// ST (Students) related entity by [STLITNUM.SKEY]-&gt;[ST.STKEY]
+        /// Student ID
         /// </summary>
         public ST SKEY_ST
         {
@@ -107,29 +101,6 @@ namespace EduHub.Data.Entities
             }
         }
 
-#if !EduHubScoped
-        /// <summary>
-        /// KFLO (FLO Placement information) related entity by [STFLO.PROGRAM]-&gt;[KFLO.KFLOKEY]
-        /// Program from what school
-        /// </summary>
-        public KFLO PROGRAM_KFLO
-        {
-            get
-            {
-                if (PROGRAM == null)
-                {
-                    return null;
-                }
-                if (Cache_PROGRAM_KFLO == null)
-                {
-                    Cache_PROGRAM_KFLO = Context.KFLO.FindByKFLOKEY(PROGRAM.Value);
-                }
-
-                return Cache_PROGRAM_KFLO;
-            }
-        }
-
-#endif
         #endregion
 
     }

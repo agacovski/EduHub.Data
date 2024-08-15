@@ -90,6 +90,23 @@ WHERE
         }
     }
 
+    partial class DFFDataSet
+    {
+        /// <inheritdoc />
+        public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
+        {
+            // Check for the existence of the PTYPE column. New to C21v70.
+            const string sql = @"SELECT
+	1 - COUNT(*)
+FROM sys.columns
+WHERE
+	object_id = OBJECT_ID(N'[dbo].[DFF]') AND
+	name = 'PTYPE'";
+
+            return new SqlCommand(sql, SqlConnection);
+        }
+    }
+
     partial class DRDataSet
     {
         /// <inheritdoc />
@@ -531,13 +548,13 @@ WHERE
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
         {
-            // Check for the existence of the FLO column. New to C21v67.
+            // Check for the existence of the EXEMPT_REASON column. New to C21v70.
             const string sql = @"SELECT
 	1 - COUNT(*)
 FROM sys.columns
 WHERE
 	object_id = OBJECT_ID(N'[dbo].[ST]') AND
-	name = 'FLO'";
+	name = 'EXEMPT_REASON'";
 
             return new SqlCommand(sql, SqlConnection);
         }
@@ -548,13 +565,13 @@ WHERE
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
         {
-            // Check that the RESTRICTION column has the right type. Modified to C21v58.
+            // Check for the existence of the EXPIRY_DATE column. New to C21v68.
             const string sql = @"SELECT
 	1 - COUNT(*)
 FROM sys.columns
 WHERE
 	object_id = OBJECT_ID(N'[dbo].[STAR]') AND
-	name = 'RESTRICTION' AND max_length = -1";
+	name = 'EXPIRY_DATE'";
 
             return new SqlCommand(sql, SqlConnection);
         }

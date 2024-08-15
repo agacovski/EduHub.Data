@@ -73,6 +73,12 @@ namespace EduHub.Data.Entities
         public string ACTIVE { get; internal set; }
 
         /// <summary>
+        /// **CP-2110/2109
+        /// [Alphanumeric (50)]
+        /// </summary>
+        public string SCHOOL_NAME { get; internal set; }
+
+        /// <summary>
         /// Last write date
         /// </summary>
         public DateTime? LW_DATE { get; internal set; }

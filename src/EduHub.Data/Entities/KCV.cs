@@ -14,6 +14,8 @@ namespace EduHub.Data.Entities
         #region Foreign Navigation Properties
 
         private IReadOnlyList<ST> Cache_VISA_SUBCLASS_ST_VISA_SUBCLASS;
+        private IReadOnlyList<ST> Cache_VISA_SUBCLASS_ST_VISA_APPLIED;
+        private IReadOnlyList<ST> Cache_VISA_SUBCLASS_ST_VISA_PREV;
 #if !EduHubScoped
         private IReadOnlyList<STRE> Cache_VISA_SUBCLASS_STRE_ST_VISA_SUBCLASS;
 #endif
@@ -114,6 +116,42 @@ namespace EduHub.Data.Entities
                 }
 
                 return Cache_VISA_SUBCLASS_ST_VISA_SUBCLASS;
+            }
+        }
+
+        /// <summary>
+        /// ST (Students) related entities by [KCV.VISA_SUBCLASS]-&gt;[ST.VISA_APPLIED]
+        /// Visa Subclass code
+        /// </summary>
+        public IReadOnlyList<ST> VISA_SUBCLASS_ST_VISA_APPLIED
+        {
+            get
+            {
+                if (Cache_VISA_SUBCLASS_ST_VISA_APPLIED == null &&
+                    !Context.ST.TryFindByVISA_APPLIED(VISA_SUBCLASS, out Cache_VISA_SUBCLASS_ST_VISA_APPLIED))
+                {
+                    Cache_VISA_SUBCLASS_ST_VISA_APPLIED = new List<ST>().AsReadOnly();
+                }
+
+                return Cache_VISA_SUBCLASS_ST_VISA_APPLIED;
+            }
+        }
+
+        /// <summary>
+        /// ST (Students) related entities by [KCV.VISA_SUBCLASS]-&gt;[ST.VISA_PREV]
+        /// Visa Subclass code
+        /// </summary>
+        public IReadOnlyList<ST> VISA_SUBCLASS_ST_VISA_PREV
+        {
+            get
+            {
+                if (Cache_VISA_SUBCLASS_ST_VISA_PREV == null &&
+                    !Context.ST.TryFindByVISA_PREV(VISA_SUBCLASS, out Cache_VISA_SUBCLASS_ST_VISA_PREV))
+                {
+                    Cache_VISA_SUBCLASS_ST_VISA_PREV = new List<ST>().AsReadOnly();
+                }
+
+                return Cache_VISA_SUBCLASS_ST_VISA_PREV;
             }
         }
 

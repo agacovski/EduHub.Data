@@ -236,8 +236,9 @@ namespace EduHub.Data.Entities
 
         /// <summary>
         /// Account number
+        /// [Alphanumeric (15)]
         /// </summary>
-        public int? ACCOUNT_NUMBER { get; internal set; }
+        public string ACCOUNT_NUMBER { get; internal set; }
 
         /// <summary>
         /// Receipt type
@@ -389,6 +390,12 @@ namespace EduHub.Data.Entities
         /// [Alphanumeric (30)]
         /// </summary>
         public string FEE_DESCRIPTION { get; internal set; }
+
+        /// <summary>
+        /// Payment method, option for direct deposit in family (credit) payments
+        /// [Uppercase Alphanumeric (2)]
+        /// </summary>
+        public string PTYPE { get; internal set; }
 
         /// <summary>
         /// Last write date

@@ -81,6 +81,18 @@ namespace EduHub.Data.Entities
         public DateTime? CREATION_DATE { get; internal set; }
 
         /// <summary>
+        /// &lt;No documentation available&gt;
+        /// [Alphanumeric (30)]
+        /// </summary>
+        public string ACTION_TAKEN { get; internal set; }
+
+        /// <summary>
+        /// &lt;No documentation available&gt;
+        /// [Alphanumeric (30)]
+        /// </summary>
+        public string STATUS { get; internal set; }
+
+        /// <summary>
         /// Last write time - might be updated if entity changes due to a change of ID
         /// </summary>
         public short? LW_TIME { get; internal set; }

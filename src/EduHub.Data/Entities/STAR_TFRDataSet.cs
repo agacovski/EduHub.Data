@@ -62,6 +62,9 @@ namespace EduHub.Data.Entities
                     case "RESTRICTION":
                         mapper[i] = (e, v) => e.RESTRICTION = v;
                         break;
+                    case "EXPIRY_DATE":
+                        mapper[i] = (e, v) => e.EXPIRY_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                        break;
                     case "ST_TRANS_ID":
                         mapper[i] = (e, v) => e.ST_TRANS_ID = v;
                         break;
@@ -305,6 +308,7 @@ BEGIN
         [SKEY_NEW] varchar(10) NULL,
         [ACCESS_TYPE] varchar(30) NULL,
         [RESTRICTION] varchar(MAX) NULL,
+        [EXPIRY_DATE] datetime NULL,
         [ST_TRANS_ID] varchar(30) NULL,
         [IMP_STATUS] varchar(15) NULL,
         [IMP_DATE] datetime NULL,
@@ -445,7 +449,7 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STAR_TFR]'
             {
             }
 
-            public override int FieldCount { get { return 13; } }
+            public override int FieldCount { get { return 14; } }
 
             public override object GetValue(int i)
             {
@@ -465,17 +469,19 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STAR_TFR]'
                         return Current.ACCESS_TYPE;
                     case 6: // RESTRICTION
                         return Current.RESTRICTION;
-                    case 7: // ST_TRANS_ID
+                    case 7: // EXPIRY_DATE
+                        return Current.EXPIRY_DATE;
+                    case 8: // ST_TRANS_ID
                         return Current.ST_TRANS_ID;
-                    case 8: // IMP_STATUS
+                    case 9: // IMP_STATUS
                         return Current.IMP_STATUS;
-                    case 9: // IMP_DATE
+                    case 10: // IMP_DATE
                         return Current.IMP_DATE;
-                    case 10: // LW_DATE
+                    case 11: // LW_DATE
                         return Current.LW_DATE;
-                    case 11: // LW_TIME
+                    case 12: // LW_TIME
                         return Current.LW_TIME;
-                    case 12: // LW_USER
+                    case 13: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -496,17 +502,19 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STAR_TFR]'
                         return Current.ACCESS_TYPE == null;
                     case 6: // RESTRICTION
                         return Current.RESTRICTION == null;
-                    case 7: // ST_TRANS_ID
+                    case 7: // EXPIRY_DATE
+                        return Current.EXPIRY_DATE == null;
+                    case 8: // ST_TRANS_ID
                         return Current.ST_TRANS_ID == null;
-                    case 8: // IMP_STATUS
+                    case 9: // IMP_STATUS
                         return Current.IMP_STATUS == null;
-                    case 9: // IMP_DATE
+                    case 10: // IMP_DATE
                         return Current.IMP_DATE == null;
-                    case 10: // LW_DATE
+                    case 11: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 11: // LW_TIME
+                    case 12: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 12: // LW_USER
+                    case 13: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -531,17 +539,19 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STAR_TFR]'
                         return "ACCESS_TYPE";
                     case 6: // RESTRICTION
                         return "RESTRICTION";
-                    case 7: // ST_TRANS_ID
+                    case 7: // EXPIRY_DATE
+                        return "EXPIRY_DATE";
+                    case 8: // ST_TRANS_ID
                         return "ST_TRANS_ID";
-                    case 8: // IMP_STATUS
+                    case 9: // IMP_STATUS
                         return "IMP_STATUS";
-                    case 9: // IMP_DATE
+                    case 10: // IMP_DATE
                         return "IMP_DATE";
-                    case 10: // LW_DATE
+                    case 11: // LW_DATE
                         return "LW_DATE";
-                    case 11: // LW_TIME
+                    case 12: // LW_TIME
                         return "LW_TIME";
-                    case 12: // LW_USER
+                    case 13: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -566,18 +576,20 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STAR_TFR]'
                         return 5;
                     case "RESTRICTION":
                         return 6;
-                    case "ST_TRANS_ID":
+                    case "EXPIRY_DATE":
                         return 7;
-                    case "IMP_STATUS":
+                    case "ST_TRANS_ID":
                         return 8;
-                    case "IMP_DATE":
+                    case "IMP_STATUS":
                         return 9;
-                    case "LW_DATE":
+                    case "IMP_DATE":
                         return 10;
-                    case "LW_TIME":
+                    case "LW_DATE":
                         return 11;
-                    case "LW_USER":
+                    case "LW_TIME":
                         return 12;
+                    case "LW_USER":
+                        return 13;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }
