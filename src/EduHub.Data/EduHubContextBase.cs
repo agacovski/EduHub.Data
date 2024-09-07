@@ -13,7 +13,26 @@ namespace EduHub.Data
 {
     public partial class EduHubContext
     {
+        private static IFileSystem defaultFileSystem;
         private static string defaultEduHubDirectory;
+
+        /// <summary>
+        /// Default file system implementation used when creating a context if none is provided to the constructor
+        /// </summary>
+        public static IFileSystem DefaultFileSystem
+        {
+            get
+            {
+                if (defaultFileSystem == null)
+                    defaultFileSystem = new OsFileSystem(DefaultEduHubDirectory);
+
+                return defaultFileSystem;
+            }
+            set
+            {
+                defaultFileSystem = value;
+            }
+        }
 
         /// <summary>
         /// Default directory used when creating a context if none is provided to the constructor
@@ -31,7 +50,7 @@ namespace EduHub.Data
             }
             set
             {
-                if (Directory.Exists(value))
+                if (defaultFileSystem.DirectoryExists(value))
                 {
                     defaultEduHubDirectory = value;
                 }
@@ -44,13 +63,30 @@ namespace EduHub.Data
         public static string DefaultEduHubSiteIdentifier { get; set; } = null;
 
         /// <summary>
+        /// eduHub File System
+        /// </summary>
+        public IFileSystem FileSystem { get; }
+
+        /// <summary>
         /// eduHub Data Set Directory
         /// </summary>
-        public string EduHubDirectory { get; }
+        public string EduHubDirectory => FileSystem.BaseLocation;
         /// <summary>
         /// Data Set CSV Suffix
         /// </summary>
         public string EduHubSiteIdentifier { get; }
+
+
+        /// <summary>
+        /// Creates an EduHubContextBase
+        /// </summary>
+        /// <param name="EduHubDirectory">Directory which contains the eduHub CSV Data Sets</param>
+        /// <param name="EduHubSiteIdentifier">Data Set Suffix for each CSV file</param>
+        /// <exception cref="ArgumentException">eduHub Directory does not exist, has no valid data sets or contains multiple data sets</exception>
+        public EduHubContext(string EduHubDirectory, string EduHubSiteIdentifier)
+            : this(new OsFileSystem(string.IsNullOrWhiteSpace(EduHubDirectory) ? DefaultEduHubDirectory : EduHubDirectory), EduHubSiteIdentifier)
+        {
+        }
 
         /// <summary>
         /// Creates an EduHubContext with a dynamically determined site identifier
@@ -58,7 +94,16 @@ namespace EduHub.Data
         /// <param name="EduHubDirectory">Directory which contains the eduHub .csv data sets.</param>
         /// <exception cref="ArgumentException">eduHub Directory does not exist, has no valid data sets or contains multiple data sets</exception>
         public EduHubContext(string EduHubDirectory)
-            : this(EduHubDirectory, null)
+        : this(EduHubDirectory, null)
+        {
+        }
+
+        /// <summary>
+        /// Creates an EduHubContext with the provided file system and dynamically determined site identifier
+        /// </summary>
+        /// <param name="fileSystem"></param>
+        public EduHubContext(IFileSystem fileSystem)
+            : this(fileSystem, null)
         {
         }
 
@@ -67,7 +112,7 @@ namespace EduHub.Data
         /// </summary>
         /// <exception cref="ArgumentException">Default eduHub Directory does not exist, has no valid data sets or contains multiple data sets</exception>
         public EduHubContext()
-            : this(null, null)
+            : this((string)null, null)
         {
         }
 
@@ -119,9 +164,9 @@ namespace EduHub.Data
             // Valid Sets
             var sets = new HashSet<string>(GetDataSetNames(), StringComparer.OrdinalIgnoreCase);
 
-            foreach (var file in Directory.EnumerateFiles(EduHubDirectory, $"*_{EduHubSiteIdentifier}.csv"))
+            foreach (var file in FileSystem.EnumerateCsvFilesForSiteIdentifier(EduHubSiteIdentifier))
             {
-                var filename = Path.GetFileName(file);
+                var filename = FileSystem.GetFileName(file);
                 var fileSet = filename.Substring(0, filename.Length - EduHubSiteIdentifier.Length - 5);
                 if (sets.Contains(fileSet))
                 {
@@ -137,7 +182,7 @@ namespace EduHub.Data
         {
             foreach (var file in GetAvailableDataSetFiles())
             {
-                var filename = Path.GetFileName(file);
+                var filename = FileSystem.GetFileName(file);
                 yield return filename.Substring(0, filename.Length - EduHubSiteIdentifier.Length - 5);
             }
         }
@@ -210,13 +255,23 @@ namespace EduHub.Data
         {
             if (string.IsNullOrWhiteSpace(EduHubDirectory))
                 throw new ArgumentNullException(nameof(EduHubDirectory));
-            if (!Directory.Exists(EduHubDirectory))
-                throw new ArgumentException($"EduHub Directory [{EduHubDirectory}] does not exist");
 
+            var fileSystem = new OsFileSystem(EduHubDirectory);
+
+            return GetSiteIdentifiers(fileSystem);
+        }
+
+        /// <summary>
+        /// Determines site identifiers which are present in the file system
+        /// </summary>
+        /// <param name="fileSystem"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> GetSiteIdentifiers(IFileSystem fileSystem)
+        {
             var testSiteIdentifier = new Regex(@".*_(.+)(?<!_D).csv$", RegexOptions.IgnoreCase);
             var siteIdentifiers = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-            foreach (var file in Directory.EnumerateFiles(EduHubDirectory, "*.csv"))
+            foreach (var file in fileSystem.EnumerateCsvFiles())
             {
                 var match = testSiteIdentifier.Match(file);
                 if (match.Success)
@@ -256,15 +311,28 @@ namespace EduHub.Data
             if (string.IsNullOrWhiteSpace(EduHubDirectory))
                 throw new ArgumentNullException(nameof(EduHubDirectory));
 
-            var identifiers = GetSiteIdentifiers(EduHubDirectory).ToList();
+            var fileSystem = new OsFileSystem(EduHubDirectory);
+
+            return GetSiteIdentifier(fileSystem);
+        }
+
+        /// <summary>
+        /// Determines a site identifier for the file system
+        /// </summary>
+        /// <param name="fileSystem"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static string GetSiteIdentifier(IFileSystem fileSystem)
+        {
+            var identifiers = GetSiteIdentifiers(fileSystem).ToList();
 
             if (identifiers.Count == 0)
             {
-                throw new ArgumentException($"EduHub Directory [{EduHubDirectory}] contains no valid data sets.", nameof(EduHubDirectory));
+                throw new ArgumentException($"EduHub Directory [{fileSystem.BaseLocation}] contains no valid data sets.", nameof(fileSystem));
             }
             else if (identifiers.Count > 1)
             {
-                throw new ArgumentException($"EduHub Directory [{EduHubDirectory}] contains data sets for multiple sites. Explicitly pass a site identifier.", nameof(EduHubDirectory));
+                throw new ArgumentException($"EduHub Directory [{fileSystem.BaseLocation}] contains data sets for multiple sites. Explicitly pass a site identifier.", nameof(fileSystem));
             }
 
             return identifiers[0];

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -77,7 +76,7 @@ namespace EduHub.Data.Entities
         {
             get
             {
-                return Path.Combine(Context.EduHubDirectory, $"{Name}_{Context.EduHubSiteIdentifier}.csv");
+                return Context.FileSystem.CombinePath(Context.FileSystem.BaseLocation, $"{Name}_{Context.EduHubSiteIdentifier}.csv");
             }
         }
 
@@ -86,7 +85,7 @@ namespace EduHub.Data.Entities
         {
             get
             {
-                return Path.Combine(Context.EduHubDirectory, $"{Name}_{Context.EduHubSiteIdentifier}_D.csv");
+                return Context.FileSystem.CombinePath(Context.FileSystem.BaseLocation, $"{Name}_{Context.EduHubSiteIdentifier}_D.csv");
             }
         }
 
@@ -106,7 +105,7 @@ namespace EduHub.Data.Entities
             {
                 if (IsAvailable)
                 {
-                    return new FileInfo(Filename).Length;
+                    return Context.FileSystem.GetFileSize(Filename);
                 }
                 return 0;
             }
@@ -119,7 +118,7 @@ namespace EduHub.Data.Entities
             {
                 if (IsDeltaAvailable)
                 {
-                    return new FileInfo(FilenameDelta).Length;
+                    return Context.FileSystem.GetFileSize(FilenameDelta);
                 }
 
                 return 0;
@@ -131,7 +130,7 @@ namespace EduHub.Data.Entities
         {
             get
             {
-                return Items.IsValueCreated || File.Exists(Filename);
+                return Items.IsValueCreated || Context.FileSystem.FileExists(Filename);
             }
         }
 
@@ -143,9 +142,9 @@ namespace EduHub.Data.Entities
                 var filename = Filename;
                 var filenameDelta = FilenameDelta;
 
-                return File.Exists(filename) &&
-                    File.Exists(filenameDelta) &&
-                    File.GetLastWriteTime(filename) < File.GetLastWriteTime(filenameDelta);
+                return Context.FileSystem.FileExists(filename) &&
+                    Context.FileSystem.FileExists(filenameDelta) &&
+                    Context.FileSystem.GetFileLastWriteTime(filename) < Context.FileSystem.GetFileLastWriteTime(filenameDelta);
             }
         }
 
@@ -190,9 +189,9 @@ namespace EduHub.Data.Entities
             {
                 var filename = Filename;
 
-                if (File.Exists(filename))
+                if (Context.FileSystem.FileExists(filename))
                 {
-                    return File.GetLastWriteTime(filename);
+                    return Context.FileSystem.GetFileLastWriteTime(filename);
                 }
                 else
                 {
@@ -208,9 +207,9 @@ namespace EduHub.Data.Entities
             {
                 var filenameDelta = FilenameDelta;
 
-                if (File.Exists(filenameDelta))
+                if (Context.FileSystem.FileExists(filenameDelta))
                 {
-                    return File.GetLastWriteTime(filenameDelta);
+                    return Context.FileSystem.GetFileLastWriteTime(filenameDelta);
                 }
                 else
                 {

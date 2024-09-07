@@ -10,8 +10,7 @@ namespace EduHub.Data.Entities
         private readonly EduHubDataSet<T> dataSet;
         private readonly EduHubContext context;
 
-        private string filenameTemp;
-        private FileStream stream;
+        private Stream stream;
         private CsvReader reader;
         private Action<T, string>[] mapper;
 
@@ -23,17 +22,14 @@ namespace EduHub.Data.Entities
                 throw new ArgumentNullException(nameof(DataSet));
             if (Filename == null)
                 throw new ArgumentNullException(nameof(Filename));
-            if (!File.Exists(Filename))
+            if (!DataSet.Context.FileSystem.FileExists(Filename))
                 throw new FileNotFoundException("eduHub data set not found", Filename);
 
             dataSet = DataSet;
             context = DataSet.Context;
 
-            // Copy to memory stream (don't directly process eduHub files)
-            var stream = new MemoryStream();
-            using (var fileStream = new FileStream(Filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                fileStream.CopyTo(stream);
-            stream.Position = 0;
+            // Open csv stream
+            stream = context.FileSystem.OpenFile(Filename);
 
             // Initialize Csv Reader
             reader = new CsvReader(stream);
@@ -130,11 +126,6 @@ namespace EduHub.Data.Entities
             {
                 stream.Dispose();
                 stream = null;
-            }
-            if (filenameTemp != null && File.Exists(filenameTemp))
-            {
-                File.Delete(filenameTemp);
-                filenameTemp = null;
             }
         }
     }

@@ -3,7 +3,6 @@ using EduHub.Data.SeamlessViews;
 using EduHub.Data.WriteBack;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace EduHub.Data
 {
@@ -434,33 +433,27 @@ namespace EduHub.Data
         /// <summary>
         /// Creates an EduHubContextBase
         /// </summary>
-        /// <param name="EduHubDirectory">Directory which contains the eduHub CSV Data Sets</param>
-        /// <param name="EduHubSiteIdentifier">Data Set Suffix for each CSV file</param>
+        /// <param name="fileSystem">File system implementation which contains eduHub CSV Data Sets</param>
+        /// <param name="eduHubSiteIdentifier">Data Set Suffix for each CSV file</param>
         /// <exception cref="ArgumentException">eduHub Directory does not exist, has no valid data sets or contains multiple data sets</exception>
-        public EduHubContext(string EduHubDirectory, string EduHubSiteIdentifier)
+        public EduHubContext(IFileSystem fileSystem, string eduHubSiteIdentifier)
         {
-            // Use default directory if none provided
-            if (string.IsNullOrWhiteSpace(EduHubDirectory))
-            {
-                EduHubDirectory = DefaultEduHubDirectory;
-            }
+            if (fileSystem == null)
+                throw new ArgumentNullException(nameof(fileSystem));
+
+            FileSystem = fileSystem;
 
             // Use default identifier if none provided
-            if (string.IsNullOrWhiteSpace(EduHubSiteIdentifier))
+            if (string.IsNullOrWhiteSpace(eduHubSiteIdentifier))
             {
                 if (DefaultEduHubSiteIdentifier == null)
                 {
-                    DefaultEduHubSiteIdentifier = GetSiteIdentifier(EduHubDirectory);
+                    DefaultEduHubSiteIdentifier = GetSiteIdentifier(FileSystem);
                 }
-                EduHubSiteIdentifier = DefaultEduHubSiteIdentifier;
+                eduHubSiteIdentifier = DefaultEduHubSiteIdentifier;
             }
 
-            // Ensure directory exists
-            if (!Directory.Exists(EduHubDirectory))
-                throw new ArgumentException($"EduHub Directory [{EduHubDirectory}] does not exist");
-
-            this.EduHubDirectory = EduHubDirectory;
-            this.EduHubSiteIdentifier = EduHubSiteIdentifier;
+            EduHubSiteIdentifier = eduHubSiteIdentifier;
 
 #if !EduHubScoped
             _A_DECRYP = new A_DECRYPDataSet(this);

@@ -2043,7 +2043,9 @@
     </Compile>
     <Compile Include="FrameworkExtensions.cs" />
     <Compile Include="EduHubSqlServerWriteResult.cs" />
+    <Compile Include="IFileSystem.cs" />
     <Compile Include="NullDictionary.cs" />
+    <Compile Include="OsFileSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeamlessViews\Entities\ISeamlessViewsDataSet.cs" />
     <Compile Include="SeamlessViews\Entities\SeamlessViewsDataSet.cs" />
