@@ -203,6 +203,12 @@ namespace EduHub.Data.Entities
         public string DELETE_FLAG { get; internal set; }
 
         /// <summary>
+        /// CP-4221, integrated as part of CP-4330
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string FINCOMP { get; internal set; }
+
+        /// <summary>
         /// &lt;No documentation available&gt;
         /// </summary>
         public DateTime? LW_DATE { get; internal set; }

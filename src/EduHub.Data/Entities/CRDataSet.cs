@@ -245,6 +245,9 @@ namespace EduHub.Data.Entities
                     case "AIMSKEY":
                         mapper[i] = (e, v) => e.AIMSKEY = v;
                         break;
+                    case "SSB":
+                        mapper[i] = (e, v) => e.SSB = v;
+                        break;
                     case "LW_DATE":
                         mapper[i] = (e, v) => e.LW_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                         break;
@@ -580,6 +583,7 @@ BEGIN
         [ARN] varchar(15) NULL,
         [KNOTE_FLAG] varchar(1) NULL,
         [AIMSKEY] varchar(20) NULL,
+        [SSB] varchar(50) NULL,
         [LW_DATE] datetime NULL,
         [LW_TIME] smallint NULL,
         [LW_USER] varchar(128) NULL,
@@ -709,7 +713,7 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CR]') AND 
             {
             }
 
-            public override int FieldCount { get { return 71; } }
+            public override int FieldCount { get { return 72; } }
 
             public override object GetValue(int i)
             {
@@ -851,11 +855,13 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CR]') AND 
                         return Current.KNOTE_FLAG;
                     case 67: // AIMSKEY
                         return Current.AIMSKEY;
-                    case 68: // LW_DATE
+                    case 68: // SSB
+                        return Current.SSB;
+                    case 69: // LW_DATE
                         return Current.LW_DATE;
-                    case 69: // LW_TIME
+                    case 70: // LW_TIME
                         return Current.LW_TIME;
-                    case 70: // LW_USER
+                    case 71: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -1000,11 +1006,13 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CR]') AND 
                         return Current.KNOTE_FLAG == null;
                     case 67: // AIMSKEY
                         return Current.AIMSKEY == null;
-                    case 68: // LW_DATE
+                    case 68: // SSB
+                        return Current.SSB == null;
+                    case 69: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 69: // LW_TIME
+                    case 70: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 70: // LW_USER
+                    case 71: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -1151,11 +1159,13 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CR]') AND 
                         return "KNOTE_FLAG";
                     case 67: // AIMSKEY
                         return "AIMSKEY";
-                    case 68: // LW_DATE
+                    case 68: // SSB
+                        return "SSB";
+                    case 69: // LW_DATE
                         return "LW_DATE";
-                    case 69: // LW_TIME
+                    case 70: // LW_TIME
                         return "LW_TIME";
-                    case 70: // LW_USER
+                    case 71: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -1302,12 +1312,14 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CR]') AND 
                         return 66;
                     case "AIMSKEY":
                         return 67;
-                    case "LW_DATE":
+                    case "SSB":
                         return 68;
-                    case "LW_TIME":
+                    case "LW_DATE":
                         return 69;
-                    case "LW_USER":
+                    case "LW_TIME":
                         return 70;
+                    case "LW_USER":
+                        return 71;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

@@ -292,6 +292,15 @@ namespace EduHub.Data.Entities
                     case "KCPC_TID":
                         mapper[i] = (e, v) => e.KCPC_TID = v == null ? (int?)null : int.Parse(v);
                         break;
+                    case "DDBSB":
+                        mapper[i] = (e, v) => e.DDBSB = v;
+                        break;
+                    case "DDACCOUNT_NO":
+                        mapper[i] = (e, v) => e.DDACCOUNT_NO = v;
+                        break;
+                    case "DDACCOUNT_NAME":
+                        mapper[i] = (e, v) => e.DDACCOUNT_NAME = v;
+                        break;
                     case "LW_DATE":
                         mapper[i] = (e, v) => e.LW_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                         break;
@@ -984,6 +993,9 @@ BEGIN
         [CANCELLED] varchar(3) NULL,
         [PRMS_TID] int NULL,
         [KCPC_TID] int NULL,
+        [DDBSB] varchar(6) NULL,
+        [DDACCOUNT_NO] varchar(15) NULL,
+        [DDACCOUNT_NAME] varchar(60) NULL,
         [LW_DATE] datetime NULL,
         [LW_TIME] smallint NULL,
         [LW_USER] varchar(128) NULL,
@@ -1177,7 +1189,7 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CRF]') AND
             {
             }
 
-            public override int FieldCount { get { return 84; } }
+            public override int FieldCount { get { return 87; } }
 
             public override object GetValue(int i)
             {
@@ -1345,11 +1357,17 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CRF]') AND
                         return Current.PRMS_TID;
                     case 80: // KCPC_TID
                         return Current.KCPC_TID;
-                    case 81: // LW_DATE
+                    case 81: // DDBSB
+                        return Current.DDBSB;
+                    case 82: // DDACCOUNT_NO
+                        return Current.DDACCOUNT_NO;
+                    case 83: // DDACCOUNT_NAME
+                        return Current.DDACCOUNT_NAME;
+                    case 84: // LW_DATE
                         return Current.LW_DATE;
-                    case 82: // LW_TIME
+                    case 85: // LW_TIME
                         return Current.LW_TIME;
-                    case 83: // LW_USER
+                    case 86: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -1518,11 +1536,17 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CRF]') AND
                         return Current.PRMS_TID == null;
                     case 80: // KCPC_TID
                         return Current.KCPC_TID == null;
-                    case 81: // LW_DATE
+                    case 81: // DDBSB
+                        return Current.DDBSB == null;
+                    case 82: // DDACCOUNT_NO
+                        return Current.DDACCOUNT_NO == null;
+                    case 83: // DDACCOUNT_NAME
+                        return Current.DDACCOUNT_NAME == null;
+                    case 84: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 82: // LW_TIME
+                    case 85: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 83: // LW_USER
+                    case 86: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -1695,11 +1719,17 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CRF]') AND
                         return "PRMS_TID";
                     case 80: // KCPC_TID
                         return "KCPC_TID";
-                    case 81: // LW_DATE
+                    case 81: // DDBSB
+                        return "DDBSB";
+                    case 82: // DDACCOUNT_NO
+                        return "DDACCOUNT_NO";
+                    case 83: // DDACCOUNT_NAME
+                        return "DDACCOUNT_NAME";
+                    case 84: // LW_DATE
                         return "LW_DATE";
-                    case 82: // LW_TIME
+                    case 85: // LW_TIME
                         return "LW_TIME";
-                    case 83: // LW_USER
+                    case 86: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -1872,12 +1902,18 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CRF]') AND
                         return 79;
                     case "KCPC_TID":
                         return 80;
-                    case "LW_DATE":
+                    case "DDBSB":
                         return 81;
-                    case "LW_TIME":
+                    case "DDACCOUNT_NO":
                         return 82;
-                    case "LW_USER":
+                    case "DDACCOUNT_NAME":
                         return 83;
+                    case "LW_DATE":
+                        return 84;
+                    case "LW_TIME":
+                        return 85;
+                    case "LW_USER":
+                        return 86;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

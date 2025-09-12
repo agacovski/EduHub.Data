@@ -52,7 +52,7 @@ namespace EduHub.Data.Entities
 
         /// <summary>
         /// Incident descriptor (copied from SID record for the MOREINFO band)
-        /// [Uppercase Alphanumeric (5)]
+        /// [Uppercase Alphanumeric (10)]
         /// </summary>
         public string INCIDENT_TYPE { get; internal set; }
 

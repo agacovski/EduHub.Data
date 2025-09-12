@@ -121,6 +121,18 @@ namespace EduHub.Data.Entities
                     case "GENDER_DESC_B":
                         mapper[i] = (e, v) => e.GENDER_DESC_B = v;
                         break;
+                    case "E_MAIL_A":
+                        mapper[i] = (e, v) => e.E_MAIL_A = v;
+                        break;
+                    case "MOBILE_A":
+                        mapper[i] = (e, v) => e.MOBILE_A = v;
+                        break;
+                    case "E_MAIL_B":
+                        mapper[i] = (e, v) => e.E_MAIL_B = v;
+                        break;
+                    case "MOBILE_B":
+                        mapper[i] = (e, v) => e.MOBILE_B = v;
+                        break;
                     default:
                         mapper[i] = MapperNoOp;
                         break;
@@ -320,6 +332,10 @@ BEGIN
         [CHANGE_MADE] varchar(230) NULL,
         [GENDER_DESC_A] varchar(100) NULL,
         [GENDER_DESC_B] varchar(100) NULL,
+        [E_MAIL_A] varchar(60) NULL,
+        [MOBILE_A] varchar(20) NULL,
+        [E_MAIL_B] varchar(60) NULL,
+        [MOBILE_B] varchar(20) NULL,
         CONSTRAINT [DFHI_Index_TID] PRIMARY KEY NONCLUSTERED (
             [TID] ASC
         )
@@ -430,7 +446,7 @@ END");
             {
             }
 
-            public override int FieldCount { get { return 27; } }
+            public override int FieldCount { get { return 31; } }
 
             public override object GetValue(int i)
             {
@@ -490,6 +506,14 @@ END");
                         return Current.GENDER_DESC_A;
                     case 26: // GENDER_DESC_B
                         return Current.GENDER_DESC_B;
+                    case 27: // E_MAIL_A
+                        return Current.E_MAIL_A;
+                    case 28: // MOBILE_A
+                        return Current.MOBILE_A;
+                    case 29: // E_MAIL_B
+                        return Current.E_MAIL_B;
+                    case 30: // MOBILE_B
+                        return Current.MOBILE_B;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
                 }
@@ -549,6 +573,14 @@ END");
                         return Current.GENDER_DESC_A == null;
                     case 26: // GENDER_DESC_B
                         return Current.GENDER_DESC_B == null;
+                    case 27: // E_MAIL_A
+                        return Current.E_MAIL_A == null;
+                    case 28: // MOBILE_A
+                        return Current.MOBILE_A == null;
+                    case 29: // E_MAIL_B
+                        return Current.E_MAIL_B == null;
+                    case 30: // MOBILE_B
+                        return Current.MOBILE_B == null;
                     default:
                         return false;
                 }
@@ -612,6 +644,14 @@ END");
                         return "GENDER_DESC_A";
                     case 26: // GENDER_DESC_B
                         return "GENDER_DESC_B";
+                    case 27: // E_MAIL_A
+                        return "E_MAIL_A";
+                    case 28: // MOBILE_A
+                        return "MOBILE_A";
+                    case 29: // E_MAIL_B
+                        return "E_MAIL_B";
+                    case 30: // MOBILE_B
+                        return "MOBILE_B";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
                 }
@@ -675,6 +715,14 @@ END");
                         return 25;
                     case "GENDER_DESC_B":
                         return 26;
+                    case "E_MAIL_A":
+                        return 27;
+                    case "MOBILE_A":
+                        return 28;
+                    case "E_MAIL_B":
+                        return 29;
+                    case "MOBILE_B":
+                        return 30;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

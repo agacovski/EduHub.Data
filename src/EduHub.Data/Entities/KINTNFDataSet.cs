@@ -57,6 +57,9 @@ namespace EduHub.Data.Entities
                     case "BIRTHDATE":
                         mapper[i] = (e, v) => e.BIRTHDATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                         break;
+                    case "DELETE_FLAG":
+                        mapper[i] = (e, v) => e.DELETE_FLAG = v;
+                        break;
                     case "LW_DATE":
                         mapper[i] = (e, v) => e.LW_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                         break;
@@ -195,12 +198,13 @@ namespace EduHub.Data.Entities
 @"IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[KINTNF]') AND OBJECTPROPERTY(id, N'IsUserTable') = 1)
 BEGIN
     CREATE TABLE [dbo].[KINTNF](
-        [TID] int IDENTITY NOT NULL,
+        [TID] int NOT NULL,
         [FIRST_NAME] varchar(20) NULL,
         [SURNAME] varchar(30) NULL,
         [PAID_FLAG] varchar(1) NULL,
         [PAYMENT_PLAN] varchar(1) NULL,
         [BIRTHDATE] datetime NULL,
+        [DELETE_FLAG] varchar(1) NULL,
         [LW_DATE] datetime NULL,
         [LW_TIME] smallint NULL,
         [LW_USER] varchar(128) NULL,
@@ -298,7 +302,7 @@ END");
             {
             }
 
-            public override int FieldCount { get { return 9; } }
+            public override int FieldCount { get { return 10; } }
 
             public override object GetValue(int i)
             {
@@ -316,11 +320,13 @@ END");
                         return Current.PAYMENT_PLAN;
                     case 5: // BIRTHDATE
                         return Current.BIRTHDATE;
-                    case 6: // LW_DATE
+                    case 6: // DELETE_FLAG
+                        return Current.DELETE_FLAG;
+                    case 7: // LW_DATE
                         return Current.LW_DATE;
-                    case 7: // LW_TIME
+                    case 8: // LW_TIME
                         return Current.LW_TIME;
-                    case 8: // LW_USER
+                    case 9: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -341,11 +347,13 @@ END");
                         return Current.PAYMENT_PLAN == null;
                     case 5: // BIRTHDATE
                         return Current.BIRTHDATE == null;
-                    case 6: // LW_DATE
+                    case 6: // DELETE_FLAG
+                        return Current.DELETE_FLAG == null;
+                    case 7: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 7: // LW_TIME
+                    case 8: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 8: // LW_USER
+                    case 9: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -368,11 +376,13 @@ END");
                         return "PAYMENT_PLAN";
                     case 5: // BIRTHDATE
                         return "BIRTHDATE";
-                    case 6: // LW_DATE
+                    case 6: // DELETE_FLAG
+                        return "DELETE_FLAG";
+                    case 7: // LW_DATE
                         return "LW_DATE";
-                    case 7: // LW_TIME
+                    case 8: // LW_TIME
                         return "LW_TIME";
-                    case 8: // LW_USER
+                    case 9: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -395,12 +405,14 @@ END");
                         return 4;
                     case "BIRTHDATE":
                         return 5;
-                    case "LW_DATE":
+                    case "DELETE_FLAG":
                         return 6;
-                    case "LW_TIME":
+                    case "LW_DATE":
                         return 7;
-                    case "LW_USER":
+                    case "LW_TIME":
                         return 8;
+                    case "LW_USER":
+                        return 9;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

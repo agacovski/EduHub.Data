@@ -180,9 +180,20 @@ namespace EduHub.Data.Entities
 #>
 <#
             }    
-#>
+            if (entity.ClusteredIndex.Fields.Count == 1)
+            {
+            #>
                             
                             if (<#=entity.ClusteredIndex.FrameworkValueVariableBuilder("entity") #>.CompareTo(deltaClusteredKey) <= 0)
+<#
+            } else
+            {
+            #>
+                            
+                            if (<#=entity.ClusteredIndex.FrameworkValueVariableBuilder("entity") #>.Equals(deltaClusteredKey))
+<#
+            }
+#>
                             {
                                 if (!overwritten)
                                 {
@@ -326,7 +337,7 @@ BEGIN
         foreach (EduHubField field in entity.Fields)
         {
 #>
-        <#= field.SqlColumn #>,
+        <#= field.SqlColumn #><#= (entity.Fields.Last() == field && entity.PrimaryIndex == null ? "" : ",") #>
 <#
         }
         EduHubIndex primaryIndex = entity.PrimaryIndex;
@@ -343,10 +354,10 @@ BEGIN
             }
 #>
             [<#= primaryIndex.Fields.Last().Name #>] ASC
+        )
 <#
         }
 #>
-        )
     );
 <#
         foreach (EduHubIndex index in entity.Indexes.Where(i => i != primaryIndex))

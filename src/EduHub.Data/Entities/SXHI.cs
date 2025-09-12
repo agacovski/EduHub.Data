@@ -298,6 +298,18 @@ namespace EduHub.Data.Entities
         /// </summary>
         public string EXEMPT_APPROVED { get; internal set; }
 
+        /// <summary>
+        /// E-mail address
+        /// [Alphanumeric (60)]
+        /// </summary>
+        public string E_MAIL { get; internal set; }
+
+        /// <summary>
+        /// Student mobile telephone number
+        /// [Uppercase Alphanumeric (20)]
+        /// </summary>
+        public string MOBILE { get; internal set; }
+
         #endregion
 
         #region Navigation Properties

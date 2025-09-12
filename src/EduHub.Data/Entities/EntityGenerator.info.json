@@ -1393,6 +1393,18 @@
       "Properties": {}
     },
     {
+      "Filename": "KSSBDataSet.cs",
+      "Project": null,
+      "Path": "Entities",
+      "Properties": {}
+    },
+    {
+      "Filename": "KSSB.cs",
+      "Project": null,
+      "Path": "Entities",
+      "Properties": {}
+    },
+    {
       "Filename": "KSTREETDataSet.cs",
       "Project": null,
       "Path": "Entities",
@@ -3380,6 +3392,18 @@
     },
     {
       "Filename": "STSP.cs",
+      "Project": null,
+      "Path": "Entities",
+      "Properties": {}
+    },
+    {
+      "Filename": "STSSBDataSet.cs",
+      "Project": null,
+      "Path": "Entities",
+      "Properties": {}
+    },
+    {
+      "Filename": "STSSB.cs",
       "Project": null,
       "Path": "Entities",
       "Properties": {}

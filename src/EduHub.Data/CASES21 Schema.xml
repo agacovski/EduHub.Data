@@ -50,6 +50,7 @@ P - Already processed]]></Field>
       <Field Name="MATCH_OUTCOME" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[C = New creditor created
 M = Manually matched.]]></Field>
       <Field Name="DELETE_FLAG" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Delete flag]]></Field>
+      <Field Name="FINCOMP" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[CP-4221, integrated as part of CP-4330]]></Field>
       <Field Name="LW_DATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime" />
       <Field Name="LW_TIME" IsKey="false" IsNullable="true" IsIdentity="false" Type="short" TypeDescription="Integer" SqlType="smallint" />
       <Field Name="LW_USER" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="128" SqlType="varchar" />
@@ -734,6 +735,7 @@ eg. DF, DR]]></Field>
       <Field Name="ARN" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="15" SqlType="varchar"><![CDATA[ATO Reference Number]]></Field>
       <Field Name="KNOTE_FLAG" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Flag that indicates if Creditor has records in KNOTE_CR (Y/N)- Trigger]]></Field>
       <Field Name="AIMSKEY" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[AIMS system creditor key]]></Field>
+      <Field Name="SSB" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="50" SqlType="varchar"><![CDATA[CP-4317 integrated as part of CP-4330]]></Field>
       <Field Name="LW_DATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime"><![CDATA[Last write date]]></Field>
       <Field Name="LW_TIME" IsKey="false" IsNullable="true" IsIdentity="false" Type="short" TypeDescription="Integer" SqlType="smallint"><![CDATA[Last write time]]></Field>
       <Field Name="LW_USER" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="128" SqlType="varchar"><![CDATA[Last operator]]></Field>
@@ -865,6 +867,9 @@ Also used for the cost base for depreciation]]></Field>
       <Field Name="CANCELLED" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="3" SqlType="varchar"><![CDATA[Only filled in for cancelled payment/receipt]]></Field>
       <Field Name="PRMS_TID" IsKey="false" IsNullable="true" IsIdentity="false" Type="int" TypeDescription="Integer" SqlType="int"><![CDATA[is this order line from PRMS]]></Field>
       <Field Name="KCPC_TID" IsKey="false" IsNullable="true" IsIdentity="false" Type="int" TypeDescription="Integer" SqlType="int"><![CDATA[Creditor Purchasing Card TID]]></Field>
+      <Field Name="DDBSB" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="6" SqlType="varchar"><![CDATA[BSB number used at time of transaction]]></Field>
+      <Field Name="DDACCOUNT_NO" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="15" SqlType="varchar"><![CDATA[Account number used at time of transaction]]></Field>
+      <Field Name="DDACCOUNT_NAME" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="60" SqlType="varchar"><![CDATA[Account name used at time of transaction]]></Field>
       <Field Name="LW_DATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime"><![CDATA[Last write date]]></Field>
       <Field Name="LW_TIME" IsKey="false" IsNullable="true" IsIdentity="false" Type="short" TypeDescription="Integer" SqlType="smallint"><![CDATA[Last write time]]></Field>
       <Field Name="LW_USER" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="128" SqlType="varchar"><![CDATA[Last write operator]]></Field>
@@ -1509,6 +1514,7 @@ delete flag on KEMA when only GL receipt]]></Field>
       <Field Name="ST_FIRSTNAME" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[As above]]></Field>
       <Field Name="FEE_DESCRIPTION" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="30" SqlType="varchar"><![CDATA[As above]]></Field>
       <Field Name="PTYPE" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="2" SqlType="varchar"><![CDATA[Payment method, option for direct deposit in family (credit) payments]]></Field>
+      <Field Name="SSB_TID" IsKey="false" IsNullable="true" IsIdentity="false" Type="int" TypeDescription="Integer" SqlType="int"><![CDATA[Part of SSB project.]]></Field>
       <Field Name="LW_DATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime"><![CDATA[Last write date]]></Field>
       <Field Name="LW_TIME" IsKey="false" IsNullable="true" IsIdentity="false" Type="short" TypeDescription="Integer" SqlType="smallint"><![CDATA[Last write time]]></Field>
       <Field Name="LW_USER" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="128" SqlType="varchar"><![CDATA[Last operator]]></Field>
@@ -1575,6 +1581,10 @@ delete flag on KEMA when only GL receipt]]></Field>
       <Field Name="CHANGE_MADE" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="230" SqlType="varchar"><![CDATA[Change made to last record to produce this one]]></Field>
       <Field Name="GENDER_DESC_A" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="100" SqlType="varchar"><![CDATA[Parent/guardian A Self-described Gender]]></Field>
       <Field Name="GENDER_DESC_B" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="100" SqlType="varchar"><![CDATA[Parent/guardian B Self-described Gender]]></Field>
+      <Field Name="E_MAIL_A" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="60" SqlType="varchar"><![CDATA[(Was M_E_MAIL) Parent/guardian A e-mail address]]></Field>
+      <Field Name="MOBILE_A" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[Parent/guardian A mobile number]]></Field>
+      <Field Name="E_MAIL_B" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="60" SqlType="varchar"><![CDATA[(Was F_E_MAIL) Parent/guardian B e-mail address]]></Field>
+      <Field Name="MOBILE_B" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[Parent/guardian B mobile number]]></Field>
     </Fields>
     <Indexes>
       <Index Name="Index_FKEY" IsPrimary="false" IsUnique="false" IsClustered="true">
@@ -4182,12 +4192,13 @@ to 'Y' else null]]></Field>
   </Entity>
   <Entity Name="KINTNF" Description="Expelled International Students">
     <Fields>
-      <Field Name="TID" IsKey="true" IsNullable="false" IsIdentity="true" Type="int" TypeDescription="Integer" SqlType="int"><![CDATA[Creditor Purchasing Card Sequence]]></Field>
+      <Field Name="TID" IsKey="true" IsNullable="false" IsIdentity="false" Type="int" TypeDescription="Integer" SqlType="int"><![CDATA[Prime Key]]></Field>
       <Field Name="FIRST_NAME" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[First Name]]></Field>
       <Field Name="SURNAME" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="30" SqlType="varchar"><![CDATA[Surname]]></Field>
       <Field Name="PAID_FLAG" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Paid Flag]]></Field>
       <Field Name="PAYMENT_PLAN" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Payment Plan]]></Field>
       <Field Name="BIRTHDATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime"><![CDATA[Birth Date]]></Field>
+      <Field Name="DELETE_FLAG" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Y/N field. See CP-3858]]></Field>
       <Field Name="LW_DATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime"><![CDATA[Last write date]]></Field>
       <Field Name="LW_TIME" IsKey="false" IsNullable="true" IsIdentity="false" Type="short" TypeDescription="Integer" SqlType="smallint"><![CDATA[Last write time]]></Field>
       <Field Name="LW_USER" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="128" SqlType="varchar"><![CDATA[Last write operator]]></Field>
@@ -4596,6 +4607,37 @@ to 'Y' else null]]></Field>
     <Indexes>
       <Index Name="Index_KSQKEY" IsPrimary="true" IsUnique="true" IsClustered="true">
         <Field>KSQKEY</Field>
+      </Index>
+    </Indexes>
+  </Entity>
+  <Entity Name="KSSB" Description="School Saving Bonus Trns">
+    <Fields>
+      <Field Name="TID" IsKey="true" IsNullable="false" IsIdentity="true" Type="int" TypeDescription="Integer" SqlType="int"><![CDATA[Prime Key]]></Field>
+      <Field Name="TRAN_ID" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[Transaction ID]]></Field>
+      <Field Name="CRKEY" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="10" SqlType="varchar" ForeignParent="CR:CRKEY"><![CDATA[Transaction Key to CR table]]></Field>
+      <Field Name="SKEY" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="10" SqlType="varchar" ForeignParent="ST:STKEY"><![CDATA[Student Key]]></Field>
+      <Field Name="TRDATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime"><![CDATA[Date of voucher issuance/redemption???]]></Field>
+      <Field Name="ONLINE_VOUCHER" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[The transaction id for the online redemption of a voucher]]></Field>
+      <Field Name="VOUCHER_CODE" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[The voucher key]]></Field>
+      <Field Name="ITEM_CATEGORY" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[Item Category]]></Field>
+      <Field Name="TRAN_TYPE" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[Transaction Type]]></Field>
+      <Field Name="TRAN_AMT" IsKey="false" IsNullable="true" IsIdentity="false" Type="decimal" TypeDescription="Currency" SqlType="money"><![CDATA[Transaction Amount]]></Field>
+      <Field Name="DFF_TID" IsKey="false" IsNullable="true" IsIdentity="false" Type="int" TypeDescription="Integer" SqlType="int"><![CDATA[Tid of related DFF transaction]]></Field>
+      <Field Name="CRF_TID" IsKey="false" IsNullable="true" IsIdentity="false" Type="int" TypeDescription="Integer" SqlType="int"><![CDATA[Tid of related CRF transaction]]></Field>
+      <Field Name="TO_INVOICE" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Y/N Flag. Y means school intends to create creditor invoice for this now.]]></Field>
+      <Field Name="LW_DATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime"><![CDATA[Last write date]]></Field>
+      <Field Name="LW_TIME" IsKey="false" IsNullable="true" IsIdentity="false" Type="short" TypeDescription="Integer" SqlType="smallint"><![CDATA[Last write time]]></Field>
+      <Field Name="LW_USER" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="128" SqlType="varchar"><![CDATA[Last operator]]></Field>
+    </Fields>
+    <Indexes>
+      <Index Name="Index_CRKEY" IsPrimary="false" IsUnique="false" IsClustered="false">
+        <Field>CRKEY</Field>
+      </Index>
+      <Index Name="Index_SKEY" IsPrimary="false" IsUnique="false" IsClustered="false">
+        <Field>SKEY</Field>
+      </Index>
+      <Index Name="Index_TID" IsPrimary="true" IsUnique="true" IsClustered="true">
+        <Field>TID</Field>
       </Index>
     </Indexes>
   </Entity>
@@ -8238,7 +8280,7 @@ update rates from this date]]></Field>
     <Fields>
       <Field Name="SDPKEY" IsKey="true" IsNullable="false" IsIdentity="true" Type="int" TypeDescription="Integer" SqlType="int"><![CDATA[Sequence no]]></Field>
       <Field Name="INCIDENT_KEY" IsKey="false" IsNullable="true" IsIdentity="false" Type="int" TypeDescription="Integer" SqlType="int" ForeignParent="SID:SIDKEY"><![CDATA[Number of the incident]]></Field>
-      <Field Name="INCIDENT_TYPE" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="5" SqlType="varchar"><![CDATA[Incident descriptor (copied from SID record for the MOREINFO band)]]></Field>
+      <Field Name="INCIDENT_TYPE" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="10" SqlType="varchar"><![CDATA[Incident descriptor (copied from SID record for the MOREINFO band)]]></Field>
       <Field Name="INCIDENT_DATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime"><![CDATA[Incident date (copied from SID record for the MOREINFO band)]]></Field>
       <Field Name="STUDENT_KEY" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="10" SqlType="varchar" ForeignParent="ST:STKEY"><![CDATA[Code of student who instigated the incident]]></Field>
       <Field Name="INVOLVEMENT_DESC" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Memo" TypeMaxLength="-1" SqlType="varchar"><![CDATA[Description of the student's involvement]]></Field>
@@ -10042,10 +10084,14 @@ update rates from this date]]></Field>
       <Field Name="DISABILITY_TYPE" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="2" SqlType="varchar"><![CDATA[C = Cognitive; P = Physical; S = Sensory; SE = Social/Emotional - Default value: blank]]></Field>
       <Field Name="DISABILITY_ADJUSTMENT_LEVEL" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="2" SqlType="varchar"><![CDATA[1 = Quality differentiated teaching practice; 2 = Supplementary; 3 = Substantial; 4 = Extensive - Default value: blank]]></Field>
       <Field Name="DISABILITY_ADJUSTMENT_LW_DATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime"><![CDATA[The last time that either the Type of Disability or Level of Adjustment had been updated]]></Field>
+      <Field Name="DISABILITY_FORMAL_DIAGNOSIS" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Does this student have a diagnosed disability? (Y/N) - Default value: blank]]></Field>
       <Field Name="HEAD_LICE_CHECK" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Permission for a head lice check has been received Y/N or U= Unknown]]></Field>
       <Field Name="ANNUAL_TOT" IsKey="false" IsNullable="true" IsIdentity="false" Type="double" TypeDescription="Floating Point Number" SqlType="float"><![CDATA[Total number of days this student has been suspended]]></Field>
       <Field Name="STUDENT_PIC" IsKey="false" IsNullable="true" IsIdentity="false" Type="byte[]" TypeDescription="Picture" TypeMaxLength="-1" SqlType="varbinary"><![CDATA[Student picture]]></Field>
-      <Field Name="PUBLISH_PHOTO_MEDIA" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[OK to publish picture in media Y/N/U]]></Field>
+      <Field Name="PUBLISH_PHOTO_MEDIA" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[OK to publish picture in media Y/N/U				*CP-3755 - retired in front end. To be retained in the database]]></Field>
+      <Field Name="MEDIA_CONSENT_A" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Consent to use in the physical school environment Y/N/U		*CP-3755 - introduced]]></Field>
+      <Field Name="MEDIA_CONSENT_B" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Consent to use within the school community Y/N/U	  		*CP-3755 - introduced]]></Field>
+      <Field Name="MEDIA_CONSENT_C" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Consent to use beyond the school community/publicly Y/N/U	*CP-3755 - introduced]]></Field>
       <Field Name="OK_TO_PUBLISH" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[OK to publish picture in Ultranet Y/N]]></Field>
       <Field Name="PIC_LW_DATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime"><![CDATA[Date/time of last change]]></Field>
       <Field Name="PIC_STATUS" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[N=New, R=Ready to upload, C=Copied]]></Field>
@@ -10138,6 +10184,10 @@ update rates from this date]]></Field>
       <Field Name="EXEMPT_APPROVED" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Exempt Approved]]></Field>
       <Field Name="DISABILITY_INFO" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar" />
       <Field Name="DISABILITY_DESC" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Memo" TypeMaxLength="-1" SqlType="varchar" />
+      <Field Name="ALT_E_MAIL" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="60" SqlType="varchar"><![CDATA[Schools Victoria E-mail address]]></Field>
+      <Field Name="LOCK" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Record is locked for editing as Non-Fee pyaing International student]]></Field>
+      <Field Name="SCHOOL_USI" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="10" SqlType="varchar"><![CDATA[School USI field.]]></Field>
+      <Field Name="SCHOOL_USI_STATUS" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="15" SqlType="varchar"><![CDATA[The status of the student's School-USI field's value.]]></Field>
       <Field Name="LW_DATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime"><![CDATA[Last write date]]></Field>
       <Field Name="LW_TIME" IsKey="false" IsNullable="true" IsIdentity="false" Type="short" TypeDescription="Integer" SqlType="smallint"><![CDATA[Last write time]]></Field>
       <Field Name="LW_USER" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="128" SqlType="varchar"><![CDATA[Last write operator]]></Field>
@@ -10677,6 +10727,9 @@ update rates from this date]]></Field>
       <Field Name="LW_USER" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="128" SqlType="varchar"><![CDATA[Last write operator]]></Field>
     </Fields>
     <Indexes>
+      <Index Name="Index_LW_DATE" IsPrimary="false" IsUnique="false" IsClustered="false">
+        <Field>LW_DATE</Field>
+      </Index>
       <Index Name="Index_SKEY" IsPrimary="false" IsUnique="false" IsClustered="true">
         <Field>SKEY</Field>
       </Index>
@@ -11164,6 +11217,37 @@ update rates from this date]]></Field>
       <Index Name="Index_TID" IsPrimary="true" IsUnique="true" IsClustered="false">
         <Field>TID</Field>
       </Index>
+    </Indexes>
+  </Entity>
+  <Entity Name="STSSB" Description="School Saving Bonus Vouchers" IsScoped="true">
+    <Fields>
+      <!--<Field Name="TID" IsKey="true" IsNullable="false" IsIdentity="true" Type="int" TypeDescription="Integer" SqlType="int"><![CDATA[Transaction ID (internal)]]></Field>-->
+      <Field Name="SKEY" IsKey="true" IsNullable="false" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="10" SqlType="varchar" ForeignParent="ST:STKEY"><![CDATA[Student key]]></Field>
+      <!--<Field Name="VOUCHER_DATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime"><![CDATA[Date of voucher issuance/redemption???]]></Field>
+      <Field Name="VOUCHER" IsKey="true" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[Voucher code]]></Field>-->
+      <Field Name="VOUCHER_TYPE" IsKey="true" IsNullable="false" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[Voucher Type]]></Field>
+      <!--<Field Name="VOUCHER_STATUS" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[Voucher Status]]></Field>
+      <Field Name="VOUCHER_AMT" IsKey="false" IsNullable="true" IsIdentity="false" Type="decimal" TypeDescription="Currency" SqlType="money"><![CDATA[Voucher Amount]]></Field>-->
+      <!--<Field Name="VOUCHER_BAL" IsKey="false" IsNullable="true" IsIdentity="false" Type="decimal" TypeDescription="Currency" SqlType="money"><![CDATA[Voucher Balance]]></Field>
+      <Field Name="ACTIVITIES_AMT" IsKey="false" IsNullable="true" IsIdentity="false" Type="decimal" TypeDescription="Currency" SqlType="money"><![CDATA[Activities Amount]]></Field>-->
+      <Field Name="ACTIVITIES_BAL" IsKey="false" IsNullable="true" IsIdentity="false" Type="decimal" TypeDescription="Currency" SqlType="money"><![CDATA[Activities Balance]]></Field>
+      <!--<Field Name="ONLINE_AMT" IsKey="false" IsNullable="true" IsIdentity="false" Type="decimal" TypeDescription="Currency" SqlType="money"><![CDATA[Online Vouchers Amount]]></Field>
+      <Field Name="ONLINE_BAL" IsKey="false" IsNullable="true" IsIdentity="false" Type="decimal" TypeDescription="Currency" SqlType="money"><![CDATA[Online Vouchers Balance]]></Field>
+      <Field Name="DFF_TID" IsKey="false" IsNullable="true" IsIdentity="false" Type="int" TypeDescription="Integer" SqlType="int"><![CDATA[Tid of related DFF transaction]]></Field>
+      <Field Name="LW_DATE" IsKey="false" IsNullable="true" IsIdentity="false" Type="DateTime" TypeDescription="Date Time" SqlType="datetime"><![CDATA[Last write date]]></Field>
+      <Field Name="LW_TIME" IsKey="false" IsNullable="true" IsIdentity="false" Type="short" TypeDescription="Integer" SqlType="smallint"><![CDATA[Last write time]]></Field>
+      <Field Name="LW_USER" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="128" SqlType="varchar"><![CDATA[Last operator]]></Field>-->
+    </Fields>
+    <Indexes>
+      <Index Name="Index_SKEY" IsPrimary="false" IsUnique="false" IsClustered="true">
+        <Field>SKEY</Field>
+      </Index>
+      <!--<Index Name="Index_TID" IsPrimary="true" IsUnique="true" IsClustered="true">
+        <Field>TID</Field>
+      </Index>
+      <Index Name="Index_VOUCHER" IsPrimary="false" IsUnique="false" IsClustered="false">
+        <Field>VOUCHER</Field>
+      </Index>-->
     </Indexes>
   </Entity>
   <Entity Name="STSUP" Description="Support Persons" IsScoped="true">
@@ -11841,6 +11925,8 @@ update rates from this date]]></Field>
       <Field Name="GENDER_DESC" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="100" SqlType="varchar"><![CDATA[Self-described Gender description]]></Field>
       <Field Name="EXEMPT_REASON" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Exempt Reason]]></Field>
       <Field Name="EXEMPT_APPROVED" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="1" SqlType="varchar"><![CDATA[Exempt Approved]]></Field>
+      <Field Name="E_MAIL" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Alphanumeric" TypeMaxLength="60" SqlType="varchar"><![CDATA[E-mail address]]></Field>
+      <Field Name="MOBILE" IsKey="false" IsNullable="true" IsIdentity="false" Type="string" TypeDescription="Uppercase Alphanumeric" TypeMaxLength="20" SqlType="varchar"><![CDATA[Student mobile telephone number]]></Field>
     </Fields>
     <Indexes>
       <Index Name="Index_SKEY" IsPrimary="false" IsUnique="false" IsClustered="false">

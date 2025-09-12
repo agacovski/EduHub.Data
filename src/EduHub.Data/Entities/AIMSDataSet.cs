@@ -130,6 +130,9 @@ namespace EduHub.Data.Entities
                     case "DELETE_FLAG":
                         mapper[i] = (e, v) => e.DELETE_FLAG = v;
                         break;
+                    case "FINCOMP":
+                        mapper[i] = (e, v) => e.FINCOMP = v;
+                        break;
                     case "LW_DATE":
                         mapper[i] = (e, v) => e.LW_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                         break;
@@ -341,6 +344,7 @@ BEGIN
         [MATCHABLE] varchar(1) NULL,
         [MATCH_OUTCOME] varchar(1) NULL,
         [DELETE_FLAG] varchar(1) NULL,
+        [FINCOMP] varchar(1) NULL,
         [LW_DATE] datetime NULL,
         [LW_TIME] smallint NULL,
         [LW_USER] varchar(128) NULL,
@@ -454,7 +458,7 @@ END");
             {
             }
 
-            public override int FieldCount { get { return 33; } }
+            public override int FieldCount { get { return 34; } }
 
             public override object GetValue(int i)
             {
@@ -520,11 +524,13 @@ END");
                         return Current.MATCH_OUTCOME;
                     case 29: // DELETE_FLAG
                         return Current.DELETE_FLAG;
-                    case 30: // LW_DATE
+                    case 30: // FINCOMP
+                        return Current.FINCOMP;
+                    case 31: // LW_DATE
                         return Current.LW_DATE;
-                    case 31: // LW_TIME
+                    case 32: // LW_TIME
                         return Current.LW_TIME;
-                    case 32: // LW_USER
+                    case 33: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -593,11 +599,13 @@ END");
                         return Current.MATCH_OUTCOME == null;
                     case 29: // DELETE_FLAG
                         return Current.DELETE_FLAG == null;
-                    case 30: // LW_DATE
+                    case 30: // FINCOMP
+                        return Current.FINCOMP == null;
+                    case 31: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 31: // LW_TIME
+                    case 32: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 32: // LW_USER
+                    case 33: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -668,11 +676,13 @@ END");
                         return "MATCH_OUTCOME";
                     case 29: // DELETE_FLAG
                         return "DELETE_FLAG";
-                    case 30: // LW_DATE
+                    case 30: // FINCOMP
+                        return "FINCOMP";
+                    case 31: // LW_DATE
                         return "LW_DATE";
-                    case 31: // LW_TIME
+                    case 32: // LW_TIME
                         return "LW_TIME";
-                    case 32: // LW_USER
+                    case 33: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -743,12 +753,14 @@ END");
                         return 28;
                     case "DELETE_FLAG":
                         return 29;
-                    case "LW_DATE":
+                    case "FINCOMP":
                         return 30;
-                    case "LW_TIME":
+                    case "LW_DATE":
                         return 31;
-                    case "LW_USER":
+                    case "LW_TIME":
                         return 32;
+                    case "LW_USER":
+                        return 33;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

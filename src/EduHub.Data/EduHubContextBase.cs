@@ -42,18 +42,14 @@ namespace EduHub.Data
             get
             {
                 if (defaultEduHubDirectory == null)
-                {
                     defaultEduHubDirectory = DiscoverEduHubDirectory();
-                }
 
                 return defaultEduHubDirectory;
             }
             set
             {
-                if (defaultFileSystem.DirectoryExists(value))
-                {
+                if (!string.IsNullOrWhiteSpace(value))
                     defaultEduHubDirectory = value;
-                }
             }
         }
 

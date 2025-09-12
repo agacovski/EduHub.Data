@@ -24,7 +24,7 @@ namespace EduHub.Data.Entities
         #region Field Properties
 
         /// <summary>
-        /// Creditor Purchasing Card Sequence
+        /// Prime Key
         /// </summary>
         public int TID { get; internal set; }
 
@@ -56,6 +56,12 @@ namespace EduHub.Data.Entities
         /// Birth Date
         /// </summary>
         public DateTime? BIRTHDATE { get; internal set; }
+
+        /// <summary>
+        /// Y/N field. See CP-3858
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string DELETE_FLAG { get; internal set; }
 
         /// <summary>
         /// Last write date

@@ -171,6 +171,7 @@ namespace EduHub.Data
 #if !EduHubScoped
         private readonly KSKGSDataSet _KSKGS;
         private readonly KSQDataSet _KSQ;
+        private readonly KSSBDataSet _KSSB;
         private readonly KSTREETDataSet _KSTREET;
         private readonly KTIEDataSet _KTIE;
         private readonly KTMDataSet _KTM;
@@ -368,6 +369,7 @@ namespace EduHub.Data
         private readonly STSBDataSet _STSB;
         private readonly STSPDataSet _STSP;
 #endif
+        private readonly STSSBDataSet _STSSB;
         private readonly STSUPDataSet _STSUP;
 #if !EduHubScoped
         private readonly STSUP_TRDataSet _STSUP_TR;
@@ -614,6 +616,7 @@ namespace EduHub.Data
 #if !EduHubScoped
             _KSKGS = new KSKGSDataSet(this);
             _KSQ = new KSQDataSet(this);
+            _KSSB = new KSSBDataSet(this);
             _KSTREET = new KSTREETDataSet(this);
             _KTIE = new KTIEDataSet(this);
             _KTM = new KTMDataSet(this);
@@ -811,6 +814,7 @@ namespace EduHub.Data
             _STSB = new STSBDataSet(this);
             _STSP = new STSPDataSet(this);
 #endif
+            _STSSB = new STSSBDataSet(this);
             _STSUP = new STSUPDataSet(this);
 #if !EduHubScoped
             _STSUP_TR = new STSUP_TRDataSet(this);
@@ -1040,6 +1044,7 @@ namespace EduHub.Data
 #if !EduHubScoped
             yield return KSKGS;
             yield return KSQ;
+            yield return KSSB;
             yield return KSTREET;
             yield return KTIE;
             yield return KTM;
@@ -1237,6 +1242,7 @@ namespace EduHub.Data
             yield return STSB;
             yield return STSP;
 #endif
+            yield return STSSB;
             yield return STSUP;
 #if !EduHubScoped
             yield return STSUP_TR;
@@ -1921,6 +1927,11 @@ namespace EduHub.Data
         /// Available Qualifications
         /// </summary>
         public KSQDataSet KSQ { get { return _KSQ; } }
+
+        /// <summary>
+        /// School Saving Bonus Trns
+        /// </summary>
+        public KSSBDataSet KSSB { get { return _KSSB; } }
 
         /// <summary>
         /// Street Types
@@ -2782,6 +2793,11 @@ namespace EduHub.Data
         /// </summary>
         public STSPDataSet STSP { get { return _STSP; } }
 #endif
+
+        /// <summary>
+        /// School Saving Bonus Vouchers
+        /// </summary>
+        public STSSBDataSet STSSB { get { return _STSSB; } }
 
         /// <summary>
         /// Support Persons

@@ -42,13 +42,13 @@ namespace EduHub.Data.SchemaParser.Db
                 using (var reader = new CsvReader(stream))
                 {
                     columns = SysBuilder.ImportCsv<SysColumn>(reader,
-                        (ColumnName: "OBJECT_ID",       Mapper: (t, v) => t.object_id = int.Parse(v)),
+                        (ColumnName: "OBJECT_ID", Mapper: (t, v) => t.object_id = int.Parse(v)),
                         (ColumnName: "NAME", Mapper: (t, v) => t.name = v),
-                        (ColumnName: "COLUMN_ID",       Mapper: (t, v) => t.column_id = int.Parse(v)),
-                        (ColumnName: "USER_TYPE_ID",    Mapper: (t, v) => t.user_type_id = int.Parse(v)),
-                        (ColumnName: "MAX_LENGTH",      Mapper: (t, v) => t.max_length = int.Parse(v)),
-                        (ColumnName: "IS_NULLABLE",     Mapper: (t, v) => t.is_nullable = v.AsBool()),
-                        (ColumnName: "IS_IDENTITY",     Mapper: (t, v) => t.is_identity = v.AsBool())
+                        (ColumnName: "COLUMN_ID", Mapper: (t, v) => t.column_id = int.Parse(v)),
+                        (ColumnName: "USER_TYPE_ID", Mapper: (t, v) => t.user_type_id = int.Parse(v)),
+                        (ColumnName: "MAX_LENGTH", Mapper: (t, v) => t.max_length = int.Parse(v)),
+                        (ColumnName: "IS_NULLABLE", Mapper: (t, v) => t.is_nullable = v.AsBool()),
+                        (ColumnName: "IS_IDENTITY", Mapper: (t, v) => t.is_identity = v.AsBool())
                         );
                 }
             }
@@ -59,13 +59,14 @@ namespace EduHub.Data.SchemaParser.Db
                 using (var reader = new CsvReader(stream))
                 {
                     indexes = SysBuilder.ImportCsv<SysIndex>(reader,
-                        (ColumnName: "OBJECT_ID",        Mapper: (t, v) => t.object_id = int.Parse(v)),
+                        (ColumnName: "OBJECT_ID", Mapper: (t, v) => t.object_id = int.Parse(v)),
                         (ColumnName: "NAME", Mapper: (t, v) => t.name = v),
-                        (ColumnName: "INDEX_ID",         Mapper: (t, v) => t.index_id = int.Parse(v)),
+                        (ColumnName: "INDEX_ID", Mapper: (t, v) => t.index_id = int.Parse(v)),
                         (ColumnName: "TYPE", Mapper: (t, v) => t.type = int.Parse(v)),
-                        (ColumnName: "IS_UNIQUE",        Mapper: (t, v) => t.is_unique = v.AsBool()),
-                        (ColumnName: "IS_PRIMARY_KEY",   Mapper: (t, v) => t.is_primary_key = v.AsBool())
-                        );
+                        (ColumnName: "IS_UNIQUE", Mapper: (t, v) => t.is_unique = v.AsBool()),
+                        (ColumnName: "IS_PRIMARY_KEY", Mapper: (t, v) => t.is_primary_key = v.AsBool())
+                        )
+                        .Where(i => i.type == 1 || i.type == 2).ToList();
                 }
             }
 
@@ -75,9 +76,9 @@ namespace EduHub.Data.SchemaParser.Db
                 using (var reader = new CsvReader(stream))
                 {
                     indexColumns = SysBuilder.ImportCsv<SysIndexColumn>(reader,
-                        (ColumnName: "OBJECT_ID",   Mapper: (t, v) => t.object_id = int.Parse(v)),
-                        (ColumnName: "INDEX_ID",    Mapper: (t, v) => t.index_id = int.Parse(v)),
-                        (ColumnName: "COLUMN_ID",   Mapper: (t, v) => t.column_id = int.Parse(v)),
+                        (ColumnName: "OBJECT_ID", Mapper: (t, v) => t.object_id = int.Parse(v)),
+                        (ColumnName: "INDEX_ID", Mapper: (t, v) => t.index_id = int.Parse(v)),
+                        (ColumnName: "COLUMN_ID", Mapper: (t, v) => t.column_id = int.Parse(v)),
                         (ColumnName: "KEY_ORDINAL", Mapper: (t, v) => t.key_ordinal = byte.Parse(v))
                         );
                 }
@@ -155,7 +156,7 @@ namespace EduHub.Data.SchemaParser.Db
                 }
 
                 // Indexes
-                const string sqlIndexes = @"SELECT object_id, name, index_id, type, is_unique, is_primary_key FROM sys.indexes";
+                const string sqlIndexes = @"SELECT object_id, name, index_id, type, is_unique, is_primary_key FROM sys.indexes WHERE type IN (1, 2)";
                 using (var dbCommand = new SqlCommand(sqlIndexes, dbConnection))
                 {
                     using (var dbReader = dbCommand.ExecuteReader())
@@ -309,7 +310,7 @@ namespace EduHub.Data.SchemaParser.Db
                                 throw new InvalidOperationException("Unexpected index with no columns");
 
                             var indexName = $"Index_{string.Join("_", fields.Select(f => f.Name))}";
-                            
+
                             if (fields.Count > 8)
                             {
                                 System.Diagnostics.Debug.WriteLine($"Unsupported Index: [{entity.Name}]:{indexName}");

@@ -398,6 +398,11 @@ namespace EduHub.Data.Entities
         public string PTYPE { get; internal set; }
 
         /// <summary>
+        /// Part of SSB project.
+        /// </summary>
+        public int? SSB_TID { get; internal set; }
+
+        /// <summary>
         /// Last write date
         /// </summary>
         public DateTime? LW_DATE { get; internal set; }

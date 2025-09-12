@@ -294,7 +294,7 @@ BEGIN
     CREATE TABLE [dbo].[SDP](
         [SDPKEY] int IDENTITY NOT NULL,
         [INCIDENT_KEY] int NULL,
-        [INCIDENT_TYPE] varchar(5) NULL,
+        [INCIDENT_TYPE] varchar(10) NULL,
         [INCIDENT_DATE] datetime NULL,
         [STUDENT_KEY] varchar(10) NULL,
         [INVOLVEMENT_DESC] varchar(MAX) NULL,

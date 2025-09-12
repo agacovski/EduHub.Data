@@ -51,6 +51,7 @@ namespace EduHub.Data.Entities
         private IReadOnlyList<DFF> Cache_STKEY_DFF_TRSTUD;
         private IReadOnlyList<DFF> Cache_STKEY_DFF_STUDENT;
 #if !EduHubScoped
+        private IReadOnlyList<KSSB> Cache_STKEY_KSSB_SKEY;
         private IReadOnlyList<SDP> Cache_STKEY_SDP_STUDENT_KEY;
 #endif
         private IReadOnlyList<SMC> Cache_STKEY_SMC_STUDENT;
@@ -77,6 +78,7 @@ namespace EduHub.Data.Entities
         private IReadOnlyList<STSB> Cache_STKEY_STSB_SKEY;
         private IReadOnlyList<STSP> Cache_STKEY_STSP_SPKEY;
 #endif
+        private IReadOnlyList<STSSB> Cache_STKEY_STSSB_SKEY;
         private IReadOnlyList<STSUP> Cache_STKEY_STSUP_SKEY;
 #if !EduHubScoped
         private IReadOnlyList<STTRIPS> Cache_STKEY_STTRIPS_STUDENT_ID;
@@ -809,6 +811,12 @@ namespace EduHub.Data.Entities
         public DateTime? DISABILITY_ADJUSTMENT_LW_DATE { get; internal set; }
 
         /// <summary>
+        /// Does this student have a diagnosed disability? (Y/N) - Default value: blank
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string DISABILITY_FORMAL_DIAGNOSIS { get; internal set; }
+
+        /// <summary>
         /// Permission for a head lice check has been received Y/N or U= Unknown
         /// [Uppercase Alphanumeric (1)]
         /// </summary>
@@ -825,10 +833,28 @@ namespace EduHub.Data.Entities
         public byte[] STUDENT_PIC { get; internal set; }
 
         /// <summary>
-        /// OK to publish picture in media Y/N/U
+        /// OK to publish picture in media Y/N/U				*CP-3755 - retired in front end. To be retained in the database
         /// [Uppercase Alphanumeric (1)]
         /// </summary>
         public string PUBLISH_PHOTO_MEDIA { get; internal set; }
+
+        /// <summary>
+        /// Consent to use in the physical school environment Y/N/U		*CP-3755 - introduced
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string MEDIA_CONSENT_A { get; internal set; }
+
+        /// <summary>
+        /// Consent to use within the school community Y/N/U	  		*CP-3755 - introduced
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string MEDIA_CONSENT_B { get; internal set; }
+
+        /// <summary>
+        /// Consent to use beyond the school community/publicly Y/N/U	*CP-3755 - introduced
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string MEDIA_CONSENT_C { get; internal set; }
 
         /// <summary>
         /// OK to publish picture in Ultranet Y/N
@@ -1366,6 +1392,30 @@ namespace EduHub.Data.Entities
         /// [Memo]
         /// </summary>
         public string DISABILITY_DESC { get; internal set; }
+
+        /// <summary>
+        /// Schools Victoria E-mail address
+        /// [Alphanumeric (60)]
+        /// </summary>
+        public string ALT_E_MAIL { get; internal set; }
+
+        /// <summary>
+        /// Record is locked for editing as Non-Fee pyaing International student
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string LOCK { get; internal set; }
+
+        /// <summary>
+        /// School USI field.
+        /// [Uppercase Alphanumeric (10)]
+        /// </summary>
+        public string SCHOOL_USI { get; internal set; }
+
+        /// <summary>
+        /// The status of the student's School-USI field's value.
+        /// [Uppercase Alphanumeric (15)]
+        /// </summary>
+        public string SCHOOL_USI_STATUS { get; internal set; }
 
         /// <summary>
         /// Last write date
@@ -2016,6 +2066,24 @@ namespace EduHub.Data.Entities
 
 #if !EduHubScoped
         /// <summary>
+        /// KSSB (School Saving Bonus Trns) related entities by [ST.STKEY]-&gt;[KSSB.SKEY]
+        /// Student ID
+        /// </summary>
+        public IReadOnlyList<KSSB> STKEY_KSSB_SKEY
+        {
+            get
+            {
+                if (Cache_STKEY_KSSB_SKEY == null &&
+                    !Context.KSSB.TryFindBySKEY(STKEY, out Cache_STKEY_KSSB_SKEY))
+                {
+                    Cache_STKEY_KSSB_SKEY = new List<KSSB>().AsReadOnly();
+                }
+
+                return Cache_STKEY_KSSB_SKEY;
+            }
+        }
+
+        /// <summary>
         /// SDP (Incident Instigators) related entities by [ST.STKEY]-&gt;[SDP.STUDENT_KEY]
         /// Student ID
         /// </summary>
@@ -2330,6 +2398,24 @@ namespace EduHub.Data.Entities
         }
 
 #endif
+        /// <summary>
+        /// STSSB (School Saving Bonus Vouchers) related entities by [ST.STKEY]-&gt;[STSSB.SKEY]
+        /// Student ID
+        /// </summary>
+        public IReadOnlyList<STSSB> STKEY_STSSB_SKEY
+        {
+            get
+            {
+                if (Cache_STKEY_STSSB_SKEY == null &&
+                    !Context.STSSB.TryFindBySKEY(STKEY, out Cache_STKEY_STSSB_SKEY))
+                {
+                    Cache_STKEY_STSSB_SKEY = new List<STSSB>().AsReadOnly();
+                }
+
+                return Cache_STKEY_STSSB_SKEY;
+            }
+        }
+
         /// <summary>
         /// STSUP (Support Persons) related entities by [ST.STKEY]-&gt;[STSUP.SKEY]
         /// Student ID

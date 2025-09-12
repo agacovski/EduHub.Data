@@ -514,6 +514,24 @@ namespace EduHub.Data.Entities
         public int? KCPC_TID { get; internal set; }
 
         /// <summary>
+        /// BSB number used at time of transaction
+        /// [Alphanumeric (6)]
+        /// </summary>
+        public string DDBSB { get; internal set; }
+
+        /// <summary>
+        /// Account number used at time of transaction
+        /// [Alphanumeric (15)]
+        /// </summary>
+        public string DDACCOUNT_NO { get; internal set; }
+
+        /// <summary>
+        /// Account name used at time of transaction
+        /// [Alphanumeric (60)]
+        /// </summary>
+        public string DDACCOUNT_NAME { get; internal set; }
+
+        /// <summary>
         /// Last write date
         /// </summary>
         public DateTime? LW_DATE { get; internal set; }

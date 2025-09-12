@@ -29,6 +29,7 @@ namespace EduHub.Data.Entities
         private IReadOnlyList<CRPR> Cache_CRKEY_CRPR_CODE;
         private IReadOnlyList<CRTT> Cache_CRKEY_CRTT_CRKEY;
         private IReadOnlyList<KNOTE_CR> Cache_CRKEY_KNOTE_CR_CODE;
+        private IReadOnlyList<KSSB> Cache_CRKEY_KSSB_CRKEY;
         private IReadOnlyList<RQ> Cache_CRKEY_RQ_CODE;
 #endif
 
@@ -435,6 +436,12 @@ namespace EduHub.Data.Entities
         public string AIMSKEY { get; internal set; }
 
         /// <summary>
+        /// CP-4317 integrated as part of CP-4330
+        /// [Alphanumeric (50)]
+        /// </summary>
+        public string SSB { get; internal set; }
+
+        /// <summary>
         /// Last write date
         /// </summary>
         public DateTime? LW_DATE { get; internal set; }
@@ -645,6 +652,24 @@ namespace EduHub.Data.Entities
                 }
 
                 return Cache_CRKEY_KNOTE_CR_CODE;
+            }
+        }
+
+        /// <summary>
+        /// KSSB (School Saving Bonus Trns) related entities by [CR.CRKEY]-&gt;[KSSB.CRKEY]
+        /// Prime Key
+        /// </summary>
+        public IReadOnlyList<KSSB> CRKEY_KSSB_CRKEY
+        {
+            get
+            {
+                if (Cache_CRKEY_KSSB_CRKEY == null &&
+                    !Context.KSSB.TryFindByCRKEY(CRKEY, out Cache_CRKEY_KSSB_CRKEY))
+                {
+                    Cache_CRKEY_KSSB_CRKEY = new List<KSSB>().AsReadOnly();
+                }
+
+                return Cache_CRKEY_KSSB_CRKEY;
             }
         }
 

@@ -25,6 +25,7 @@ namespace EduHub.Data.Entities
         internal STLITNUMDataSet(EduHubContext Context)
             : base(Context)
         {
+            Index_LW_DATE = new Lazy<NullDictionary<DateTime?, IReadOnlyList<STLITNUM>>>(() => this.ToGroupedNullDictionary(i => i.LW_DATE));
             Index_SKEY = new Lazy<Dictionary<string, IReadOnlyList<STLITNUM>>>(() => this.ToGroupedDictionary(i => i.SKEY));
             Index_TID = new Lazy<Dictionary<int, STLITNUM>>(() => this.ToDictionary(i => i.TID));
         }
@@ -132,12 +133,55 @@ namespace EduHub.Data.Entities
 
         #region Index Fields
 
+        private Lazy<NullDictionary<DateTime?, IReadOnlyList<STLITNUM>>> Index_LW_DATE;
         private Lazy<Dictionary<string, IReadOnlyList<STLITNUM>>> Index_SKEY;
         private Lazy<Dictionary<int, STLITNUM>> Index_TID;
 
         #endregion
 
         #region Index Methods
+
+        /// <summary>
+        /// Find STLITNUM by LW_DATE field
+        /// </summary>
+        /// <param name="LW_DATE">LW_DATE value used to find STLITNUM</param>
+        /// <returns>List of related STLITNUM entities</returns>
+        /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
+        public IReadOnlyList<STLITNUM> FindByLW_DATE(DateTime? LW_DATE)
+        {
+            return Index_LW_DATE.Value[LW_DATE];
+        }
+
+        /// <summary>
+        /// Attempt to find STLITNUM by LW_DATE field
+        /// </summary>
+        /// <param name="LW_DATE">LW_DATE value used to find STLITNUM</param>
+        /// <param name="Value">List of related STLITNUM entities</param>
+        /// <returns>True if the list of related STLITNUM entities is found</returns>
+        /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
+        public bool TryFindByLW_DATE(DateTime? LW_DATE, out IReadOnlyList<STLITNUM> Value)
+        {
+            return Index_LW_DATE.Value.TryGetValue(LW_DATE, out Value);
+        }
+
+        /// <summary>
+        /// Attempt to find STLITNUM by LW_DATE field
+        /// </summary>
+        /// <param name="LW_DATE">LW_DATE value used to find STLITNUM</param>
+        /// <returns>List of related STLITNUM entities, or null if not found</returns>
+        /// <exception cref="ArgumentOutOfRangeException">No match was found</exception>
+        public IReadOnlyList<STLITNUM> TryFindByLW_DATE(DateTime? LW_DATE)
+        {
+            IReadOnlyList<STLITNUM> value;
+            if (Index_LW_DATE.Value.TryGetValue(LW_DATE, out value))
+            {
+                return value;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         /// <summary>
         /// Find STLITNUM by SKEY field
@@ -252,6 +296,10 @@ BEGIN
             [TID] ASC
         )
     );
+    CREATE NONCLUSTERED INDEX [STLITNUM_Index_LW_DATE] ON [dbo].[STLITNUM]
+    (
+            [LW_DATE] ASC
+    );
     CREATE CLUSTERED INDEX [STLITNUM_Index_SKEY] ON [dbo].[STLITNUM]
     (
             [SKEY] ASC
@@ -271,7 +319,9 @@ END");
             return new SqlCommand(
                 connection: SqlConnection,
                 cmdText:
-@"IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]') AND name = N'STLITNUM_Index_TID')
+@"IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]') AND name = N'STLITNUM_Index_LW_DATE')
+    ALTER INDEX [STLITNUM_Index_LW_DATE] ON [dbo].[STLITNUM] DISABLE;
+IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]') AND name = N'STLITNUM_Index_TID')
     ALTER INDEX [STLITNUM_Index_TID] ON [dbo].[STLITNUM] DISABLE;
 ");
         }
@@ -286,7 +336,9 @@ END");
             return new SqlCommand(
                 connection: SqlConnection,
                 cmdText:
-@"IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]') AND name = N'STLITNUM_Index_TID')
+@"IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]') AND name = N'STLITNUM_Index_LW_DATE')
+    ALTER INDEX [STLITNUM_Index_LW_DATE] ON [dbo].[STLITNUM] REBUILD PARTITION = ALL;
+IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]') AND name = N'STLITNUM_Index_TID')
     ALTER INDEX [STLITNUM_Index_TID] ON [dbo].[STLITNUM] REBUILD PARTITION = ALL;
 ");
         }

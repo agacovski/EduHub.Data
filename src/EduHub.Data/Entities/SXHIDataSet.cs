@@ -181,6 +181,12 @@ namespace EduHub.Data.Entities
                     case "EXEMPT_APPROVED":
                         mapper[i] = (e, v) => e.EXEMPT_APPROVED = v;
                         break;
+                    case "E_MAIL":
+                        mapper[i] = (e, v) => e.E_MAIL = v;
+                        break;
+                    case "MOBILE":
+                        mapper[i] = (e, v) => e.MOBILE = v;
+                        break;
                     default:
                         mapper[i] = MapperNoOp;
                         break;
@@ -400,6 +406,8 @@ BEGIN
         [GENDER_DESC] varchar(100) NULL,
         [EXEMPT_REASON] varchar(1) NULL,
         [EXEMPT_APPROVED] varchar(1) NULL,
+        [E_MAIL] varchar(60) NULL,
+        [MOBILE] varchar(20) NULL,
         CONSTRAINT [SXHI_Index_TID] PRIMARY KEY CLUSTERED (
             [TID] ASC
         )
@@ -510,7 +518,7 @@ END");
             {
             }
 
-            public override int FieldCount { get { return 47; } }
+            public override int FieldCount { get { return 49; } }
 
             public override object GetValue(int i)
             {
@@ -610,6 +618,10 @@ END");
                         return Current.EXEMPT_REASON;
                     case 46: // EXEMPT_APPROVED
                         return Current.EXEMPT_APPROVED;
+                    case 47: // E_MAIL
+                        return Current.E_MAIL;
+                    case 48: // MOBILE
+                        return Current.MOBILE;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
                 }
@@ -711,6 +723,10 @@ END");
                         return Current.EXEMPT_REASON == null;
                     case 46: // EXEMPT_APPROVED
                         return Current.EXEMPT_APPROVED == null;
+                    case 47: // E_MAIL
+                        return Current.E_MAIL == null;
+                    case 48: // MOBILE
+                        return Current.MOBILE == null;
                     default:
                         return false;
                 }
@@ -814,6 +830,10 @@ END");
                         return "EXEMPT_REASON";
                     case 46: // EXEMPT_APPROVED
                         return "EXEMPT_APPROVED";
+                    case 47: // E_MAIL
+                        return "E_MAIL";
+                    case 48: // MOBILE
+                        return "MOBILE";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
                 }
@@ -917,6 +937,10 @@ END");
                         return 45;
                     case "EXEMPT_APPROVED":
                         return 46;
+                    case "E_MAIL":
+                        return 47;
+                    case "MOBILE":
+                        return 48;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

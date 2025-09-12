@@ -2,7 +2,7 @@ using System.Data.SqlClient;
 
 namespace EduHub.Data.Entities
 {
-    partial class ARDataSet
+    public partial class ARDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -19,42 +19,42 @@ WHERE
         }
     }
 
-    partial class CRDataSet
+    public partial class CRDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
         {
-            // Check for the existence of the COUNTRY column. New to C21v67.
+            // Check for the existence of the SSB column. New to C21v72.
             const string sql = @"SELECT
 	1 - COUNT(*)
 FROM sys.columns
 WHERE
 	object_id = OBJECT_ID(N'[dbo].[CR]') AND
-	name = 'COUNTRY'";
+	name = 'SSB'";
 
             return new SqlCommand(sql, SqlConnection);
         }
     }
 
-    partial class CRFDataSet
+    public partial class CRFDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
         {
-            // Check for the existence of the PO_PRINTED, APPROVED_BY, STAFF_ORDER_BY, CRPRTID columns. New to C21v59.
+            // Check for the existence of the DDBSB column. New to C21v72.
             const string sql = @"SELECT
-	4 - COUNT(*)
+	1 - COUNT(*)
 FROM sys.columns
 WHERE
 	object_id = OBJECT_ID(N'[dbo].[CRF]') AND
-	name IN ('PO_PRINTED', 'APPROVED_BY', 'STAFF_ORDER_BY', 'CRPRTID')";
+	name = 'DDBSB'";
 
             return new SqlCommand(sql, SqlConnection);
         }
     }
 
 #if !EduHubScoped
-    partial class DF_TFRDataSet
+    public partial class DF_TFRDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -73,7 +73,7 @@ WHERE
     }
 #endif
 
-    partial class DFDataSet
+    public partial class DFDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -90,24 +90,24 @@ WHERE
         }
     }
 
-    partial class DFFDataSet
+    public partial class DFFDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
         {
-            // Check for the existence of the PTYPE column. New to C21v70.
+            // Check for the existence of the SSB_TID column. New to C21v72.
             const string sql = @"SELECT
 	1 - COUNT(*)
 FROM sys.columns
 WHERE
 	object_id = OBJECT_ID(N'[dbo].[DFF]') AND
-	name = 'PTYPE'";
+	name = 'SSB_TID'";
 
             return new SqlCommand(sql, SqlConnection);
         }
     }
 
-    partial class DRDataSet
+    public partial class DRDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -125,7 +125,7 @@ WHERE
     }
 
 #if !EduHubScoped
-    partial class DRFDataSet
+    public partial class DRFDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -142,7 +142,7 @@ WHERE
         }
     }
 
-    partial class FDT_IMPDataSet
+    public partial class FDT_IMPDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -161,7 +161,7 @@ WHERE
         }
     }
 
-    partial class GLBANKDataSet
+    public partial class GLBANKDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -179,7 +179,7 @@ WHERE
     }
 #endif
 
-    partial class GLDataSet
+    public partial class GLDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -197,7 +197,7 @@ WHERE
     }
 
 #if !EduHubScoped
-    partial class GLFBANKDataSet
+    public partial class GLFBANKDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -215,7 +215,7 @@ WHERE
     }
 #endif
 
-    partial class GLFDataSet
+    public partial class GLFDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -233,7 +233,7 @@ WHERE
     }
 
 #if !EduHubScoped
-    partial class KCM_TFRDataSet
+    public partial class KCM_TFRDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -251,7 +251,7 @@ WHERE
     }
 #endif
 
-    partial class KCMDataSet
+    public partial class KCMDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -268,7 +268,7 @@ WHERE
         }
     }
 
-    partial class KCYDataSet
+    public partial class KCYDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -285,7 +285,7 @@ WHERE
         }
     }
 
-    partial class KDIDataSet
+    public partial class KDIDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -303,7 +303,7 @@ WHERE
         }
     }
 
-    partial class KDODataSet
+    public partial class KDODataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -320,7 +320,7 @@ WHERE
         }
     }
 
-    partial class KGCDataSet
+    public partial class KGCDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -337,7 +337,7 @@ WHERE
         }
     }
 
-    partial class KGHDataSet
+    public partial class KGHDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -354,7 +354,7 @@ WHERE
         }
     }
 
-    partial class KGLSUBDataSet
+    public partial class KGLSUBDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -372,7 +372,7 @@ WHERE
     }
 
 #if !EduHubScoped
-    partial class QBDataSet
+    public partial class QBDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -389,7 +389,7 @@ WHERE
         }
     }
 
-    partial class SCEN_STDataSet
+    public partial class SCEN_STDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -407,7 +407,7 @@ WHERE
     }
 #endif
 
-    partial class SCIDataSet
+    public partial class SCIDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -424,7 +424,7 @@ WHERE
         }
     }
 
-    partial class SFDataSet
+    public partial class SFDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -454,7 +454,7 @@ WHERE
         }
     }
 
-    partial class SGDataSet
+    public partial class SGDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -471,7 +471,7 @@ WHERE
         }
     }
 
-    partial class SKGSDataSet
+    public partial class SKGSDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -488,7 +488,7 @@ WHERE
         }
     }
 
-    partial class SMDataSet
+    public partial class SMDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -505,7 +505,7 @@ WHERE
         }
     }
 
-    partial class SMCDataSet
+    public partial class SMCDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -523,7 +523,7 @@ WHERE
     }
 
 #if !EduHubScoped
-    partial class ST_TFRDataSet
+    public partial class ST_TFRDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -543,24 +543,24 @@ WHERE
     }
 #endif
 
-    partial class STDataSet
+    public partial class STDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
         {
-            // Check for the existence of the EXEMPT_REASON column. New to C21v70.
+            // Check for the existence of the MEDIA_CONSENT_A column. New to C21v72.
             const string sql = @"SELECT
 	1 - COUNT(*)
 FROM sys.columns
 WHERE
 	object_id = OBJECT_ID(N'[dbo].[ST]') AND
-	name = 'EXEMPT_REASON'";
+	name = 'MEDIA_CONSENT_A'";
 
             return new SqlCommand(sql, SqlConnection);
         }
     }
 
-    partial class STARDataSet
+    public partial class STARDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -577,7 +577,7 @@ WHERE
         }
     }
 
-    partial class STMADataSet
+    public partial class STMADataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -595,7 +595,7 @@ WHERE
     }
 
 #if !EduHubScoped
-    partial class STMBDataSet
+    public partial class STMBDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -613,7 +613,7 @@ WHERE
     }
 #endif
 
-    partial class STNATDataSet
+    public partial class STNATDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -630,7 +630,7 @@ WHERE
         }
     }
 
-    partial class STPODataSet
+    public partial class STPODataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -647,7 +647,7 @@ WHERE
         }
     }
 
-    partial class STPSDataSet
+    public partial class STPSDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -664,7 +664,7 @@ WHERE
         }
     }
 
-    partial class STVDIDataSet
+    public partial class STVDIDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -681,7 +681,7 @@ WHERE
         }
     }
 
-    partial class STVDODataSet
+    public partial class STVDODataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -698,7 +698,7 @@ WHERE
         }
     }
 
-    partial class SUDataSet
+    public partial class SUDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -716,7 +716,7 @@ WHERE
     }
 
 #if !EduHubScoped
-    partial class SVAGDataSet
+    public partial class SVAGDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -734,7 +734,7 @@ WHERE
     }
 #endif
 
-    partial class SXABDataSet
+    public partial class SXABDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -751,7 +751,7 @@ WHERE
         }
     }
 
-    partial class TCDataSet
+    public partial class TCDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -768,7 +768,7 @@ WHERE
         }
     }
 
-    partial class TCTBDataSet
+    public partial class TCTBDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -785,7 +785,7 @@ WHERE
         }
     }
 
-    partial class TCTDDataSet
+    public partial class TCTDDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -802,7 +802,7 @@ WHERE
         }
     }
 
-    partial class TCTQDataSet
+    public partial class TCTQDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -819,7 +819,7 @@ WHERE
         }
     }
 
-    partial class TCTRDataSet
+    public partial class TCTRDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -836,7 +836,7 @@ WHERE
         }
     }
 
-    partial class TEDataSet
+    public partial class TEDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -854,7 +854,7 @@ WHERE
     }
 
 #if !EduHubScoped
-    partial class TETNDataSet
+    public partial class TETNDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -872,7 +872,7 @@ WHERE
     }
 #endif
 
-    partial class TTDataSet
+    public partial class TTDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
@@ -889,7 +889,7 @@ WHERE
         }
     }
 
-    partial class UMDataSet
+    public partial class UMDataSet
     {
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)

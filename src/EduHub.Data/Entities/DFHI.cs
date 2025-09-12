@@ -185,6 +185,30 @@ namespace EduHub.Data.Entities
         /// </summary>
         public string GENDER_DESC_B { get; internal set; }
 
+        /// <summary>
+        /// (Was M_E_MAIL) Parent/guardian A e-mail address
+        /// [Alphanumeric (60)]
+        /// </summary>
+        public string E_MAIL_A { get; internal set; }
+
+        /// <summary>
+        /// Parent/guardian A mobile number
+        /// [Uppercase Alphanumeric (20)]
+        /// </summary>
+        public string MOBILE_A { get; internal set; }
+
+        /// <summary>
+        /// (Was F_E_MAIL) Parent/guardian B e-mail address
+        /// [Alphanumeric (60)]
+        /// </summary>
+        public string E_MAIL_B { get; internal set; }
+
+        /// <summary>
+        /// Parent/guardian B mobile number
+        /// [Uppercase Alphanumeric (20)]
+        /// </summary>
+        public string MOBILE_B { get; internal set; }
+
         #endregion
 
         #region Navigation Properties
