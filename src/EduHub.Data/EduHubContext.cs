@@ -142,6 +142,7 @@ namespace EduHub.Data
 #if !EduHubScoped
         private readonly KGWDataSet _KGW;
         private readonly KINTNFDataSet _KINTNF;
+        private readonly KLNEIPDataSet _KLNEIP;
         private readonly KLOGDataSet _KLOG;
         private readonly KMSGDataSet _KMSG;
         private readonly KMYLNSDataSet _KMYLNS;
@@ -587,6 +588,7 @@ namespace EduHub.Data
 #if !EduHubScoped
             _KGW = new KGWDataSet(this);
             _KINTNF = new KINTNFDataSet(this);
+            _KLNEIP = new KLNEIPDataSet(this);
             _KLOG = new KLOGDataSet(this);
             _KMSG = new KMSGDataSet(this);
             _KMYLNS = new KMYLNSDataSet(this);
@@ -1015,6 +1017,7 @@ namespace EduHub.Data
 #if !EduHubScoped
             yield return KGW;
             yield return KINTNF;
+            yield return KLNEIP;
             yield return KLOG;
             yield return KMSG;
             yield return KMYLNS;
@@ -1806,6 +1809,11 @@ namespace EduHub.Data
         /// Expelled International Students
         /// </summary>
         public KINTNFDataSet KINTNF { get { return _KINTNF; } }
+
+        /// <summary>
+        /// LNEIP Non-Participating
+        /// </summary>
+        public KLNEIPDataSet KLNEIP { get { return _KLNEIP; } }
 
         /// <summary>
         /// Trace log for finance import and export

@@ -79,6 +79,12 @@ namespace EduHub.Data.Entities
         public string SCHOOL_NAME { get; internal set; }
 
         /// <summary>
+        /// Flexible Learning Option Type   * CP-4738 new FLO_TYPE added
+        /// [Uppercase Alphanumeric (30)]
+        /// </summary>
+        public string FLO_TYPE { get; internal set; }
+
+        /// <summary>
         /// Last write date
         /// </summary>
         public DateTime? LW_DATE { get; internal set; }

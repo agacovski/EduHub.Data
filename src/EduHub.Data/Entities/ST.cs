@@ -1397,7 +1397,7 @@ namespace EduHub.Data.Entities
         /// Schools Victoria E-mail address
         /// [Alphanumeric (60)]
         /// </summary>
-        public string ALT_E_MAIL { get; internal set; }
+        public string DEPT_E_MAIL { get; internal set; }
 
         /// <summary>
         /// Record is locked for editing as Non-Fee pyaing International student

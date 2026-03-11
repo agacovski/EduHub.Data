@@ -728,8 +728,8 @@ namespace EduHub.Data.Entities
                     case "DISABILITY_DESC":
                         mapper[i] = (e, v) => e.DISABILITY_DESC = v;
                         break;
-                    case "ALT_E_MAIL":
-                        mapper[i] = (e, v) => e.ALT_E_MAIL = v;
+                    case "DEPT_E_MAIL":
+                        mapper[i] = (e, v) => e.DEPT_E_MAIL = v;
                         break;
                     case "LOCK":
                         mapper[i] = (e, v) => e.LOCK = v;
@@ -2391,7 +2391,7 @@ BEGIN
         [EXEMPT_APPROVED] varchar(1) NULL,
         [DISABILITY_INFO] varchar(1) NULL,
         [DISABILITY_DESC] varchar(MAX) NULL,
-        [ALT_E_MAIL] varchar(60) NULL,
+        [DEPT_E_MAIL] varchar(60) NULL,
         [LOCK] varchar(1) NULL,
         [SCHOOL_USI] varchar(10) NULL,
         [SCHOOL_USI_STATUS] varchar(15) NULL,
@@ -3202,8 +3202,8 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND 
                         return Current.DISABILITY_INFO;
                     case 219: // DISABILITY_DESC
                         return Current.DISABILITY_DESC;
-                    case 220: // ALT_E_MAIL
-                        return Current.ALT_E_MAIL;
+                    case 220: // DEPT_E_MAIL
+                        return Current.DEPT_E_MAIL;
                     case 221: // LOCK
                         return Current.LOCK;
                     case 222: // SCHOOL_USI
@@ -3661,8 +3661,8 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND 
                         return Current.DISABILITY_INFO == null;
                     case 219: // DISABILITY_DESC
                         return Current.DISABILITY_DESC == null;
-                    case 220: // ALT_E_MAIL
-                        return Current.ALT_E_MAIL == null;
+                    case 220: // DEPT_E_MAIL
+                        return Current.DEPT_E_MAIL == null;
                     case 221: // LOCK
                         return Current.LOCK == null;
                     case 222: // SCHOOL_USI
@@ -4124,8 +4124,8 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND 
                         return "DISABILITY_INFO";
                     case 219: // DISABILITY_DESC
                         return "DISABILITY_DESC";
-                    case 220: // ALT_E_MAIL
-                        return "ALT_E_MAIL";
+                    case 220: // DEPT_E_MAIL
+                        return "DEPT_E_MAIL";
                     case 221: // LOCK
                         return "LOCK";
                     case 222: // SCHOOL_USI
@@ -4587,7 +4587,7 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST]') AND 
                         return 218;
                     case "DISABILITY_DESC":
                         return 219;
-                    case "ALT_E_MAIL":
+                    case "DEPT_E_MAIL":
                         return 220;
                     case "LOCK":
                         return 221;

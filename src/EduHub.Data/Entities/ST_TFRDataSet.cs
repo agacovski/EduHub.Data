@@ -511,6 +511,9 @@ namespace EduHub.Data.Entities
                     case "DISABILITY_DESC":
                         mapper[i] = (e, v) => e.DISABILITY_DESC = v;
                         break;
+                    case "DEPT_E_MAIL":
+                        mapper[i] = (e, v) => e.DEPT_E_MAIL = v;
+                        break;
                     case "LW_DATE":
                         mapper[i] = (e, v) => e.LW_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                         break;
@@ -980,6 +983,7 @@ BEGIN
         [VISA_PREV] varchar(3) NULL,
         [DISABILITY_INFO] varchar(1) NULL,
         [DISABILITY_DESC] varchar(MAX) NULL,
+        [DEPT_E_MAIL] varchar(60) NULL,
         [LW_DATE] datetime NULL,
         [LW_TIME] smallint NULL,
         [LW_USER] varchar(128) NULL,
@@ -1133,7 +1137,7 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST_TFR]') 
             {
             }
 
-            public override int FieldCount { get { return 159; } }
+            public override int FieldCount { get { return 160; } }
 
             public override object GetValue(int i)
             {
@@ -1451,11 +1455,13 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST_TFR]') 
                         return Current.DISABILITY_INFO;
                     case 155: // DISABILITY_DESC
                         return Current.DISABILITY_DESC;
-                    case 156: // LW_DATE
+                    case 156: // DEPT_E_MAIL
+                        return Current.DEPT_E_MAIL;
+                    case 157: // LW_DATE
                         return Current.LW_DATE;
-                    case 157: // LW_TIME
+                    case 158: // LW_TIME
                         return Current.LW_TIME;
-                    case 158: // LW_USER
+                    case 159: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -1774,11 +1780,13 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST_TFR]') 
                         return Current.DISABILITY_INFO == null;
                     case 155: // DISABILITY_DESC
                         return Current.DISABILITY_DESC == null;
-                    case 156: // LW_DATE
+                    case 156: // DEPT_E_MAIL
+                        return Current.DEPT_E_MAIL == null;
+                    case 157: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 157: // LW_TIME
+                    case 158: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 158: // LW_USER
+                    case 159: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -2101,11 +2109,13 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST_TFR]') 
                         return "DISABILITY_INFO";
                     case 155: // DISABILITY_DESC
                         return "DISABILITY_DESC";
-                    case 156: // LW_DATE
+                    case 156: // DEPT_E_MAIL
+                        return "DEPT_E_MAIL";
+                    case 157: // LW_DATE
                         return "LW_DATE";
-                    case 157: // LW_TIME
+                    case 158: // LW_TIME
                         return "LW_TIME";
-                    case 158: // LW_USER
+                    case 159: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -2428,12 +2438,14 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[ST_TFR]') 
                         return 154;
                     case "DISABILITY_DESC":
                         return 155;
-                    case "LW_DATE":
+                    case "DEPT_E_MAIL":
                         return 156;
-                    case "LW_TIME":
+                    case "LW_DATE":
                         return 157;
-                    case "LW_USER":
+                    case "LW_TIME":
                         return 158;
+                    case "LW_USER":
+                        return 159;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

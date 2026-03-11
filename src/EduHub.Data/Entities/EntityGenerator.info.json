@@ -1117,6 +1117,18 @@
       "Properties": {}
     },
     {
+      "Filename": "KLNEIPDataSet.cs",
+      "Project": null,
+      "Path": "Entities",
+      "Properties": {}
+    },
+    {
+      "Filename": "KLNEIP.cs",
+      "Project": null,
+      "Path": "Entities",
+      "Properties": {}
+    },
+    {
       "Filename": "KLOGDataSet.cs",
       "Project": null,
       "Path": "Entities",

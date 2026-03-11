@@ -76,6 +76,76 @@ namespace EduHub.Data.Entities
         public string PARENT_INFORMED { get; internal set; }
 
         /// <summary>
+        /// Grounds for Suspension/Expulsion
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string GROUNDS_SE01 { get; internal set; }
+
+        /// <summary>
+        /// Grounds for Suspension/Expulsion
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string GROUNDS_SE02 { get; internal set; }
+
+        /// <summary>
+        /// Grounds for Suspension/Expulsion
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string GROUNDS_SE03 { get; internal set; }
+
+        /// <summary>
+        /// Grounds for Suspension/Expulsion
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string GROUNDS_SE04 { get; internal set; }
+
+        /// <summary>
+        /// Grounds for Suspension/Expulsion
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string GROUNDS_SE05 { get; internal set; }
+
+        /// <summary>
+        /// Grounds for Suspension/Expulsion
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string GROUNDS_SE06 { get; internal set; }
+
+        /// <summary>
+        /// Grounds for Suspension/Expulsion
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string GROUNDS_SE07 { get; internal set; }
+
+        /// <summary>
+        /// Grounds for Suspension/Expulsion
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string GROUNDS_SE08 { get; internal set; }
+
+        /// <summary>
+        /// Grounds for Suspension/Expulsion
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string GROUNDS_SE09 { get; internal set; }
+
+        /// <summary>
+        /// Grounds for Suspension/Expulsion
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string GROUNDS_SE10 { get; internal set; }
+
+        /// <summary>
+        /// &lt;No documentation available&gt;
+        /// </summary>
+        public DateTime? DATE_FROM { get; internal set; }
+
+        /// <summary>
+        /// &lt;No documentation available&gt;
+        /// </summary>
+        public DateTime? DATE_TO { get; internal set; }
+
+        /// <summary>
         /// Last write date
         /// </summary>
         public DateTime? LW_DATE { get; internal set; }

@@ -280,6 +280,17 @@ namespace EduHub.Data.Entities
         public string ALERT { get; internal set; }
 
         /// <summary>
+        /// Does the student have a medical plan ?
+        /// [Uppercase Alphanumeric (1)]
+        /// </summary>
+        public string MEDICAL_PLAN { get; internal set; }
+
+        /// <summary>
+        /// Date medical plan must be reviewed
+        /// </summary>
+        public DateTime? MEDICAL_PLAN_REVIEW { get; internal set; }
+
+        /// <summary>
         /// Last write date
         /// </summary>
         public DateTime? LW_DATE { get; internal set; }

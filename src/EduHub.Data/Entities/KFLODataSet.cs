@@ -61,6 +61,9 @@ namespace EduHub.Data.Entities
                     case "SCHOOL_NAME":
                         mapper[i] = (e, v) => e.SCHOOL_NAME = v;
                         break;
+                    case "FLO_TYPE":
+                        mapper[i] = (e, v) => e.FLO_TYPE = v;
+                        break;
                     case "LW_DATE":
                         mapper[i] = (e, v) => e.LW_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                         break;
@@ -249,6 +252,7 @@ BEGIN
         [PROGRAM] varchar(50) NULL,
         [ACTIVE] varchar(1) NULL,
         [SCHOOL_NAME] varchar(50) NULL,
+        [FLO_TYPE] varchar(30) NULL,
         [LW_DATE] datetime NULL,
         [LW_TIME] smallint NULL,
         [LW_USER] varchar(128) NULL,
@@ -362,7 +366,7 @@ END");
             {
             }
 
-            public override int FieldCount { get { return 10; } }
+            public override int FieldCount { get { return 11; } }
 
             public override object GetValue(int i)
             {
@@ -382,11 +386,13 @@ END");
                         return Current.ACTIVE;
                     case 6: // SCHOOL_NAME
                         return Current.SCHOOL_NAME;
-                    case 7: // LW_DATE
+                    case 7: // FLO_TYPE
+                        return Current.FLO_TYPE;
+                    case 8: // LW_DATE
                         return Current.LW_DATE;
-                    case 8: // LW_TIME
+                    case 9: // LW_TIME
                         return Current.LW_TIME;
-                    case 9: // LW_USER
+                    case 10: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -409,11 +415,13 @@ END");
                         return Current.ACTIVE == null;
                     case 6: // SCHOOL_NAME
                         return Current.SCHOOL_NAME == null;
-                    case 7: // LW_DATE
+                    case 7: // FLO_TYPE
+                        return Current.FLO_TYPE == null;
+                    case 8: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 8: // LW_TIME
+                    case 9: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 9: // LW_USER
+                    case 10: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -438,11 +446,13 @@ END");
                         return "ACTIVE";
                     case 6: // SCHOOL_NAME
                         return "SCHOOL_NAME";
-                    case 7: // LW_DATE
+                    case 7: // FLO_TYPE
+                        return "FLO_TYPE";
+                    case 8: // LW_DATE
                         return "LW_DATE";
-                    case 8: // LW_TIME
+                    case 9: // LW_TIME
                         return "LW_TIME";
-                    case 9: // LW_USER
+                    case 10: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -467,12 +477,14 @@ END");
                         return 5;
                     case "SCHOOL_NAME":
                         return 6;
-                    case "LW_DATE":
+                    case "FLO_TYPE":
                         return 7;
-                    case "LW_TIME":
+                    case "LW_DATE":
                         return 8;
-                    case "LW_USER":
+                    case "LW_TIME":
                         return 9;
+                    case "LW_USER":
+                        return 10;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

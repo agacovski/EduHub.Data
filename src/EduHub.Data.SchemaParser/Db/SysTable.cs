@@ -2,7 +2,7 @@
 {
     public class SysTable
     {
-        public string name { get; set; }
-        public int object_id { get; set; }
+        public string Name { get; set; }
+        public int ObjectId { get; set; }
     }
 }

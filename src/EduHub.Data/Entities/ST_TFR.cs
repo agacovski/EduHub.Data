@@ -955,6 +955,12 @@ namespace EduHub.Data.Entities
         public string DISABILITY_DESC { get; internal set; }
 
         /// <summary>
+        /// Schools Victoria E-mail address
+        /// [Alphanumeric (60)]
+        /// </summary>
+        public string DEPT_E_MAIL { get; internal set; }
+
+        /// <summary>
         /// Last write date
         /// </summary>
         public DateTime? LW_DATE { get; internal set; }

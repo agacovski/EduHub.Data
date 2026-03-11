@@ -18,8 +18,8 @@ namespace EduHub.Data.SchemaParser.Db
                 using (var reader = new CsvReader(stream))
                 {
                     tables = SysBuilder.ImportCsv<SysTable>(reader,
-                        (ColumnName: "NAME", Mapper: (t, v) => t.name = v),
-                        (ColumnName: "OBJECT_ID", Mapper: (t, v) => t.object_id = int.Parse(v))
+                        (ColumnName: "NAME", Mapper: (t, v) => t.Name = v),
+                        (ColumnName: "OBJECT_ID", Mapper: (t, v) => t.ObjectId = int.Parse(v))
                         );
                 }
             }
@@ -30,8 +30,8 @@ namespace EduHub.Data.SchemaParser.Db
                 using (var reader = new CsvReader(stream))
                 {
                     types = SysBuilder.ImportCsv<SysType>(reader,
-                        (ColumnName: "NAME", Mapper: (t, v) => t.name = v),
-                        (ColumnName: "USER_TYPE_ID", Mapper: (t, v) => t.user_type_id = int.Parse(v))
+                        (ColumnName: "NAME", Mapper: (t, v) => t.Name = v),
+                        (ColumnName: "USER_TYPE_ID", Mapper: (t, v) => t.UserTypeId = int.Parse(v))
                         );
                 }
             }
@@ -42,13 +42,13 @@ namespace EduHub.Data.SchemaParser.Db
                 using (var reader = new CsvReader(stream))
                 {
                     columns = SysBuilder.ImportCsv<SysColumn>(reader,
-                        (ColumnName: "OBJECT_ID", Mapper: (t, v) => t.object_id = int.Parse(v)),
-                        (ColumnName: "NAME", Mapper: (t, v) => t.name = v),
-                        (ColumnName: "COLUMN_ID", Mapper: (t, v) => t.column_id = int.Parse(v)),
-                        (ColumnName: "USER_TYPE_ID", Mapper: (t, v) => t.user_type_id = int.Parse(v)),
-                        (ColumnName: "MAX_LENGTH", Mapper: (t, v) => t.max_length = int.Parse(v)),
-                        (ColumnName: "IS_NULLABLE", Mapper: (t, v) => t.is_nullable = v.AsBool()),
-                        (ColumnName: "IS_IDENTITY", Mapper: (t, v) => t.is_identity = v.AsBool())
+                        (ColumnName: "OBJECT_ID", Mapper: (t, v) => t.ObjectId = int.Parse(v)),
+                        (ColumnName: "NAME", Mapper: (t, v) => t.Name = v),
+                        (ColumnName: "COLUMN_ID", Mapper: (t, v) => t.ColumnId = int.Parse(v)),
+                        (ColumnName: "USER_TYPE_ID", Mapper: (t, v) => t.UserTypeId = int.Parse(v)),
+                        (ColumnName: "MAX_LENGTH", Mapper: (t, v) => t.MaxLength = int.Parse(v)),
+                        (ColumnName: "IS_NULLABLE", Mapper: (t, v) => t.IsNullable = v.AsBool()),
+                        (ColumnName: "IS_IDENTITY", Mapper: (t, v) => t.IsIdentity = v.AsBool())
                         );
                 }
             }
@@ -59,14 +59,15 @@ namespace EduHub.Data.SchemaParser.Db
                 using (var reader = new CsvReader(stream))
                 {
                     indexes = SysBuilder.ImportCsv<SysIndex>(reader,
-                        (ColumnName: "OBJECT_ID", Mapper: (t, v) => t.object_id = int.Parse(v)),
-                        (ColumnName: "NAME", Mapper: (t, v) => t.name = v),
-                        (ColumnName: "INDEX_ID", Mapper: (t, v) => t.index_id = int.Parse(v)),
-                        (ColumnName: "TYPE", Mapper: (t, v) => t.type = int.Parse(v)),
-                        (ColumnName: "IS_UNIQUE", Mapper: (t, v) => t.is_unique = v.AsBool()),
-                        (ColumnName: "IS_PRIMARY_KEY", Mapper: (t, v) => t.is_primary_key = v.AsBool())
+                        (ColumnName: "OBJECT_ID", Mapper: (t, v) => t.ObjectId = int.Parse(v)),
+                        (ColumnName: "NAME", Mapper: (t, v) => t.Name = v),
+                        (ColumnName: "INDEX_ID", Mapper: (t, v) => t.IndexId = int.Parse(v)),
+                        (ColumnName: "TYPE", Mapper: (t, v) => t.TypeId = v is null ? -1 : int.Parse(v)),
+                        (ColumnName: "TYPE_DESC", Mapper: (t, v) => t.TypeDesc = v),
+                        (ColumnName: "IS_UNIQUE", Mapper: (t, v) => t.IsUnique = v.AsBool()),
+                        (ColumnName: "IS_PRIMARY_KEY", Mapper: (t, v) => t.IsPrimaryKey = v.AsBool())
                         )
-                        .Where(i => i.type == 1 || i.type == 2).ToList();
+                        .Where(i => i.Type == SysIndexType.Clustered || i.Type == SysIndexType.NonClustered).ToList();
                 }
             }
 
@@ -76,10 +77,10 @@ namespace EduHub.Data.SchemaParser.Db
                 using (var reader = new CsvReader(stream))
                 {
                     indexColumns = SysBuilder.ImportCsv<SysIndexColumn>(reader,
-                        (ColumnName: "OBJECT_ID", Mapper: (t, v) => t.object_id = int.Parse(v)),
-                        (ColumnName: "INDEX_ID", Mapper: (t, v) => t.index_id = int.Parse(v)),
-                        (ColumnName: "COLUMN_ID", Mapper: (t, v) => t.column_id = int.Parse(v)),
-                        (ColumnName: "KEY_ORDINAL", Mapper: (t, v) => t.key_ordinal = byte.Parse(v))
+                        (ColumnName: "OBJECT_ID", Mapper: (t, v) => t.ObjectId = int.Parse(v)),
+                        (ColumnName: "INDEX_ID", Mapper: (t, v) => t.IndexId = int.Parse(v)),
+                        (ColumnName: "COLUMN_ID", Mapper: (t, v) => t.ColumnId = int.Parse(v)),
+                        (ColumnName: "KEY_ORDINAL", Mapper: (t, v) => t.KeyOrdinal = string.IsNullOrWhiteSpace(v) ? (byte?)null : byte.Parse(v))
                         );
                 }
             }
@@ -109,8 +110,8 @@ namespace EduHub.Data.SchemaParser.Db
                         {
                             tables.Add(new SysTable()
                             {
-                                name = dbReader.GetString(0),
-                                object_id = dbReader.GetInt32(1)
+                                Name = dbReader.GetString(0),
+                                ObjectId = dbReader.GetInt32(1)
                             });
                         }
                     }
@@ -126,8 +127,8 @@ namespace EduHub.Data.SchemaParser.Db
                         {
                             types.Add(new SysType()
                             {
-                                name = dbReader.GetString(0),
-                                user_type_id = dbReader.GetInt32(1)
+                                Name = dbReader.GetString(0),
+                                UserTypeId = dbReader.GetInt32(1)
                             });
                         }
                     }
@@ -143,13 +144,13 @@ namespace EduHub.Data.SchemaParser.Db
                         {
                             columns.Add(new SysColumn()
                             {
-                                object_id = dbReader.GetInt32(0),
-                                name = dbReader.GetString(1),
-                                column_id = dbReader.GetInt32(2),
-                                user_type_id = dbReader.GetInt32(3),
-                                max_length = dbReader.GetInt16(4),
-                                is_nullable = dbReader.GetBoolean(5),
-                                is_identity = dbReader.GetBoolean(6)
+                                ObjectId = dbReader.GetInt32(0),
+                                Name = dbReader.GetString(1),
+                                ColumnId = dbReader.GetInt32(2),
+                                UserTypeId = dbReader.GetInt32(3),
+                                MaxLength = dbReader.GetInt16(4),
+                                IsNullable = dbReader.GetBoolean(5),
+                                IsIdentity = dbReader.GetBoolean(6)
                             });
                         }
                     }
@@ -165,12 +166,12 @@ namespace EduHub.Data.SchemaParser.Db
                         {
                             indexes.Add(new SysIndex()
                             {
-                                object_id = dbReader.GetInt32(0),
-                                name = dbReader.IsDBNull(1) ? null : dbReader.GetString(1),
-                                index_id = dbReader.GetInt32(2),
-                                type = dbReader.GetByte(3),
-                                is_unique = dbReader.GetBoolean(4),
-                                is_primary_key = dbReader.GetBoolean(5)
+                                ObjectId = dbReader.GetInt32(0),
+                                Name = dbReader.IsDBNull(1) ? null : dbReader.GetString(1),
+                                IndexId = dbReader.GetInt32(2),
+                                TypeId = dbReader.GetByte(3),
+                                IsUnique = dbReader.GetBoolean(4),
+                                IsPrimaryKey = dbReader.GetBoolean(5)
                             });
                         }
                     }
@@ -186,10 +187,10 @@ namespace EduHub.Data.SchemaParser.Db
                         {
                             indexColumns.Add(new SysIndexColumn()
                             {
-                                object_id = dbReader.GetInt32(0),
-                                index_id = dbReader.GetInt32(1),
-                                column_id = dbReader.GetInt32(2),
-                                key_ordinal = dbReader.GetByte(3)
+                                ObjectId = dbReader.GetInt32(0),
+                                IndexId = dbReader.GetInt32(1),
+                                ColumnId = dbReader.GetInt32(2),
+                                KeyOrdinal = dbReader.GetByte(3)
                             });
                         }
                     }
@@ -203,17 +204,17 @@ namespace EduHub.Data.SchemaParser.Db
 
         private static void AugmentSchema(EduHubSchema Schema, List<SysTable> Tables, List<SysType> Types, List<SysColumn> Columns, List<SysIndex> Indexes, List<SysIndexColumn> IndexColumns)
         {
-            var tableLookup = Tables.ToDictionary(t => t.name, t => t.object_id, StringComparer.OrdinalIgnoreCase);
-            var typeLookup = Types.ToDictionary(t => t.user_type_id, t => t.name);
+            var tableLookup = Tables.ToDictionary(t => t.Name, t => t.ObjectId, StringComparer.OrdinalIgnoreCase);
+            var typeLookup = Types.ToDictionary(t => t.UserTypeId, t => t.Name);
             var columnsLookup = Columns
-                .GroupBy(c => c.object_id)
-                .ToDictionary(g => g.Key, g => g.OrderBy(c => c.column_id).ToList());
+                .GroupBy(c => c.ObjectId)
+                .ToDictionary(g => g.Key, g => g.OrderBy(c => c.ColumnId).ToList());
             var indexLookup = Indexes
-                .GroupBy(i => i.object_id)
-                .ToDictionary(g => g.Key, g => g.OrderBy(i => i.index_id).ToList());
+                .GroupBy(i => i.ObjectId)
+                .ToDictionary(g => g.Key, g => g.OrderBy(i => i.IndexId).ToList());
             var indexColumnLookup = IndexColumns
-                .GroupBy(ic => ic.object_id)
-                .ToDictionary(g => g.Key, g => g.GroupBy(ic => ic.index_id).ToDictionary(g2 => g2.Key, g2 => g2.OrderBy(ic => ic.key_ordinal).ToList()));
+                .GroupBy(ic => ic.ObjectId)
+                .ToDictionary(g => g.Key, g => g.GroupBy(ic => ic.IndexId).ToDictionary(g2 => g2.Key, g2 => g2.OrderBy(ic => ic.KeyOrdinal).ToList()));
 
             foreach (var entity in Schema.Entities)
             {
@@ -231,9 +232,9 @@ namespace EduHub.Data.SchemaParser.Db
                     {
                         foreach (var column in entityColumns)
                         {
-                            var field = entity.Fields.First(f => f.Name.Equals(column.name, StringComparison.OrdinalIgnoreCase));
+                            var field = entity.Fields.First(f => f.Name.Equals(column.Name, StringComparison.OrdinalIgnoreCase));
 
-                            field.SqlType = typeLookup[column.user_type_id];
+                            field.SqlType = typeLookup[column.UserTypeId];
 
                             // Check Framework Type
                             if (field.Type != GetFrameworkType(field.SqlType))
@@ -255,39 +256,39 @@ namespace EduHub.Data.SchemaParser.Db
                                 case "varbinary":
                                     if (field.TypeMaxLength == 0)
                                     {
-                                        field.TypeMaxLength = column.max_length;
+                                        field.TypeMaxLength = column.MaxLength;
                                     }
 
                                     // Overrides
-                                    if (field.Entity.Name == "SPFSTORE" && field.Name == "PHYSICAL_LOCATION" && field.TypeMaxLength == 255 && column.max_length == 500)
+                                    if (field.Entity.Name == "SPFSTORE" && field.Name == "PHYSICAL_LOCATION" && field.TypeMaxLength == 255 && column.MaxLength == 500)
                                     {
-                                        field.TypeMaxLength = column.max_length;
+                                        field.TypeMaxLength = column.MaxLength;
                                         break;
                                     }
 
-                                    if (field.TypeMaxLength != column.max_length)
+                                    if (field.TypeMaxLength != column.MaxLength)
                                     {
                                         throw new InvalidOperationException("Entity field max length didn't match database schema");
                                     }
                                     break;
                             }
 
-                            if (!field.IsNullable && column.is_nullable)
+                            if (!field.IsNullable && column.IsNullable.Value)
                             {
                                 throw new InvalidOperationException("Entity field nullable didn't match database schema");
                             }
 
-                            if (field.IsNullable && !column.is_nullable)
+                            if (field.IsNullable && !column.IsNullable.Value)
                             {
                                 field.IsNullable = false;
                             }
 
-                            if (field.IsIdentity && !column.is_identity)
+                            if (field.IsIdentity && !column.IsIdentity.Value)
                             {
                                 throw new InvalidOperationException("Entity field identity didn't match database schema");
                             }
 
-                            if (!field.IsIdentity && column.is_identity)
+                            if (!field.IsIdentity && column.IsIdentity.Value)
                             {
                                 field.IsIdentity = true;
                             }
@@ -300,10 +301,10 @@ namespace EduHub.Data.SchemaParser.Db
                     {
                         foreach (var entityIndex in entityIndexes)
                         {
-                            List<SysIndexColumn> indexColumns = indexColumnLookup[entityIndex.object_id][entityIndex.index_id];
+                            List<SysIndexColumn> indexColumns = indexColumnLookup[entityIndex.ObjectId][entityIndex.IndexId];
 
                             List<EduHubField> fields = indexColumns
-                                .Select(ic => entity.Fields.First(f => f.Name.Equals(entityColumns.First(c => c.column_id == ic.column_id).name, StringComparison.OrdinalIgnoreCase)))
+                                .Select(ic => entity.Fields.First(f => f.Name.Equals(entityColumns.First(c => c.ColumnId == ic.ColumnId).Name, StringComparison.OrdinalIgnoreCase)))
                                 .ToList();
 
                             if (fields.Count == 0)
@@ -321,9 +322,9 @@ namespace EduHub.Data.SchemaParser.Db
                                 Entity: entity,
                                 Name: indexName,
                                 Fields: fields.AsReadOnly(),
-                                IsPrimary: entityIndex.is_primary_key,
-                                IsUnique: entityIndex.is_unique,
-                                IsClustered: entityIndex.type == 1);  // 1 = Clustered, 2 = Non Clustered
+                                IsPrimary: entityIndex.IsPrimaryKey.Value,
+                                IsUnique: entityIndex.IsUnique.Value,
+                                IsClustered: entityIndex.Type == SysIndexType.Clustered);  // 1 = Clustered, 2 = Non Clustered
 
                             // Check for existing Index with matching Fields; if matched, add unique or shortest name;
                             var matchingIndex = entity.Indexes.FirstOrDefault(ei => ei.Fields.Count == index.Fields.Count && ei.Fields.All(f => index.Fields.Contains(f)));
@@ -418,13 +419,13 @@ namespace EduHub.Data.SchemaParser.Db
             }
         }
 
-        private static bool AsBool(this string Value)
+        private static bool? AsBool(this string value)
         {
-            return !string.IsNullOrWhiteSpace(Value) &&
-                (
-                "1".Equals(Value, StringComparison.Ordinal) ||
-                "True".Equals(Value, StringComparison.OrdinalIgnoreCase)
-                );
+            if (string.IsNullOrWhiteSpace(value))
+                return null;
+
+            return "1".Equals(value, StringComparison.Ordinal) ||
+                "True".Equals(value, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

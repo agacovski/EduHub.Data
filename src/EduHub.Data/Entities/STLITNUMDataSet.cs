@@ -50,6 +50,18 @@ namespace EduHub.Data.Entities
                     case "FOCUS":
                         mapper[i] = (e, v) => e.FOCUS = v;
                         break;
+                    case "TIMEFRAME01":
+                        mapper[i] = (e, v) => e.TIMEFRAME01 = v;
+                        break;
+                    case "TIMEFRAME02":
+                        mapper[i] = (e, v) => e.TIMEFRAME02 = v;
+                        break;
+                    case "TIMEFRAME03":
+                        mapper[i] = (e, v) => e.TIMEFRAME03 = v;
+                        break;
+                    case "TIMEFRAME04":
+                        mapper[i] = (e, v) => e.TIMEFRAME04 = v;
+                        break;
                     case "DEL_MODEL":
                         mapper[i] = (e, v) => e.DEL_MODEL = v;
                         break;
@@ -286,6 +298,10 @@ BEGIN
         [TID] int IDENTITY NOT NULL,
         [SKEY] varchar(10) NOT NULL,
         [FOCUS] varchar(30) NULL,
+        [TIMEFRAME01] varchar(1) NULL,
+        [TIMEFRAME02] varchar(1) NULL,
+        [TIMEFRAME03] varchar(1) NULL,
+        [TIMEFRAME04] varchar(1) NULL,
         [DEL_MODEL] varchar(15) NULL,
         [SESSION_LENGTH] varchar(20) NULL,
         [SESSION_FREQ] varchar(30) NULL,
@@ -410,7 +426,7 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]'
             {
             }
 
-            public override int FieldCount { get { return 9; } }
+            public override int FieldCount { get { return 13; } }
 
             public override object GetValue(int i)
             {
@@ -422,17 +438,25 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]'
                         return Current.SKEY;
                     case 2: // FOCUS
                         return Current.FOCUS;
-                    case 3: // DEL_MODEL
+                    case 3: // TIMEFRAME01
+                        return Current.TIMEFRAME01;
+                    case 4: // TIMEFRAME02
+                        return Current.TIMEFRAME02;
+                    case 5: // TIMEFRAME03
+                        return Current.TIMEFRAME03;
+                    case 6: // TIMEFRAME04
+                        return Current.TIMEFRAME04;
+                    case 7: // DEL_MODEL
                         return Current.DEL_MODEL;
-                    case 4: // SESSION_LENGTH
+                    case 8: // SESSION_LENGTH
                         return Current.SESSION_LENGTH;
-                    case 5: // SESSION_FREQ
+                    case 9: // SESSION_FREQ
                         return Current.SESSION_FREQ;
-                    case 6: // LW_DATE
+                    case 10: // LW_DATE
                         return Current.LW_DATE;
-                    case 7: // LW_TIME
+                    case 11: // LW_TIME
                         return Current.LW_TIME;
-                    case 8: // LW_USER
+                    case 12: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -445,17 +469,25 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]'
                 {
                     case 2: // FOCUS
                         return Current.FOCUS == null;
-                    case 3: // DEL_MODEL
+                    case 3: // TIMEFRAME01
+                        return Current.TIMEFRAME01 == null;
+                    case 4: // TIMEFRAME02
+                        return Current.TIMEFRAME02 == null;
+                    case 5: // TIMEFRAME03
+                        return Current.TIMEFRAME03 == null;
+                    case 6: // TIMEFRAME04
+                        return Current.TIMEFRAME04 == null;
+                    case 7: // DEL_MODEL
                         return Current.DEL_MODEL == null;
-                    case 4: // SESSION_LENGTH
+                    case 8: // SESSION_LENGTH
                         return Current.SESSION_LENGTH == null;
-                    case 5: // SESSION_FREQ
+                    case 9: // SESSION_FREQ
                         return Current.SESSION_FREQ == null;
-                    case 6: // LW_DATE
+                    case 10: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 7: // LW_TIME
+                    case 11: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 8: // LW_USER
+                    case 12: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -472,17 +504,25 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]'
                         return "SKEY";
                     case 2: // FOCUS
                         return "FOCUS";
-                    case 3: // DEL_MODEL
+                    case 3: // TIMEFRAME01
+                        return "TIMEFRAME01";
+                    case 4: // TIMEFRAME02
+                        return "TIMEFRAME02";
+                    case 5: // TIMEFRAME03
+                        return "TIMEFRAME03";
+                    case 6: // TIMEFRAME04
+                        return "TIMEFRAME04";
+                    case 7: // DEL_MODEL
                         return "DEL_MODEL";
-                    case 4: // SESSION_LENGTH
+                    case 8: // SESSION_LENGTH
                         return "SESSION_LENGTH";
-                    case 5: // SESSION_FREQ
+                    case 9: // SESSION_FREQ
                         return "SESSION_FREQ";
-                    case 6: // LW_DATE
+                    case 10: // LW_DATE
                         return "LW_DATE";
-                    case 7: // LW_TIME
+                    case 11: // LW_TIME
                         return "LW_TIME";
-                    case 8: // LW_USER
+                    case 12: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -499,18 +539,26 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[STLITNUM]'
                         return 1;
                     case "FOCUS":
                         return 2;
-                    case "DEL_MODEL":
+                    case "TIMEFRAME01":
                         return 3;
-                    case "SESSION_LENGTH":
+                    case "TIMEFRAME02":
                         return 4;
-                    case "SESSION_FREQ":
+                    case "TIMEFRAME03":
                         return 5;
-                    case "LW_DATE":
+                    case "TIMEFRAME04":
                         return 6;
-                    case "LW_TIME":
+                    case "DEL_MODEL":
                         return 7;
-                    case "LW_USER":
+                    case "SESSION_LENGTH":
                         return 8;
+                    case "SESSION_FREQ":
+                        return 9;
+                    case "LW_DATE":
+                        return 10;
+                    case "LW_TIME":
+                        return 11;
+                    case "LW_USER":
+                        return 12;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

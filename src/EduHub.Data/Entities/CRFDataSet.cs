@@ -301,6 +301,12 @@ namespace EduHub.Data.Entities
                     case "DDACCOUNT_NAME":
                         mapper[i] = (e, v) => e.DDACCOUNT_NAME = v;
                         break;
+                    case "OLD_TRDELETE":
+                        mapper[i] = (e, v) => e.OLD_TRDELETE = v == null ? (short?)null : short.Parse(v);
+                        break;
+                    case "OLD_TRDELETE_DATE":
+                        mapper[i] = (e, v) => e.OLD_TRDELETE_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                        break;
                     case "LW_DATE":
                         mapper[i] = (e, v) => e.LW_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                         break;
@@ -996,6 +1002,8 @@ BEGIN
         [DDBSB] varchar(6) NULL,
         [DDACCOUNT_NO] varchar(15) NULL,
         [DDACCOUNT_NAME] varchar(60) NULL,
+        [OLD_TRDELETE] smallint NULL,
+        [OLD_TRDELETE_DATE] datetime NULL,
         [LW_DATE] datetime NULL,
         [LW_TIME] smallint NULL,
         [LW_USER] varchar(128) NULL,
@@ -1189,7 +1197,7 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CRF]') AND
             {
             }
 
-            public override int FieldCount { get { return 87; } }
+            public override int FieldCount { get { return 89; } }
 
             public override object GetValue(int i)
             {
@@ -1363,11 +1371,15 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CRF]') AND
                         return Current.DDACCOUNT_NO;
                     case 83: // DDACCOUNT_NAME
                         return Current.DDACCOUNT_NAME;
-                    case 84: // LW_DATE
+                    case 84: // OLD_TRDELETE
+                        return Current.OLD_TRDELETE;
+                    case 85: // OLD_TRDELETE_DATE
+                        return Current.OLD_TRDELETE_DATE;
+                    case 86: // LW_DATE
                         return Current.LW_DATE;
-                    case 85: // LW_TIME
+                    case 87: // LW_TIME
                         return Current.LW_TIME;
-                    case 86: // LW_USER
+                    case 88: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -1542,11 +1554,15 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CRF]') AND
                         return Current.DDACCOUNT_NO == null;
                     case 83: // DDACCOUNT_NAME
                         return Current.DDACCOUNT_NAME == null;
-                    case 84: // LW_DATE
+                    case 84: // OLD_TRDELETE
+                        return Current.OLD_TRDELETE == null;
+                    case 85: // OLD_TRDELETE_DATE
+                        return Current.OLD_TRDELETE_DATE == null;
+                    case 86: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 85: // LW_TIME
+                    case 87: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 86: // LW_USER
+                    case 88: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -1725,11 +1741,15 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CRF]') AND
                         return "DDACCOUNT_NO";
                     case 83: // DDACCOUNT_NAME
                         return "DDACCOUNT_NAME";
-                    case 84: // LW_DATE
+                    case 84: // OLD_TRDELETE
+                        return "OLD_TRDELETE";
+                    case 85: // OLD_TRDELETE_DATE
+                        return "OLD_TRDELETE_DATE";
+                    case 86: // LW_DATE
                         return "LW_DATE";
-                    case 85: // LW_TIME
+                    case 87: // LW_TIME
                         return "LW_TIME";
-                    case 86: // LW_USER
+                    case 88: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -1908,12 +1928,16 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[CRF]') AND
                         return 82;
                     case "DDACCOUNT_NAME":
                         return 83;
-                    case "LW_DATE":
+                    case "OLD_TRDELETE":
                         return 84;
-                    case "LW_TIME":
+                    case "OLD_TRDELETE_DATE":
                         return 85;
-                    case "LW_USER":
+                    case "LW_DATE":
                         return 86;
+                    case "LW_TIME":
+                        return 87;
+                    case "LW_USER":
+                        return 88;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }

@@ -403,6 +403,16 @@ namespace EduHub.Data.Entities
         public int? SSB_TID { get; internal set; }
 
         /// <summary>
+        /// Old TRDELETE value before replaced with a 9.  See CP-5314
+        /// </summary>
+        public short? OLD_TRDELETE { get; internal set; }
+
+        /// <summary>
+        /// Date TRDELETE value was replaced.  See CP-5314
+        /// </summary>
+        public DateTime? OLD_TRDELETE_DATE { get; internal set; }
+
+        /// <summary>
         /// Last write date
         /// </summary>
         public DateTime? LW_DATE { get; internal set; }

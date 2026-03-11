@@ -65,6 +65,12 @@ namespace EduHub.Data.Entities
         public string NAME_A { get; internal set; }
 
         /// <summary>
+        /// Preferred Name for Parent A (CP-5267)
+        /// [Alphanumeric (30)]
+        /// </summary>
+        public string PREF_NAME_A { get; internal set; }
+
+        /// <summary>
         /// (Was MSURNAME) Parent/guardian A surname (default SURNAME)
         /// [Uppercase Alphanumeric (30)]
         /// </summary>
@@ -225,6 +231,12 @@ namespace EduHub.Data.Entities
         /// [Alphanumeric (30)]
         /// </summary>
         public string NAME_B { get; internal set; }
+
+        /// <summary>
+        /// Preferred Name for Parent B (CP-5267)
+        /// [Alphanumeric (30)]
+        /// </summary>
+        public string PREF_NAME_B { get; internal set; }
 
         /// <summary>
         /// (Was FSURNAME) Parent/guardian B surname (default SURNAME)

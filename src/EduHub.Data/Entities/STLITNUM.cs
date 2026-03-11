@@ -47,6 +47,30 @@ namespace EduHub.Data.Entities
         public string FOCUS { get; internal set; }
 
         /// <summary>
+        /// Timeframe of Support
+        /// [Alphanumeric (1)]
+        /// </summary>
+        public string TIMEFRAME01 { get; internal set; }
+
+        /// <summary>
+        /// Timeframe of Support
+        /// [Alphanumeric (1)]
+        /// </summary>
+        public string TIMEFRAME02 { get; internal set; }
+
+        /// <summary>
+        /// Timeframe of Support
+        /// [Alphanumeric (1)]
+        /// </summary>
+        public string TIMEFRAME03 { get; internal set; }
+
+        /// <summary>
+        /// Timeframe of Support
+        /// [Alphanumeric (1)]
+        /// </summary>
+        public string TIMEFRAME04 { get; internal set; }
+
+        /// <summary>
         /// Practice model
         /// [Alphanumeric (15)]
         /// </summary>

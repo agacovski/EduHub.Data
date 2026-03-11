@@ -74,26 +74,26 @@ namespace EduHub.Data.Entities
         public string FLAG04 { get; internal set; }
 
         /// <summary>
-        /// Output texts
-        /// [Alphanumeric (40)]
+        /// Output texts * CP-5261 enlarged width to cater for longer email addresses
+        /// [Alphanumeric (80)]
         /// </summary>
         public string TXT01 { get; internal set; }
 
         /// <summary>
-        /// Output texts
-        /// [Alphanumeric (40)]
+        /// Output texts * CP-5261 enlarged width to cater for longer email addresses
+        /// [Alphanumeric (80)]
         /// </summary>
         public string TXT02 { get; internal set; }
 
         /// <summary>
-        /// Output texts
-        /// [Alphanumeric (40)]
+        /// Output texts * CP-5261 enlarged width to cater for longer email addresses
+        /// [Alphanumeric (80)]
         /// </summary>
         public string TXT03 { get; internal set; }
 
         /// <summary>
-        /// Output texts
-        /// [Alphanumeric (40)]
+        /// Output texts * CP-5261 enlarged width to cater for longer email addresses
+        /// [Alphanumeric (80)]
         /// </summary>
         public string TXT04 { get; internal set; }
 

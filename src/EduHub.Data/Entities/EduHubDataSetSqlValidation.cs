@@ -41,13 +41,13 @@ WHERE
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
         {
-            // Check for the existence of the DDBSB column. New to C21v72.
+            // Check for the existence of the OLD_TRDELETE column. New to C21v73.
             const string sql = @"SELECT
 	1 - COUNT(*)
 FROM sys.columns
 WHERE
 	object_id = OBJECT_ID(N'[dbo].[CRF]') AND
-	name = 'DDBSB'";
+	name = 'OLD_TRDELETE'";
 
             return new SqlCommand(sql, SqlConnection);
         }
@@ -78,13 +78,13 @@ WHERE
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
         {
-            // Check for the existence of the HEALTH_SUM_SI_ID column. New to C21v67.
+            // Check for the existence of the PREF_NAME_A column. New to C21v73.
             const string sql = @"SELECT
 	1 - COUNT(*)
 FROM sys.columns
 WHERE
 	object_id = OBJECT_ID(N'[dbo].[DF]') AND
-	name = 'HEALTH_SUM_SI_ID'";
+	name = 'PREF_NAME_A'";
 
             return new SqlCommand(sql, SqlConnection);
         }
@@ -95,13 +95,13 @@ WHERE
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
         {
-            // Check for the existence of the SSB_TID column. New to C21v72.
+            // Check for the existence of the OLD_TRDELETE column. New to C21v73.
             const string sql = @"SELECT
 	1 - COUNT(*)
 FROM sys.columns
 WHERE
 	object_id = OBJECT_ID(N'[dbo].[DFF]') AND
-	name = 'SSB_TID'";
+	name = 'OLD_TRDELETE'";
 
             return new SqlCommand(sql, SqlConnection);
         }
@@ -510,13 +510,13 @@ WHERE
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
         {
-            // Check for the existence of the ALERT column. New to C21v67.
+            // Check for the existence of the MEDICAL_PLAN column. New to C21v73.
             const string sql = @"SELECT
 	1 - COUNT(*)
 FROM sys.columns
 WHERE
 	object_id = OBJECT_ID(N'[dbo].[SMC]') AND
-	name = 'ALERT'";
+	name = 'MEDICAL_PLAN'";
 
             return new SqlCommand(sql, SqlConnection);
         }
@@ -548,13 +548,13 @@ WHERE
         /// <inheritdoc />
         public override SqlCommand GetSqlTableIsValidCommand(SqlConnection SqlConnection)
         {
-            // Check for the existence of the MEDIA_CONSENT_A column. New to C21v72.
+            // Check for the existence of the DEPT_E_MAIL column. New to C21v73.
             const string sql = @"SELECT
 	1 - COUNT(*)
 FROM sys.columns
 WHERE
 	object_id = OBJECT_ID(N'[dbo].[ST]') AND
-	name = 'MEDIA_CONSENT_A'";
+	name = 'DEPT_E_MAIL'";
 
             return new SqlCommand(sql, SqlConnection);
         }

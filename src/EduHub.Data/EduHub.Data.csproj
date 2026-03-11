@@ -785,6 +785,12 @@
     <Compile Include="Entities\KGWDataSet.cs">
       <DependentUpon>EntityGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\KLNEIP.cs">
+      <DependentUpon>EntityGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\KLNEIPDataSet.cs">
+      <DependentUpon>EntityGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\KLOG.cs">
       <DependentUpon>EntityGenerator.tt</DependentUpon>
     </Compile>

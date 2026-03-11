@@ -63,6 +63,42 @@ namespace EduHub.Data.Entities
                     case "PARENT_INFORMED":
                         mapper[i] = (e, v) => e.PARENT_INFORMED = v;
                         break;
+                    case "GROUNDS_SE01":
+                        mapper[i] = (e, v) => e.GROUNDS_SE01 = v;
+                        break;
+                    case "GROUNDS_SE02":
+                        mapper[i] = (e, v) => e.GROUNDS_SE02 = v;
+                        break;
+                    case "GROUNDS_SE03":
+                        mapper[i] = (e, v) => e.GROUNDS_SE03 = v;
+                        break;
+                    case "GROUNDS_SE04":
+                        mapper[i] = (e, v) => e.GROUNDS_SE04 = v;
+                        break;
+                    case "GROUNDS_SE05":
+                        mapper[i] = (e, v) => e.GROUNDS_SE05 = v;
+                        break;
+                    case "GROUNDS_SE06":
+                        mapper[i] = (e, v) => e.GROUNDS_SE06 = v;
+                        break;
+                    case "GROUNDS_SE07":
+                        mapper[i] = (e, v) => e.GROUNDS_SE07 = v;
+                        break;
+                    case "GROUNDS_SE08":
+                        mapper[i] = (e, v) => e.GROUNDS_SE08 = v;
+                        break;
+                    case "GROUNDS_SE09":
+                        mapper[i] = (e, v) => e.GROUNDS_SE09 = v;
+                        break;
+                    case "GROUNDS_SE10":
+                        mapper[i] = (e, v) => e.GROUNDS_SE10 = v;
+                        break;
+                    case "DATE_FROM":
+                        mapper[i] = (e, v) => e.DATE_FROM = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                        break;
+                    case "DATE_TO":
+                        mapper[i] = (e, v) => e.DATE_TO = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+                        break;
                     case "LW_DATE":
                         mapper[i] = (e, v) => e.LW_DATE = v == null ? (DateTime?)null : DateTime.ParseExact(v, "d/MM/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
                         break;
@@ -337,6 +373,18 @@ BEGIN
         [OTHER_ACTION] varchar(MAX) NULL,
         [COMPLIED] varchar(1) NULL,
         [PARENT_INFORMED] varchar(1) NULL,
+        [GROUNDS_SE01] varchar(1) NULL,
+        [GROUNDS_SE02] varchar(1) NULL,
+        [GROUNDS_SE03] varchar(1) NULL,
+        [GROUNDS_SE04] varchar(1) NULL,
+        [GROUNDS_SE05] varchar(1) NULL,
+        [GROUNDS_SE06] varchar(1) NULL,
+        [GROUNDS_SE07] varchar(1) NULL,
+        [GROUNDS_SE08] varchar(1) NULL,
+        [GROUNDS_SE09] varchar(1) NULL,
+        [GROUNDS_SE10] varchar(1) NULL,
+        [DATE_FROM] datetime NULL,
+        [DATE_TO] datetime NULL,
         [LW_DATE] datetime NULL,
         [LW_TIME] smallint NULL,
         [LW_USER] varchar(128) NULL,
@@ -466,7 +514,7 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[SDPA]') AN
             {
             }
 
-            public override int FieldCount { get { return 10; } }
+            public override int FieldCount { get { return 22; } }
 
             public override object GetValue(int i)
             {
@@ -486,11 +534,35 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[SDPA]') AN
                         return Current.COMPLIED;
                     case 6: // PARENT_INFORMED
                         return Current.PARENT_INFORMED;
-                    case 7: // LW_DATE
+                    case 7: // GROUNDS_SE01
+                        return Current.GROUNDS_SE01;
+                    case 8: // GROUNDS_SE02
+                        return Current.GROUNDS_SE02;
+                    case 9: // GROUNDS_SE03
+                        return Current.GROUNDS_SE03;
+                    case 10: // GROUNDS_SE04
+                        return Current.GROUNDS_SE04;
+                    case 11: // GROUNDS_SE05
+                        return Current.GROUNDS_SE05;
+                    case 12: // GROUNDS_SE06
+                        return Current.GROUNDS_SE06;
+                    case 13: // GROUNDS_SE07
+                        return Current.GROUNDS_SE07;
+                    case 14: // GROUNDS_SE08
+                        return Current.GROUNDS_SE08;
+                    case 15: // GROUNDS_SE09
+                        return Current.GROUNDS_SE09;
+                    case 16: // GROUNDS_SE10
+                        return Current.GROUNDS_SE10;
+                    case 17: // DATE_FROM
+                        return Current.DATE_FROM;
+                    case 18: // DATE_TO
+                        return Current.DATE_TO;
+                    case 19: // LW_DATE
                         return Current.LW_DATE;
-                    case 8: // LW_TIME
+                    case 20: // LW_TIME
                         return Current.LW_TIME;
-                    case 9: // LW_USER
+                    case 21: // LW_USER
                         return Current.LW_USER;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(i));
@@ -511,11 +583,35 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[SDPA]') AN
                         return Current.COMPLIED == null;
                     case 6: // PARENT_INFORMED
                         return Current.PARENT_INFORMED == null;
-                    case 7: // LW_DATE
+                    case 7: // GROUNDS_SE01
+                        return Current.GROUNDS_SE01 == null;
+                    case 8: // GROUNDS_SE02
+                        return Current.GROUNDS_SE02 == null;
+                    case 9: // GROUNDS_SE03
+                        return Current.GROUNDS_SE03 == null;
+                    case 10: // GROUNDS_SE04
+                        return Current.GROUNDS_SE04 == null;
+                    case 11: // GROUNDS_SE05
+                        return Current.GROUNDS_SE05 == null;
+                    case 12: // GROUNDS_SE06
+                        return Current.GROUNDS_SE06 == null;
+                    case 13: // GROUNDS_SE07
+                        return Current.GROUNDS_SE07 == null;
+                    case 14: // GROUNDS_SE08
+                        return Current.GROUNDS_SE08 == null;
+                    case 15: // GROUNDS_SE09
+                        return Current.GROUNDS_SE09 == null;
+                    case 16: // GROUNDS_SE10
+                        return Current.GROUNDS_SE10 == null;
+                    case 17: // DATE_FROM
+                        return Current.DATE_FROM == null;
+                    case 18: // DATE_TO
+                        return Current.DATE_TO == null;
+                    case 19: // LW_DATE
                         return Current.LW_DATE == null;
-                    case 8: // LW_TIME
+                    case 20: // LW_TIME
                         return Current.LW_TIME == null;
-                    case 9: // LW_USER
+                    case 21: // LW_USER
                         return Current.LW_USER == null;
                     default:
                         return false;
@@ -540,11 +636,35 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[SDPA]') AN
                         return "COMPLIED";
                     case 6: // PARENT_INFORMED
                         return "PARENT_INFORMED";
-                    case 7: // LW_DATE
+                    case 7: // GROUNDS_SE01
+                        return "GROUNDS_SE01";
+                    case 8: // GROUNDS_SE02
+                        return "GROUNDS_SE02";
+                    case 9: // GROUNDS_SE03
+                        return "GROUNDS_SE03";
+                    case 10: // GROUNDS_SE04
+                        return "GROUNDS_SE04";
+                    case 11: // GROUNDS_SE05
+                        return "GROUNDS_SE05";
+                    case 12: // GROUNDS_SE06
+                        return "GROUNDS_SE06";
+                    case 13: // GROUNDS_SE07
+                        return "GROUNDS_SE07";
+                    case 14: // GROUNDS_SE08
+                        return "GROUNDS_SE08";
+                    case 15: // GROUNDS_SE09
+                        return "GROUNDS_SE09";
+                    case 16: // GROUNDS_SE10
+                        return "GROUNDS_SE10";
+                    case 17: // DATE_FROM
+                        return "DATE_FROM";
+                    case 18: // DATE_TO
+                        return "DATE_TO";
+                    case 19: // LW_DATE
                         return "LW_DATE";
-                    case 8: // LW_TIME
+                    case 20: // LW_TIME
                         return "LW_TIME";
-                    case 9: // LW_USER
+                    case 21: // LW_USER
                         return "LW_USER";
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ordinal));
@@ -569,12 +689,36 @@ IF EXISTS (SELECT * FROM dbo.sysindexes WHERE id = OBJECT_ID(N'[dbo].[SDPA]') AN
                         return 5;
                     case "PARENT_INFORMED":
                         return 6;
-                    case "LW_DATE":
+                    case "GROUNDS_SE01":
                         return 7;
-                    case "LW_TIME":
+                    case "GROUNDS_SE02":
                         return 8;
-                    case "LW_USER":
+                    case "GROUNDS_SE03":
                         return 9;
+                    case "GROUNDS_SE04":
+                        return 10;
+                    case "GROUNDS_SE05":
+                        return 11;
+                    case "GROUNDS_SE06":
+                        return 12;
+                    case "GROUNDS_SE07":
+                        return 13;
+                    case "GROUNDS_SE08":
+                        return 14;
+                    case "GROUNDS_SE09":
+                        return 15;
+                    case "GROUNDS_SE10":
+                        return 16;
+                    case "DATE_FROM":
+                        return 17;
+                    case "DATE_TO":
+                        return 18;
+                    case "LW_DATE":
+                        return 19;
+                    case "LW_TIME":
+                        return 20;
+                    case "LW_USER":
+                        return 21;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(name));
                 }
